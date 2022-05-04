@@ -1,0 +1,28 @@
+{
+	"name": "vuepress-starter",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "vuepress dev docs --temp .temp",
+		"build": "vuepress build docs"
+	},
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@vuepress-reco/vuepress-plugin-bgm-player": "^1.1.4",
+		"@vuepress-reco/vuepress-plugin-kan-ban-niang": "^1.0.5",
+		"@vuepress/theme-blog": "^2.3.3",
+		"vuepress": "^1.9.7",
+		"vuepress-plugin-copyright": "^1.0.2",
+		"vuepress-plugin-cursor-effects": "^1.1.2",
+		"vuepress-plugin-nuggets-style-copy": "^1.0.3",
+		"vuepress-plugin-sakura": "^1.2.1",
+		"vuepress-theme-reco": "^1.6.11"
+	},
+	"dependencies": {
+		"@vuepress-reco/vuepress-plugin-bulletin-popover": "^1.6.0",
+		"vuepress-plugin-helper-live2d": "^1.0.2"
+	}
+}
