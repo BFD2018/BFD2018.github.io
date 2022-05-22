@@ -157,7 +157,7 @@
       <li>
         <a href="/musics">
           
-          <i class="fas fa-musics" style="margin-top: -20px; zoom: 0.6;"></i>
+          <i class="fa-solid fa-music" style="margin-top: -20px; zoom: 0.6;"></i>
           
           <span>Musics</span>
         </a>
@@ -173,20 +173,11 @@
       </li>
       
       <li>
-        <a href="/books">
-          
-          <i class="fas fa-book" style="margin-top: -20px; zoom: 0.6;"></i>
-          
-          <span>Books</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/galleries">
+        <a href="/mygallery">
           
           <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
           
-          <span>Galleries</span>
+          <span>myGallery</span>
         </a>
       </li>
       
@@ -321,7 +312,7 @@
 
                   <a href="/musics " style="margin-left:75px">
 				  
-				   <i class="fa fas fa-musics" style="position: absolute;left:50px" ></i>
+				   <i class="fa fa-solid fa-music" style="position: absolute;left:50px" ></i>
 			      
 		          <span>Musics</span>
                   </a>
@@ -339,21 +330,11 @@
               
                 <li>
 
-                  <a href="/books " style="margin-left:75px">
-				  
-				   <i class="fa fas fa-book" style="position: absolute;left:50px" ></i>
-			      
-		          <span>Books</span>
-                  </a>
-                </li>
-              
-                <li>
-
-                  <a href="/galleries " style="margin-left:75px">
+                  <a href="/mygallery " style="margin-left:75px">
 				  
 				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
 			      
-		          <span>Galleries</span>
+		          <span>myGallery</span>
                   </a>
                 </li>
               
@@ -749,12 +730,16 @@ Java SE
 <style>
     .aplayer .aplayer-lrc p {
         
+        display: none;
+        
         font-size: 12px;
         font-weight: 700;
         line-height: 16px !important;
     }
 
     .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
         
         font-size: 15px;
         color: #42b983;
@@ -765,33 +750,66 @@ Java SE
 <div class="music-player">
     
         <div class="title center-align">
-            <i class="fa fa-music"></i>&nbsp;&nbsp;听听音乐
+            <i class="fas fa-music"></i>&nbsp;&nbsp;听听音乐
         </div>
     
     <div class="row">
         <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
                    server="tencent"
                    type="playlist"
-                   id="2256123259"
+                   id="823735918"
                    fixed='false'
-                   autoplay='true'
+                   autoplay='false'
                    theme='#42b983'
                    loop='all'
                    order='random'
                    preload='auto'
                    volume='0.7'
-                   listMaxHeight='525px'
-                   list-folded='false'
+                   list-folded='true'
         >
         </meting-js>
     </div>
 </div>
 
-
 <script src="/libs/aplayer/APlayer.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
 
                         
+
+                    
+                        <link rel="stylesheet" href="/libs/dplayer/DPlayer.min.css">
+<div class="video-player">
+    
+    <div class="title center-align">
+        <i class="fas fa-video-camera"></i>&nbsp;&nbsp;天空之城
+    </div>
+    
+    <div class="row">
+		
+			<iframe src='//player.bilibili.com/player.html?aid=721858106&bvid=BV15S4y1R72L&cid=453405617&page=1' scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" align="middle"  style="height: 500px;" width="100%"> </iframe>
+		
+    </div>
+</div>
+
+<script src="/libs/dplayer/DPlayer.min.js"></script>
+<script>
+    $(function () {
+        new DPlayer({
+            container: document.getElementById('dplayer'),
+            autoplay: 'false' === 'true',
+            theme: '#42b983',
+            loop: 'false' === 'true',
+            lang: 'zh-CN' === 'zh-CN' ? 'zh-cn' : 'en',
+            preload: 'auto',
+            volume: Number('0.7'),
+            video: {
+                url: '',
+                pic: 'https://xiong-test-srt.oss-cn-shenzhen.aliyuncs.com/typoraimages/%E5%A4%A9%E7%A9%BA%E4%B9%8B%E5%9F%8E.jpg',
+                thumbnails: 'https://xiong-test-srt.oss-cn-shenzhen.aliyuncs.com/typoraimages/%E5%A4%A9%E7%A9%BA%E4%B9%8B%E5%9F%8E.jpg'
+            }
+        });
+    });
+</script>
 
                     
 
@@ -814,6 +832,70 @@ Java SE
     <!-- 所有文章卡片 -->
     <article id="articles" class="container articles">
         <div class="row article-row">
+            
+             <!-- 隐藏某个文章 -->
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2022/05/22/40-ge-chang-yong-de-springboot-zhu-jie/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="40 个 常用的 SpringBoot 注解">
+                            
+                            <span class="card-title">40 个 常用的 SpringBoot 注解</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                
+Java专栏
+一个Java、数据库、中间件、业内资讯、面试、学习资源等干货的知识分享社区。每天中午12：20准时推送。
+94篇原创内容
+公众号
+一、Spring Web MVC 与 Spring Bean 注解  
+
+Spring Web
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-22
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/SpringBoot/" class="post-category">
+                                    SpringBoot
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/SpringBoot/">
+                            <span class="chip bg-color">SpringBoot</span>
+                        </a>
+                        
+                        <a href="/tags/java/">
+                            <span class="chip bg-color">java</span>
+                        </a>
+                        
+                        <a href="/tags/%E6%B3%A8%E8%A7%A3/">
+                            <span class="chip bg-color">注解</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+              <!-- 隐藏某个文章 -->
             
              <!-- 隐藏某个文章 -->
             <div class="article col s12 m6 l4" data-aos="zoom-in">

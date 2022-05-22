@@ -157,7 +157,7 @@
       <li>
         <a href="/musics">
           
-          <i class="fas fa-musics" style="margin-top: -20px; zoom: 0.6;"></i>
+          <i class="fa-solid fa-music" style="margin-top: -20px; zoom: 0.6;"></i>
           
           <span>Musics</span>
         </a>
@@ -173,20 +173,11 @@
       </li>
       
       <li>
-        <a href="/books">
-          
-          <i class="fas fa-book" style="margin-top: -20px; zoom: 0.6;"></i>
-          
-          <span>Books</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/galleries">
+        <a href="/mygallery">
           
           <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
           
-          <span>Galleries</span>
+          <span>myGallery</span>
         </a>
       </li>
       
@@ -321,7 +312,7 @@
 
                   <a href="/musics " style="margin-left:75px">
 				  
-				   <i class="fa fas fa-musics" style="position: absolute;left:50px" ></i>
+				   <i class="fa fa-solid fa-music" style="position: absolute;left:50px" ></i>
 			      
 		          <span>Musics</span>
                   </a>
@@ -339,21 +330,11 @@
               
                 <li>
 
-                  <a href="/books " style="margin-left:75px">
-				  
-				   <i class="fa fas fa-book" style="position: absolute;left:50px" ></i>
-			      
-		          <span>Books</span>
-                  </a>
-                </li>
-              
-                <li>
-
-                  <a href="/galleries " style="margin-left:75px">
+                  <a href="/mygallery " style="margin-left:75px">
 				  
 				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
 			      
-		          <span>Galleries</span>
+		          <span>myGallery</span>
                   </a>
                 </li>
               
@@ -436,14 +417,7 @@
 
 </header>
 
-    <style type="text/css">
-    /* don't remove. */
-    .about-cover {
-        height: 75vh;
-    }
-</style>
-
-<div class="bg-cover pd-header about-cover">
+    <div class="bg-cover pd-header about-cover">
     <div class="container">
     <div class="row">
     <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
@@ -492,16 +466,79 @@
 </div>
 
 <main class="content">
-    <div id="aboutme" class="container about-container">
-        <div class="card">
-            <div class="card-content">
-                <div class="music-player">
+    <div id="indexCard" class="index-card">
+        <div class="container ">
+            <div class="card">
+                <div class="card-content">
+                    
+                        <div class="dream">
+    
+    <div class="title center-align">
+        <i class="far fa-lightbulb"></i>&nbsp;&nbsp;我的梦想
+    </div>
+    
+    <div class="row">
+        <div class="col l8 offset-l2 m10 offset-m1 s10 offset-s1 center-align text">
+            不是每个人都应该像我这样去建造一座水晶大教堂，但是每个人都应该拥有自己的梦想，设计自己的梦想，追求自己的梦想，实现自己的梦想。梦想是生命的灵魂，是心灵的灯塔，是引导人走向成功的信仰。有了崇高的梦想，只要矢志不渝地追求，梦想就会成为现实，奋斗就会变成壮举，生命就会创造奇迹。——罗伯·舒乐
+        </div>
+    </div>
+</div>
+
+                    
+
+                    
+                        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css"><style>
+    .aplayer .aplayer-lrc p {
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+</style>
+<div class="music-player">
+    
+        <div class="title center-align">
+            <i class="fa fa-music"></i>&nbsp;&nbsp;听听QQ音乐
+        </div>
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="tencent"
+                   type="playlist"
+                   id="4918242367"
+                   fixed='false'
+                   autoplay='true'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   listMaxHeight='525px'
+                   list-folded='false'
+        >
+        </meting-js>
+    </div>
+</div>
+
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
                     
                 </div>
             </div>
         </div>
     </div>
 </main>
+
 
     <footer class="page-footer bg-color">
     

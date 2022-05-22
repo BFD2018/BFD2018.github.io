@@ -157,7 +157,7 @@
       <li>
         <a href="/musics">
           
-          <i class="fas fa-musics" style="margin-top: -20px; zoom: 0.6;"></i>
+          <i class="fa-solid fa-music" style="margin-top: -20px; zoom: 0.6;"></i>
           
           <span>Musics</span>
         </a>
@@ -173,20 +173,11 @@
       </li>
       
       <li>
-        <a href="/books">
-          
-          <i class="fas fa-book" style="margin-top: -20px; zoom: 0.6;"></i>
-          
-          <span>Books</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="/galleries">
+        <a href="/mygallery">
           
           <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
           
-          <span>Galleries</span>
+          <span>myGallery</span>
         </a>
       </li>
       
@@ -321,7 +312,7 @@
 
                   <a href="/musics " style="margin-left:75px">
 				  
-				   <i class="fa fas fa-musics" style="position: absolute;left:50px" ></i>
+				   <i class="fa fa-solid fa-music" style="position: absolute;left:50px" ></i>
 			      
 		          <span>Musics</span>
                   </a>
@@ -339,21 +330,11 @@
               
                 <li>
 
-                  <a href="/books " style="margin-left:75px">
-				  
-				   <i class="fa fas fa-book" style="position: absolute;left:50px" ></i>
-			      
-		          <span>Books</span>
-                  </a>
-                </li>
-              
-                <li>
-
-                  <a href="/galleries " style="margin-left:75px">
+                  <a href="/mygallery " style="margin-left:75px">
 				  
 				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
 			      
-		          <span>Galleries</span>
+		          <span>myGallery</span>
                   </a>
                 </li>
               
@@ -516,10 +497,19 @@
                 </a>
                 
                 
+                <a href="/categories/SpringBoot/" title="SpringBoot: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #D5F5E3;">SpringBoot
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
                 <a href="/categories/%E9%83%A8%E7%BD%B2/" title="部署: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #D5F5E3;">部署
+                            style="background-color: #E8F8F5;">部署
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -567,7 +557,7 @@
                     color: '#3C4858'
                 }
             },
-            indicator: [{"name":"编程","max":2},{"name":"java","max":2},{"name":"部署","max":2}],
+            indicator: [{"name":"编程","max":2},{"name":"java","max":2},{"name":"SpringBoot","max":2},{"name":"部署","max":2}],
             nameGap: 5,
             center: ['50%','55%'],
             radius: '66%'
@@ -578,7 +568,7 @@
             itemStyle: {normal: {areaStyle: {type: 'default'}}},
             data : [
                 {
-                    value : [1,1,1],
+                    value : [1,1,1,1],
                     name : '文章分类数量'
                 }
             ]
