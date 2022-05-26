@@ -4,11 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="40 个 常用的 SpringBoot 注解, Hexo-Xiong">
-    <meta name="description" content="一、Spring Web MVC 与 Spring Bean 注解  
+    <meta name="keywords" content="推荐一个基于 Spring Boot + Mybatis + Vue 的代码生成器, Hexo-Xiong">
+    <meta name="description" content="1. 简介  
 
-Spring Web MVC 注解@RequestMapping
-@RequestMapping注解的主要用途是将Web请求与请求处理类中的方法进行映射。Spring">
+一款代码生成工具，可自定义模板生成不同的代码，支持MySQL、Oracle、SQL Server、PostgreSQL。
+
+只需要一个 Java8 环境，下载后即可运行使用。
+步骤简单，只需配置一个数据源，然后勾选模板即可">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +24,7 @@ Spring Web MVC 注解@RequestMapping
 
     
 
-    <title>40 个 常用的 SpringBoot 注解 | Hexo-Xiong</title>
+    <title>推荐一个基于 Spring Boot + Mybatis + Vue 的代码生成器 | Hexo-Xiong</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -424,12 +426,12 @@ Spring Web MVC 注解@RequestMapping
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/25.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">40 个 常用的 SpringBoot 注解</h1>
+                    <h1 class="description center-align post-title">推荐一个基于 Spring Boot + Mybatis + Vue 的代码生成器</h1>
                 </div>
             </div>
         </div>
@@ -549,27 +551,14 @@ Spring Web MVC 注解@RequestMapping
                                 <span class="chip bg-color">SpringBoot</span>
                             </a>
                         
-                            <a href="/tags/java/">
-                                <span class="chip bg-color">java</span>
-                            </a>
-                        
-                            <a href="/tags/%E6%B3%A8%E8%A7%A3/">
-                                <span class="chip bg-color">注解</span>
+                            <a href="/tags/Vue/">
+                                <span class="chip bg-color">Vue</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/SpringBoot/" class="post-category">
-                                SpringBoot
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -578,7 +567,7 @@ Spring Web MVC 注解@RequestMapping
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-22
+                    2022-05-19
                 </div>
                 
 
@@ -602,268 +591,42 @@ Spring Web MVC 注解@RequestMapping
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>一、Spring Web MVC 与 Spring Bean 注解  </p>
+                <p><em><strong>1.</strong></em> 简介  </p>
 <hr>
-<h3 id="Spring-Web-MVC-注解"><a href="#Spring-Web-MVC-注解" class="headerlink" title="Spring Web MVC 注解"></a>Spring Web MVC 注解</h3><p><strong>@RequestMapping</strong></p>
-<p>@RequestMapping注解的主要用途是将Web请求与请求处理类中的方法进行映射。Spring MVC和Spring WebFlux都通过<code>RquestMappingHandlerMapping</code>和<code>RequestMappingHndlerAdapter</code>两个类来提供对@RequestMapping注解的支持。</p>
-<p><code>@RequestMapping</code>注解对请求处理类中的请求处理方法进行标注；<code>@RequestMapping</code>注解拥有以下的六个配置属性：</p>
+<p>一款代码生成工具，可自定义模板生成不同的代码，支持MySQL、Oracle、SQL Server、PostgreSQL。</p>
 <ul>
-<li><p><code>value</code>:映射的请求URL或者其别名</p>
+<li>只需要一个 Java8 环境，下载后即可运行使用。</li>
+<li>步骤简单，只需配置一个数据源，然后勾选模板即可生成代码。</li>
+<li>默认提供了通用的实体类、mybatis接口、mybatis配置文件模板，可以快速开发mybatis应用。</li>
+</ul>
+<h2 id="2-使用步骤"><a href="#2-使用步骤" class="headerlink" title="2. 使用步骤"></a><em><strong>2.</strong></em> 使用步骤</h2><ul>
+<li><p>前往发行版页面，下载最新版本zip文件</p>
 </li>
-<li><p><code>method</code>:兼容HTTP的方法名</p>
+<li><p>解压zip，如果是Mac/Linux操作系统，运行startup.sh文件启动，Windows操作系统运行cmd输入java -jar gen.jar启动</p>
 </li>
-<li><p><code>params</code>:根据HTTP参数的存在、缺省或值对请求进行过滤</p>
+<li><p>浏览器访问<a target="_blank" rel="noopener" href="http://localhost:6969/">http://localhost:6969/</a></p>
 </li>
-<li><p><code>header</code>:根据HTTP Header的存在、缺省或值对请求进行过滤</p>
+<li><p>默认端口是6969，更改端口号按如下方式</p>
 </li>
-<li><p><code>consume</code>:设定在HTTP请求正文中允许使用的媒体类型</p>
+<li><p>Mac/Linux操作系统：打开startup.sh文件，修改–server.port参数值</p>
 </li>
-<li><p><code>product</code>:在HTTP响应体中允许使用的媒体类型</p>
+<li><p>Windows操作系统：可执行：java -jar gen.jar –server.port=端口号</p>
 </li>
 </ul>
-<p>提示：在使用<code>@RequestMapping</code>之前，请求处理类还需要使用<code>@Controller</code>或<code>@RestController</code>进行标记</p>
-<p>下面是使用<code>@RequestMapping</code>的两个示例：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8e1b45d9f048437bbdc06044dc7a9fdc~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<p><code>@RequestMapping</code>还可以对类进行标记，这样类中的处理方法在映射请求路径时，会自动将类上<code>@RequestMapping</code>设置的value拼接到方法中映射路径之前，如下：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d59cdfaacb1c4cbca7407c98b5b37dcf~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<hr>
-<p><strong>@RequestBody</strong></p>
-<p><code>@RequestBody</code>在处理请求方法的参数列表中使用，它可以将请求主体中的参数绑定到一个对象中，请求主体参数是通过<code>HttpMessageConverter</code>传递的，根据请求主体中的参数名与对象的属性名进行匹配并绑定值。此外，还可以通过<code>@Valid</code>注解对请求主体中的参数进行校验。</p>
-<p>下面是一个使用<code>@RequestBody</code>的示例：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/286efe14b6414716a1b33075b707154e~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<hr>
-<p><strong>@GetMapping</strong></p>
-<p><code>@GetMapping</code>注解用于处理HTTP GET请求，并将请求映射到具体的处理方法中。具体来说，<code>@GetMapping</code>是一个组合注解，它相当于是<code>@RequestMapping(method=RequestMethod.GET)</code>的快捷方式。</p>
-<p>下面是<code>@GetMapping</code>的一个使用示例：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a549f328e7cb45d2b085c9b8346f9500~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<hr>
-<p><strong>@PostMapping</strong></p>
-<p><code>@PostMapping</code>注解用于处理HTTP POST请求，并将请求映射到具体的处理方法中。<code>@PostMapping</code>与<code>@GetMapping</code>一样，也是一个组合注解，它相当于是<code>@RequestMapping(method=HttpMethod.POST)</code>的快捷方式。</p>
-<p>下面是使用<code>@PostMapping</code>的一个示例：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f7b68466d8e5472aabcaace4d1a05baa~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<hr>
-<p><strong>@PutMapping</strong></p>
-<p><code>@PutMapping</code>注解用于处理HTTP PUT请求，并将请求映射到具体的处理方法中，<code>@PutMapping</code>是一个组合注解，相当于是<code>@RequestMapping(method=HttpMethod.PUT)</code>的快捷方式。</p>
-<p>下面是使用<code>@PutMapping</code>的一个示例：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6ea99710f8cd4fbea87373094282ef84~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<hr>
-<p><strong>@DeleteMapping</strong></p>
-<p><code>@DeleteMapping</code>注解用于处理HTTP DELETE请求，并将请求映射到删除方法中。<code>@DeleteMapping</code>是一个组合注解，它相当于是<code>@RequestMapping(method=HttpMethod.DELETE)</code>的快捷方式。</p>
-<p>下面是使用<code>@DeleteMapping</code>的一个示例：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/318c0edf01794ed9996ac8cb6c5a8d8d~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<hr>
-<p><strong>@PatchMapping</strong></p>
-<p><code>@PatchMapping</code>注解用于处理HTTP PATCH请求，并将请求映射到对应的处理方法中。<code>@PatchMapping</code>相当于是<code>@RequestMapping(method=HttpMethod.PATCH)</code>的快捷方式。</p>
-<p>下面是一个简单的示例：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ce8ab0a2d1964a709733fc178b66daea~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<hr>
-<p><strong>@ControllerAdvice</strong></p>
-<p><code>@ControllerAdvice</code>是<code>@Component</code>注解的一个延伸注解，Spring会自动扫描并检测被<code>@ControllerAdvice</code>所标注的类。<code>@ControllerAdvice</code>需要和<code>@ExceptionHandler</code>、<code>@InitBinder</code>以及<code>@ModelAttribute</code>注解搭配使用，主要是用来处理控制器所抛出的异常信息。</p>
-<p>首先，我们需要定义一个被<code>@ControllerAdvice</code>所标注的类，在该类中，定义一个用于处理具体异常的方法，并使用<code>@ExceptionHandler</code>注解进行标记。</p>
-<p>此外，在有必要的时候，可以使用<code>@InitBinder</code>在类中进行全局的配置，还可以使用<code>@ModelAttribute</code>配置与视图相关的参数。使用<code>@ControllerAdvice</code>注解，就可以快速的创建统一的，自定义的异常处理类。</p>
-<p>下面是一个使用<code>@ControllerAdvice</code>的示例代码：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/004781e7dcb441e49a8939d6f70195aa~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<hr>
-<p><strong>@ResponseBody</strong></p>
-<p><code>@ResponseBody</code>会自动将控制器中方法的返回值写入到HTTP响应中。特别的，<code>@ResponseBody</code>注解只能用在被<code>@Controller</code>注解标记的类中。如果在被<code>@RestController</code>标记的类中，则方法不需要使用<code>@ResponseBody</code>注解进行标注。<code>@RestController</code>相当于是<code>@Controller</code>和<code>@ResponseBody</code>的组合注解。</p>
-<p>下面是使用该注解的一个示例</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a2de5859367d439184933d14e6e84b25~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<hr>
-<p><strong>@ExceptionHandler</strong></p>
-<p><code>@ExceptionHander</code>注解用于标注处理特定类型异常类所抛出异常的方法。当控制器中的方法抛出异常时，Spring会自动捕获异常，并将捕获的异常信息传递给被<code>@ExceptionHandler</code>标注的方法。</p>
-<p>下面是使用该注解的一个示例：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f93baf8220fb4790aa28cf11f723b4c9~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<hr>
-<p><strong>@ResponseStatus</strong></p>
-<p><code>@ResponseStatus</code>注解可以标注请求处理方法。使用此注解，可以指定响应所需要的HTTP STATUS。特别地，我们可以使用HttpStauts类对该注解的value属性进行赋值。</p>
-<p>下面是使用<code>@ResponseStatus</code>注解的一个示例：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0a27153e3cfa4ca4b7e549d3a01c6213~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<hr>
-<p><strong>@PathVariable</strong></p>
-<p><code>@PathVariable</code>注解是将方法中的参数绑定到请求URI中的模板变量上。可以通过<code>@RequestMapping</code>注解来指定URI的模板变量，然后使用<code>@PathVariable</code>注解将方法中的参数绑定到模板变量上。</p>
-<p>特别地，<code>@PathVariable</code>注解允许我们使用value或name属性来给参数取一个别名。下面是使用此注解的一个示例：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0b954ce4f3fe487aa42f7138dd0dcd80~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<p>模板变量名需要使用<code>{ }</code>进行包裹，如果方法的参数名与URI模板变量名一致，则在<code>@PathVariable</code>中就可以省略别名的定义。</p>
-<p>下面是一个简写的示例：</p>
-<p>提示：如果参数是一个非必须的，可选的项，则可以在<code>@PathVariable</code>中设置<code>require = false</code></p>
-<hr>
-<p><strong>@RequestParam</strong></p>
-<p><code>@RequestParam</code>注解用于将方法的参数与Web请求的传递的参数进行绑定。使用<code>@RequestParam</code>可以轻松的访问HTTP请求参数的值。</p>
-<p>下面是使用该注解的代码示例：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/87a5d7dfa3404a64a7cf723fff95190f~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<p>该注解的其他属性配置与<code>@PathVariable</code>的配置相同，特别的，如果传递的参数为空，还可以通过defaultValue设置一个默认值。示例代码如下：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e2f05ef071554dfaa49c29d4ed452868~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<hr>
-<p><strong>@Controller</strong></p>
-<p><code>@Controller</code>是<code>@Component</code>注解的一个延伸，Spring会自动扫描并配置被该注解标注的类。此注解用于标注Spring MVC的控制器。下面是使用此注解的示例代码：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1ffc68d5d5954c218cd50db5a2466837~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<hr>
-<p><strong>@RestController</strong></p>
-<p><code>@RestController</code>是在Spring 4.0开始引入的，这是一个特定的控制器注解。此注解相当于<code>@Controller</code>和<code>@ResponseBody</code>的快捷方式。当使用此注解时，不需要再在方法上使用<code>@ResponseBody</code>注解。</p>
-<p>下面是使用此注解的示例代码：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f0358606ecfc4471b28b7695cc3ed891~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<hr>
-<p><strong>@ModelAttribute</strong></p>
-<p>通过此注解，可以通过模型索引名称来访问已经存在于控制器中的model。下面是使用此注解的一个简单示例：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ab01ae5fb5334b999a38d5f765106d18~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<p>与<code>@PathVariable</code>和<code>@RequestParam</code>注解一样，如果参数名与模型具有相同的名字，则不必指定索引名称，简写示例如下：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a3dea429a0424e88b7302f6ee6f52e4a~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<p>特别地，如果使用<code>@ModelAttribute</code>对方法进行标注，Spring会将方法的返回值绑定到具体的Model上。示例如下：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ea417b4183e8419cafb28350b0721411~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<p>在Spring调用具体的处理方法之前，被<code>@ModelAttribute</code>注解标注的所有方法都将被执行。</p>
-<hr>
-<p><strong>@CrossOrigin</strong></p>
-<p><code>@CrossOrigin</code>注解将为请求处理类或请求处理方法提供跨域调用支持。如果我们将此注解标注类，那么类中的所有方法都将获得支持跨域的能力。使用此注解的好处是可以微调跨域行为。使用此注解的示例如下：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/825b078cafd24e919cc4de05d72cffd9~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<hr>
-<p><strong>@InitBinder</strong></p>
-<p><code>@InitBinder</code>注解用于标注初始化<strong>WebDataBinider</strong>的方法，该方法用于对Http请求传递的表单数据进行处理，如时间格式化、字符串处理等。下面是使用此注解的示例：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5380f3d35e4a454a8e7f2eb45bae4e75~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<h2 id="二、Spring-Bean-注解"><a href="#二、Spring-Bean-注解" class="headerlink" title="二、Spring Bean 注解"></a>二、Spring Bean 注解</h2><p>在本小节中，主要列举与Spring Bean相关的4个注解以及它们的使用方式。</p>
-<p>对了，如果您正在学习Spring Boot，那么推荐一个连载多年还在继续更新的免费教程：<code>http://blog.didispace.com/spring-boot-learning-2x/</code></p>
-<p><strong>@ComponentScan</strong></p>
-<p><code>@ComponentScan</code>注解用于配置Spring需要扫描的被组件注解注释的类所在的包。可以通过配置其basePackages属性或者value属性来配置需要扫描的包路径。value属性是basePackages的别名。此注解的用法如下：</p>
-<hr>
-<p><strong>@Component</strong></p>
-<p>@Component注解用于标注一个普通的组件类，它没有明确的业务范围，只是通知Spring被此注解的类需要被纳入到Spring Bean容器中并进行管理。此注解的使用示例如下：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e483857713bd4581b5eac4cf238770ba~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<hr>
-<p><strong>@Service</strong></p>
-<p><code>@Service</code>注解是<code>@Component</code>的一个延伸（特例），它用于标注业务逻辑类。与<code>@Component</code>注解一样，被此注解标注的类，会自动被Spring所管理。下面是使用<code>@Service</code>注解的示例：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5ecdc57f665b433c842cd1c4f161abd1~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<hr>
-<p><strong>@Repository</strong></p>
-<p><code>@Repository</code>注解也是<code>@Component</code>注解的延伸，与<code>@Component</code>注解一样，被此注解标注的类会被Spring自动管理起来，<code>@Repository</code>注解用于标注DAO层的数据持久化类。此注解的用法如下：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/707af709a8ca4a04bb31ba6f2904e2a0~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<h2 id="三、Spring-Dependency-Inject-与-Bean-Scops注解"><a href="#三、Spring-Dependency-Inject-与-Bean-Scops注解" class="headerlink" title="三、Spring Dependency Inject 与 Bean Scops注解"></a>三、Spring Dependency Inject 与 Bean Scops注解</h2><h3 id="Spring-DI注解"><a href="#Spring-DI注解" class="headerlink" title="Spring DI注解"></a>Spring DI注解</h3><p><strong>@DependsOn</strong></p>
-<p><code>@DependsOn</code>注解可以配置Spring IoC容器在初始化一个Bean之前，先初始化其他的Bean对象。下面是此注解使用示例代码：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/626c66f12bc941c8ad5e6260a46814ed~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<hr>
-<p><strong>@Bean</strong></p>
-<p>@Bean注解主要的作用是告知Spring，被此注解所标注的类将需要纳入到Bean管理工厂中。@Bean注解的用法很简单，在这里，着重介绍@Bean注解中<code>initMethod</code>和<code>destroyMethod</code>的用法。示例如下：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/80820d15d81b487eba70bfd7bcc8aa43~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<h3 id="Scops注解"><a href="#Scops注解" class="headerlink" title="Scops注解"></a>Scops注解</h3><p><strong>@Scope</strong></p>
-<p>@Scope注解可以用来定义@Component标注的类的作用范围以及@Bean所标记的类的作用范围。@Scope所限定的作用范围有：<code>singleton</code>、<code>prototype</code>、<code>request</code>、<code>session</code>、<code>globalSession</code>或者其他的自定义范围。这里以prototype为例子进行讲解。</p>
-<p>当一个Spring Bean被声明为prototype（原型模式）时，在每次需要使用到该类的时候，Spring IoC容器都会初始化一个新的改类的实例。在定义一个Bean时，可以设置Bean的scope属性为<code>prototype：scope=“prototype”</code>,也可以使用@Scope注解设置，如下：</p>
-<pre class="line-numbers language-none"><code class="language-none">@Scope(value=ConfigurableBeanFactory.SCOPE_PROPTOTYPE)&nbsp;&nbsp;
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>下面将给出两种不同的方式来使用@Scope注解，示例代码如下：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0bebb2f2fe7c40eaaa272920a4ef8206~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<p>图片</p>
-<hr>
-<p><strong>@Scope 单例模式</strong></p>
-<p>当@Scope的作用范围设置成Singleton时，被此注解所标注的类只会被Spring IoC容器初始化一次。在默认情况下，Spring IoC容器所初始化的类实例都为singleton。同样的原理，此情形也有两种配置方式，示例代码如下：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/16cfd2a558bd4777ac9d986338d8a3b4~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<h2 id="四、容器配置注解"><a href="#四、容器配置注解" class="headerlink" title="四、容器配置注解"></a>四、容器配置注解</h2><h3 id="Autowired"><a href="#Autowired" class="headerlink" title="@Autowired"></a>@Autowired</h3><p>@Autowired注解用于标记Spring将要解析和注入的依赖项。此注解可以作用在构造函数、字段和setter方法上。</p>
-<p><strong>作用于构造函数</strong></p>
-<p>下面是@Autowired注解标注构造函数的使用示例：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d13a2da85ab4428790a66dfa187bf9ab~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<hr>
-<p><strong>作用于setter方法</strong></p>
-<p>下面是@Autowired注解标注setter方法的示例代码：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/edab46d4a8a34a88b621940962595962~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<hr>
-<p><strong>作用于字段</strong></p>
-<p>@Autowired注解标注字段是最简单的，只需要在对应的字段上加入此注解即可，示例代码如下：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c94a0e21b8da46e8b18b42d719f8e196~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<h3 id="Primary"><a href="#Primary" class="headerlink" title="@Primary"></a>@Primary</h3><p>当系统中需要配置多个具有相同类型的bean时，@Primary可以定义这些Bean的优先级。下面将给出一个实例代码来说明这一特性：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b3b181b0d63149b0abf75a42c1d6bde8~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<p>输出结果：</p>
-<pre class="line-numbers language-none"><code class="language-none">this&nbsp;is&nbsp;send&nbsp;DingDing&nbsp;method&nbsp;message.&nbsp;&nbsp;
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="PostConstruct与-PreDestroy"><a href="#PostConstruct与-PreDestroy" class="headerlink" title="@PostConstruct与@PreDestroy"></a>@PostConstruct与@PreDestroy</h3><p>值得注意的是，这两个注解不属于Spring,它们是源于JSR-250中的两个注解，位于<code>common-annotations.jar</code>中。<code>@PostConstruct</code>注解用于标注在Bean被Spring初始化之前需要执行的方法。<code>@PreDestroy</code>注解用于标注Bean被销毁前需要执行的方法。下面是具体的示例代码：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a1e9d83d1a794c6b9780007e8ddd72d9~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<h3 id="Qualifier"><a href="#Qualifier" class="headerlink" title="@Qualifier"></a>@Qualifier</h3><p>当系统中存在同一类型的多个Bean时，<code>@Autowired</code>在进行依赖注入的时候就不知道该选择哪一个实现类进行注入。此时，我们可以使用<code>@Qualifier</code>注解来微调，帮助<code>@Autowired</code>选择正确的依赖项。下面是一个关于此注解的代码示例：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/71d3710294974eaa947029832c37db02~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<h2 id="五、Spring-Boot注解"><a href="#五、Spring-Boot注解" class="headerlink" title="五、Spring Boot注解"></a><strong>五、Spring Boot注解</strong></h2><p><strong>@SpringBootApplication</strong></p>
-<p><code>@SpringBootApplication</code>注解是一个快捷的配置注解，在被它标注的类中，可以定义一个或多个Bean，并自动触发自动配置Bean和自动扫描组件。此注解相当于<code>@Configuration</code>、<code>@EnableAutoConfiguration</code>和<code>@ComponentScan</code>的组合。</p>
-<p>在Spring Boot应用程序的主类中，就使用了此注解。示例代码如下：</p>
-<pre class="line-numbers language-none"><code class="language-none">@SpringBootApplication&nbsp;&nbsp;
-public&nbsp;class&nbsp;Application{&nbsp;&nbsp;
-&nbsp;public&nbsp;static&nbsp;void&nbsp;main(String&nbsp;\[\]&nbsp;args){&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;SpringApplication.run(Application.class,args);&nbsp;&nbsp;
-&nbsp;}&nbsp;&nbsp;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<hr>
-<p><strong>@EnableAutoConfiguration</strong></p>
-<p><code>@EnableAutoConfiguration</code>注解用于通知Spring，根据当前类路径下引入的依赖包，自动配置与这些依赖包相关的配置项。</p>
-<hr>
-<p><strong>@ConditionalOnClass与@ConditionalOnMissingClass</strong></p>
-<p>这两个注解属于类条件注解，它们根据是否存在某个类作为判断依据来决定是否要执行某些配置。下面是一个简单的示例代码：</p>
-<pre class="line-numbers language-none"><code class="language-none">@Configuration&nbsp;&nbsp;
-@ConditionalOnClass(DataSource.class)&nbsp;&nbsp;
-class&nbsp;MySQLAutoConfiguration&nbsp;{&nbsp;&nbsp;
-&nbsp;//...&nbsp;&nbsp;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<hr>
-<p><strong>@ConditionalOnBean与@ConditionalOnMissingBean</strong></p>
-<p>这两个注解属于对象条件注解，根据是否存在某个对象作为依据来决定是否要执行某些配置方法。示例代码如下：</p>
-<pre class="line-numbers language-none"><code class="language-none">@Bean&nbsp;&nbsp;
-@ConditionalOnBean(name="dataSource")&nbsp;&nbsp;
-LocalContainerEntityManagerFactoryBean&nbsp;entityManagerFactory(){&nbsp;&nbsp;
-&nbsp;//...&nbsp;&nbsp;
-}&nbsp;&nbsp;
-@Bean&nbsp;&nbsp;
-@ConditionalOnMissingBean&nbsp;&nbsp;
-public&nbsp;MyBean&nbsp;myBean(){&nbsp;&nbsp;
-&nbsp;//...&nbsp;&nbsp;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<hr>
-<p><strong>@ConditionalOnProperty</strong></p>
-<p><code>@ConditionalOnProperty</code>注解会根据Spring配置文件中的配置项是否满足配置要求，从而决定是否要执行被其标注的方法。示例代码如下：</p>
-<pre class="line-numbers language-none"><code class="language-none">@Bean&nbsp;&nbsp;
-@ConditionalOnProperty(name="alipay",havingValue="on")&nbsp;&nbsp;
-Alipay&nbsp;alipay(){&nbsp;&nbsp;
-&nbsp;return&nbsp;new&nbsp;Alipay();&nbsp;&nbsp;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<hr>
-<p><strong>@ConditionalOnResource</strong></p>
-<p>此注解用于检测当某个配置文件存在使，则触发被其标注的方法，下面是使用此注解的代码示例：</p>
-<pre class="line-numbers language-none"><code class="language-none">@ConditionalOnResource(resources&nbsp;=&nbsp;"classpath:website.properties")&nbsp;&nbsp;
-Properties&nbsp;addWebsiteProperties(){&nbsp;&nbsp;
-&nbsp;//...&nbsp;&nbsp;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<hr>
-<p><strong>@ConditionalOnWebApplication与@ConditionalOnNotWebApplication</strong></p>
-<p>这两个注解用于判断当前的应用程序是否是Web应用程序。如果当前应用是Web应用程序，则使用<code>Spring WebApplicationContext</code>,并定义其会话的生命周期。下面是一个简单的示例：</p>
-<pre class="line-numbers language-none"><code class="language-none">@ConditionalOnWebApplication&nbsp;&nbsp;
-HealthCheckController&nbsp;healthCheckController(){&nbsp;&nbsp;
-&nbsp;//...&nbsp;&nbsp;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<hr>
-<p><strong>@ConditionalExpression</strong></p>
-<p>此注解可以让我们控制更细粒度的基于表达式的配置条件限制。当表达式满足某个条件或者表达式为真的时候，将会执行被此注解标注的方法。</p>
-<pre class="line-numbers language-none"><code class="language-none">@Bean&nbsp;&nbsp;
-@ConditionalException("${localstore}&nbsp;&amp;&amp;&nbsp;${local&nbsp;==&nbsp;'true'}")&nbsp;&nbsp;
-LocalFileStore&nbsp;store(){&nbsp;&nbsp;
-&nbsp;//...&nbsp;&nbsp;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<hr>
-<p><strong>@Conditional</strong></p>
-<p><code>@Conditional</code>注解可以控制更为复杂的配置条件。在Spring内置的条件控制注解不满足应用需求的时候，可以使用此注解定义自定义的控制条件，以达到自定义的要求。下面是使用该注解的简单示例：</p>
-<pre class="line-numbers language-none"><code class="language-none">@Conditioanl(CustomConditioanl.class)&nbsp;&nbsp;
-CustomProperties&nbsp;addCustomProperties(){&nbsp;&nbsp;
-&nbsp;//...&nbsp;&nbsp;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本次课程总结了Spring Boot中常见的各类型注解的使用方式，让大家能够统一的对Spring Boot常用注解有一个全面的了解。</p>
+<h2 id="3-工程说明"><a href="#3-工程说明" class="headerlink" title="3. 工程说明"></a><em><strong>3.</strong></em> 工程说明</h2><ul>
+<li><p>front：前端vue</p>
+</li>
+<li><p>gen：后端服务</p>
+</li>
+<li><p>db：数据库初始化文件</p>
+</li>
+<li><p>script：辅助脚本</p>
+</li>
+</ul>
+<h2 id="4-效果图"><a href="#4-效果图" class="headerlink" title="4. 效果图"></a><em><strong>4.</strong></em> 效果图</h2><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/82520abe6a8c43df80356825253d31fd~tplv-k3u1fbpfcp-zoom-1.image" alt="图片" title="null"></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fb9f0aadda1f410c8566b6fd5a8d6a49~tplv-k3u1fbpfcp-zoom-1.image" alt="图片" title="null"></p>
+<p><strong><em>5.</em></strong> 项目地址</p>
+<p>开源地址：<a target="_blank" rel="noopener" href="https://github.com/zhangdaiscott/jeecg-boot">https://github.com/zhangdaiscott/jeecg-boot</a></p>
 
                 
             </div>
@@ -890,7 +653,7 @@ CustomProperties&nbsp;addCustomProperties(){&nbsp;&nbsp;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/05/22/40-ge-chang-yong-de-springboot-zhu-jie/">http://example.com/2022/05/22/40-ge-chang-yong-de-springboot-zhu-jie/</a>
+                    <a href="http://example.com/2022/05/19/tui-jian-yi-ge-ji-yu-springboot-mybatis-vue-de-dai-ma-sheng-cheng-qi/">http://example.com/2022/05/19/tui-jian-yi-ge-ji-yu-springboot-mybatis-vue-de-dai-ma-sheng-cheng-qi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -932,12 +695,8 @@ CustomProperties&nbsp;addCustomProperties(){&nbsp;&nbsp;
                                     <span class="chip bg-color">SpringBoot</span>
                                 </a>
                             
-                                <a href="/tags/java/">
-                                    <span class="chip bg-color">java</span>
-                                </a>
-                            
-                                <a href="/tags/%E6%B3%A8%E8%A7%A3/">
-                                    <span class="chip bg-color">注解</span>
+                                <a href="/tags/Vue/">
+                                    <span class="chip bg-color">Vue</span>
                                 </a>
                             
                         </div>
@@ -1115,12 +874,13 @@ CustomProperties&nbsp;addCustomProperties(){&nbsp;&nbsp;
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/05/24/30-duo-ge-java-shi-zhan-xiang-mu/">
+                <a href="/2022/05/19/60-duo-ge-shen-ji-vscode-cha-jian-zhu-ni-da-zao-zui-qiang-bian-ji-qi/">
                     <div class="card-image">
                         
-                        <img src="https://inews.gtimg.com/newsapp_ls/0/14937422925/0.jiketuchuang.png" class="responsive-img" alt="30多个Java实战项目">
                         
-                        <span class="card-title">30多个Java实战项目</span>
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="60多个神级 VSCode插件，助你打造最强编辑器">
+                        
+                        <span class="card-title">60多个神级 VSCode插件，助你打造最强编辑器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1131,16 +891,12 @@ CustomProperties&nbsp;addCustomProperties(){&nbsp;&nbsp;
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-24
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-19
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Java%E9%A1%B9%E7%9B%AE/" class="post-category">
-                                    Java项目
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            CoderXiong
                             
                         </span>
                     </div>
@@ -1148,12 +904,12 @@ CustomProperties&nbsp;addCustomProperties(){&nbsp;&nbsp;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
+                    <a href="/tags/VsCode/">
+                        <span class="chip bg-color">VsCode</span>
                     </a>
                     
-                    <a href="/tags/SpringBoot/">
-                        <span class="chip bg-color">SpringBoot</span>
+                    <a href="/tags/%E5%B7%A5%E5%85%B7/">
+                        <span class="chip bg-color">工具</span>
                     </a>
                     
                 </div>
@@ -1167,12 +923,13 @@ CustomProperties&nbsp;addCustomProperties(){&nbsp;&nbsp;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/20/springboot-bai-du-yun-shi-xian-ren-lian-shi-bie/">
+                <a href="/2022/05/09/docker-ru-men-pian/">
                     <div class="card-image">
                         
-                        <img src="https://pic.rmb.bdstatic.com/bjh/546e3a3b801b2af06d0406e817ce53d3.png" class="responsive-img" alt="Springboot+百度云实现人脸识别">
                         
-                        <span class="card-title">Springboot+百度云实现人脸识别</span>
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Docker入门篇">
+                        
+                        <span class="card-title">Docker入门篇</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1183,12 +940,16 @@ CustomProperties&nbsp;addCustomProperties(){&nbsp;&nbsp;
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-09
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            xiong
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%83%A8%E7%BD%B2/" class="post-category">
+                                    部署
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -1196,20 +957,8 @@ CustomProperties&nbsp;addCustomProperties(){&nbsp;&nbsp;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
-                    </a>
-                    
-                    <a href="/tags/SpringBoot/">
-                        <span class="chip bg-color">SpringBoot</span>
-                    </a>
-                    
-                    <a href="/tags/%E7%99%BE%E5%BA%A6%E4%BA%91/">
-                        <span class="chip bg-color">百度云</span>
-                    </a>
-                    
-                    <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/">
-                        <span class="chip bg-color">人脸识别</span>
+                    <a href="/tags/Docker/">
+                        <span class="chip bg-color">Docker</span>
                     </a>
                     
                 </div>
