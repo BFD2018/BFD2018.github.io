@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>基于SpringBoot的车牌识别系统</title>
+      <link href="/2022/05/27/ji-yu-springboot-de-che-pai-shi-bie-xi-tong/"/>
+      <url>/2022/05/27/ji-yu-springboot-de-che-pai-shi-bie-xi-tong/</url>
+      
+        <content type="html"><![CDATA[<ul><li><p>gitee开源地址</p></li><li><p>介绍</p></li><li><p>包含功能</p></li><li><p>软件版本</p></li><li><p>软件架构</p></li><li><p>操作界面</p></li><li><p>车牌检测过程</p></li><li><p>图片车牌文字识别过程</p></li><li><p>安装教程</p></li><li><p>参考文档</p></li></ul><hr><h1 id="gitee开源地址"><a href="#gitee开源地址" class="headerlink" title="gitee开源地址"></a>gitee开源地址</h1><blockquote><p><a href="https://gitee.com/admin/_yu/yx-image-recognition">https://gitee.com/admin\_yu/yx-image-recognition</a></p></blockquote><p>介绍</p><ul><li><p>spring boot + maven 实现的车牌识别及训练系统</p></li><li><p>基于java语言的深度学习项目，在整个开源社区来说都相对较少；而基于java语言实现车牌识别EasyPR-Java项目，最后的更新已经是五年以前。</p></li><li><p>本人参考了EasyPR原版C++项目、以及fan-wenjie的EasyPR-Java项目；同时查阅了部分opencv官方4.0.1版本C++的源码，结合个人对java语言理解，整理出当前项目</p></li><li><p>这是一个入门级教程项目，本人目前也正在学习图片识别相关技术；大牛请绕路</p></li><li><p>当前项目在原有EasyPR项目基础上，增加了绿牌识别功能，只不过当前的训练库文件包含绿牌的样本太少，还需要重新增加绿牌样本的训练，后续会逐步上传</p></li><li><p>当前已经添加基于svm算法的车牌检测训练、以及基于ann算法的车牌号码识别训练功能</p></li><li><p>后续会逐步加入证件识别、人脸识别等功能</p></li></ul><h1 id="包含功能"><a href="#包含功能" class="headerlink" title="包含功能"></a>包含功能</h1><ul><li><p>黄 蓝 绿 黄蓝绿车牌检测及车牌号码识别</p></li><li><p>单张图片、多张图片并发、单图片多车牌检测及识别</p></li><li><p>图片车牌检测训练</p></li><li><p>图片文字识别训练</p></li><li><p>包含两种依赖包的实现方式：基于org.bytedeco.javacpp包的实现方式；基于org.opencv官方包的实现方式</p></li><li><p>org.opencv官方包，提供了java语言api；java项目可以通过build path方式或者环境变量的方式引用；</p></li><li><p>org.bytedeco.javacpp包，JavaCPP是一个开源库，它提供了在 Java 中高效访问本地 C++的方法；在pom中引入坐标依赖即可</p></li></ul><h1 id="软件版本"><a href="#软件版本" class="headerlink" title="软件版本"></a>软件版本</h1><ul><li><p>jdk 1.8.61+</p></li><li><p>maven 3.0+</p></li><li><p>opencv 4.0.1 ；javacpp1.4.4；opencv-platform 4.0.1-1.4.4</p></li><li><p>spring boot 2.1.5.RELEASE</p></li><li><p>yx-image-recognition 1.0.0版本</p></li></ul><h1 id="软件架构"><a href="#软件架构" class="headerlink" title="软件架构"></a>软件架构</h1><ul><li><p>B/S 架构，前端html + requireJS，后端java</p></li><li><p>数据库使用 sqlite3.0</p></li><li><p>接口文档使用swagger 2.0</p></li></ul><h1 id="操作界面"><a href="#操作界面" class="headerlink" title="操作界面"></a>操作界面</h1><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/18a693a8b2944b6fb1c563b4aa5b4892~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p><p>车牌图片来源于网络，仅用于交流学习，不得用于商业用途；如有侵权，请联系本人删除</p><h1 id="车牌检测过程"><a href="#车牌检测过程" class="headerlink" title="车牌检测过程"></a>车牌检测过程</h1><p>高斯模糊：</p><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ac58a30cc7f14700bf3aa3e5425c4b12~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p><p>图像灰度化：</p><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fda681e9f66f4d799d8ffd671d7c1529~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p><p>Sobel 算子：</p><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/83ed70c8eae8468c819de54c4c3aa253~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p><p>图像二值化：</p><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/625c9f41c38c432e9cb186dfecb417d5~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p><p>图像闭操作：</p><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a706d82f76cd4248a76f912cd9e31a7a~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p><p>二值图像降噪：</p><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0302d62633f945aaa22f962c20814b21~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p><p>提取外部轮廓：</p><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4c4e446b7c0645a3836b0c2580ffb208~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p><p>外部轮廓筛选：</p><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bbddbed798ef4682adc014f82603ba90~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p><p>切图：</p><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/80d214c324d6400b8c1d6e9bb0f42572~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p><p>重置切图尺寸：</p><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1613d7b5ae2c42e3aa727b5ac266234c~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p><p>车牌检测结果:</p><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b616352b2b504e02a15556c252d74b28~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p><h1 id="图片车牌文字识别过程"><a href="#图片车牌文字识别过程" class="headerlink" title="图片车牌文字识别过程"></a>图片车牌文字识别过程</h1><p>debug_char_threshold：</p><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b8531c8110b547e098cb0b137cc9f5ee~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p><p>debug_char_clearLiuDing：</p><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6e0141310af44511ae67a96f5f42df20~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p><p>debug_specMat：</p><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/99cb20ed31f54e13bd8a9b6f7372df3d~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p><p>debug_chineseMat：</p><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b67038db96384d5592f2dcbbfce4a19a~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p><p>debug_char_auxRoi：</p><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/69dd4e5c03d64a8f87c3f70900357bb0~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p><h1 id="安装教程"><a href="#安装教程" class="headerlink" title="安装教程"></a>安装教程</h1><ul><li><p>开发环境搭建：./doc/01_开发环境搭建.md</p></li><li><p>将项目拉取到本地，PlateDetect文件夹拷贝到d盘下，默认车牌识别操作均在d:/PlateDetect/目录下处理</p></li><li><p>需要修改操作路径，修改com/yuxue/constant/Constant.java文件常量参数即可，可以使用绝对盘符路径，也可以使用项目相对路径</p></li><li><p>spring boot方式运行项目，浏览器上输入 <a href="http://localhost:16666/index">http://localhost:16666/index</a> 即可打开操作界面</p></li><li><p>浏览器上输入 <a href="http://localhost:16666/swagger-ui.html">http://localhost:16666/swagger-ui.html</a> 即可打开接口文档页面</p></li></ul><h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><ul><li><p>liuruoze/EasyPR：<a href="https://gitee.com/easypr/EasyPR">https://gitee.com/easypr/EasyPR</a></p></li><li><p>fan-wenjie/EasyPR-Java：<a href="https://github.com/fan-wenjie/EasyPR-Java">https://github.com/fan-wenjie/EasyPR-Java</a></p></li><li><p>opencv官方：<a href="https://opencv.org/">https://opencv.org/</a></p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> SpringBoot项目 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> SpringBoot </tag>
+            
+            <tag> 百度云AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>56个JavaScript 实用工具函数</title>
       <link href="/2022/05/26/56-ge-javascript-shi-yong-gong-ju-han-shu/"/>
       <url>/2022/05/26/56-ge-javascript-shi-yong-gong-ju-han-shu/</url>
