@@ -1,0 +1,1475 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="shiro认证流程分析, Hexo-Xiong">
+    <meta name="description" content="认证源码流程分析1、在进行认证的时候，我们将用户的信息封装好一个对象 UsernamePasswordToken&amp;nbsp; 之后，是通过 Subject.login(tpken)&amp;nbsp; 方法来进行提交认证的，这也是第一步，用 Deb">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    
+
+    <title>shiro认证流程分析 | Hexo-Xiong</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Hexo-Xiong</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/journal" class="waves-effect waves-light">
+      
+      <i class="fa fa-book" style="zoom: 0.6;"></i>
+      
+      <span>日志</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/census" class="waves-effect waves-light">
+      
+      <i class="fa fa-layer-group" style="zoom: 0.6;"></i>
+      
+      <span>统计</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Medias</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/musics">
+          
+          <i class="fa-solid fa-music" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Musics</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/movies">
+          
+          <i class="fas fa-film" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Movies</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/mygallery">
+          
+          <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>myGallery</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Hexo-Xiong</div>
+        <div class="logo-desc">
+            
+            小熊同学是一名Java开发工程师，在编程的道路上孜孜不倦的追求技术成长，愿与诸位共同进步！
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/journal" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fa fa-book"></i>
+			
+			日志
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/census" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fa fa-layer-group"></i>
+			
+			统计
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			Medias
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/musics " style="margin-left:75px">
+				  
+				   <i class="fa fa-solid fa-music" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Musics</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/movies " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-film" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Movies</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/mygallery " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
+			      
+		          <span>myGallery</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/bfd2018/" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/bfd2018/" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    <meta name="referrer" content="no-referrer" />
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://xiong-test-srt.oss-cn-shenzhen.aliyuncs.com/typoraimages/29842afd880511ebb6edd017c2d2eca2.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">shiro认证流程分析</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/shiro/">
+                                <span class="chip bg-color">shiro</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%AE%89%E5%85%A8%E6%A1%86%E6%9E%B6/">
+                                <span class="chip bg-color">安全框架</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B/">
+                                <span class="chip bg-color">认证流程</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/shiro/" class="post-category">
+                                shiro
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-05-28
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-05-28
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.4k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    5 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="认证源码流程分析"><a href="#认证源码流程分析" class="headerlink" title="认证源码流程分析"></a>认证源码流程分析</h3><p>1、在进行认证的时候，我们将用户的信息封装好一个对象 <code>UsernamePasswordToken</code>&nbsp; 之后，是通过 <code>Subject.login(tpken)</code>&nbsp; 方法来进行提交认证的，这也是第一步，用 Debug 模式启动一次认证操作<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646321629939-0f61ff9b-c501-4fcf-a173-d05247bcdacf.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;id=GH10Y&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=398&amp;originWidth=909&amp;originalType=binary%E2%88%B6=1&amp;size=89084&amp;status=done&amp;style=stroke&amp;taskId=ua78c40cb-bccb-4ee5-969f-b72f4090eb7" alt="image.png"><br>2、下一步进入到一个 <code>DelegatingSubject</code>&nbsp; 的类中，执行依旧是 <code>login()</code>&nbsp; 方法。这个就是 <code>subject.log()</code>&nbsp; 的具体实现方法。同时我们看到一个之前要了解的一个异常 <code>AuthenticationException</code>&nbsp; 认证失败的父类异常。<br>红色框中的代码是： <code>Subject subject = this.securityManager.login(this, token);</code>&nbsp;<br>咱们之前有提到过， <code>subject</code>&nbsp; 的认证是托管给 <code>SecurityManager</code>&nbsp; 来进行操作的，而这里做的就是托管给 <code>SecurityManager</code>&nbsp;。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646321807681-26274bb5-7da9-43a4-846c-e2c28f11cbcd.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;id=eVUV5&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=558&amp;originWidth=1648&amp;originalType=binary%E2%88%B6=1&amp;size=128659&amp;status=done&amp;style=stroke&amp;taskId=ufb7ac0fa-b5bb-4163-85fe-69f4fedea27" alt="image.png"><br>在 <code>securityManager.login(this, token)</code>&nbsp; 方法上需要两个参数</p>
+<ul>
+<li>this：当前的主体，当前认证的主体。</li>
+<li>token：我们的认证信息。其中密码是以数组的形式呈现的。</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646322407452-32e478bb-f7c5-4449-9c73-d49a1c3a1e42.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;id=p1T0a&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=183&amp;originWidth=453&amp;originalType=binary%E2%88%B6=1&amp;size=33676&amp;status=done&amp;style=none&amp;taskId=u5aa53d70-5308-439f-b98b-21171138720" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646322428312-ef752436-0b9d-4dc2-8257-192255bf1600.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;id=HibCU&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=128&amp;originWidth=926&amp;originalType=binary%E2%88%B6=1&amp;size=38317&amp;status=done&amp;style=none&amp;taskId=u0a97d5ca-36d5-40b3-8901-6597d92407a" alt="image.png"></p>
+<p>这里使用的是 <code>securityManager</code>&nbsp;，是 SecurityManagerFactory 创建的并 &nbsp; 绑定到当前环境中。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646321938497-8037fcf9-5044-4008-9cb3-d4aff8a38cbe.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;id=wXUrG&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=45&amp;originWidth=945&amp;originalType=binary%E2%88%B6=1&amp;size=11298&amp;status=done&amp;style=stroke&amp;taskId=ueef2192b-c941-4a43-8275-35a7d817462" alt="image.png"><br>3、继续进入，这一步就执行了一个内部的方法 <code>authenticate(token)</code><br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646322316030-19ecf605-e185-45a7-8c67-233fa7da9cc2.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;height=494&amp;id=iFpgR&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=658&amp;originWidth=1232&amp;originalType=binary%E2%88%B6=1&amp;size=117845&amp;status=done&amp;style=stroke&amp;taskId=uf0200f8e-eb87-4b76-b1ce-adfe9762260&amp;width=924" alt="image.png"><br>点击去发现执行的只有一句代码。其中的 <code>authenticator</code>&nbsp; 就是<strong>认证器</strong>，这也就是说<code>SecurityManager</code>&nbsp; 也没有进行登录的认证，而是继续的进行委托，将这件事情委托给 <code>Authenticator</code>&nbsp; 认证器再继续进行认证操作。既然是委托，所以 <code>token</code>&nbsp; 则继续的进行传递。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646322582394-f8ff4d8d-7be6-43b4-a83b-4c66041d26e8.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;id=gxf2j&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=342&amp;originWidth=1206&amp;originalType=binary%E2%88%B6=1&amp;size=59811&amp;status=done&amp;style=stroke&amp;taskId=uc4377e52-2111-4dba-94cf-3a914125ff9" alt="image.png"><br>4、继续下一步，我们就来到了 <code>AbstractAuthenticator.authenticate(AuthenticationToken token)</code>&nbsp; 方法中了。会先做一次非空的判断，接着就执行到了 <code>info = doAuthenticate(token);</code>&nbsp;<br>这里执行的是内部的一个认证的方法，token 继续传递。其中我们看到最终想要的是一个 <code>AuthenticationInfo</code>&nbsp; 类型的对象，<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646322644460-26989b86-cd6c-4af3-85f3-792ec4e1a6e9.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;height=390&amp;id=WRezc&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=780&amp;originWidth=1150&amp;originalType=binary%E2%88%B6=1&amp;size=145435&amp;status=done&amp;style=none&amp;taskId=u4df1d8e4-0db3-4a81-94a0-b907f969679&amp;width=575" alt="image.png"><br>我们继续点进去之后，很多同学发现了，不是说内部的方法吗？为什么跳转到其他的类中，执行方法。这里我们首先看一下 <code>AbstractAuthenticator</code>&nbsp; 是一个抽象类，在本类中的 <code>doAuthenticate(AuthenticationToken var1)</code>&nbsp; 这个方法是一个抽象方法，而跳转到的类是 <code>ModularRealmAuthenticator</code>&nbsp;，他继承了 <code>AbstractAuthenticator</code>&nbsp;，同时重写了 <code>doAuthenticate</code>&nbsp; 方法，所以这里会跳转到其子类重写的方法中。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646322804553-fe3a17b8-b170-4c79-bf97-f4f7498d31cb.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;id=dls8q&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=384&amp;originWidth=1187&amp;originalType=binary%E2%88%B6=1&amp;size=75380&amp;status=done&amp;style=stroke&amp;taskId=u00a12894-d7cc-4058-8885-f40c7d4213a" alt="image.png"><br>我们继续回到代码中来，这里做先获取我们的 <code>Realms</code>&nbsp;，这里的 <code>Realms</code>&nbsp; 就是从我们的配置中获取的<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646323014053-6956cc43-e9b3-4307-917b-df7b4cf589f5.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;id=Wgfw6&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=838&amp;originWidth=917&amp;originalType=binary%E2%88%B6=1&amp;size=107039&amp;status=done&amp;style=stroke&amp;taskId=u9ecb8beb-3f21-4fc6-9d8c-2d66e41e693" alt="image.png"><br>点进去继续查看代码，发现调用的是 <code>realm.getAuthenticationInfo(token);</code>&nbsp; 方法，返回的就是我们之前提到的 <code>AuthenticationInfo</code>&nbsp; 对象。<br><code>AuthenticationInfo</code>&nbsp; 在这里表示的就是，通过用户名在 <code>Realm</code>&nbsp; 中查询到用户信息，然后将查询的到信息封装为 <code>AuthenticationInfo</code>&nbsp; 进行返回。<br>接下来开始先认证用户名，接着再认证密码。所以这里，如果判断返回的 info 为空（因为是先更具用户名进行判断），所以就会抛出 <code>UnknownAccountException</code>&nbsp; 的异常。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646359852768-75779e21-faf1-43df-9036-647e5fb02efd.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;id=oi41U&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=561&amp;originWidth=991&amp;originalType=binary%E2%88%B6=1&amp;size=107421&amp;status=done&amp;style=stroke&amp;taskId=u04adf231-5935-45d8-ac1e-071512114bc" alt="image.png"><br>这里我们就要先做”用户名”的认证 。<br>继续跟进代码，我们跟到了 <code>AuthenticatingRealm.getAuthenticationInfo(AuthenticationToken token)</code>&nbsp; 方法中了。先会去缓存中获取 AuthenticationInfo，代码<code>info = doGetAuthenticationInfo(token)</code>这个方式就是执行主要认证的核心点了，去执行自定义的 &nbsp;<code>Realm</code>&nbsp; 的重写认证的方法<code>doGetAuthenticationInfo</code>&nbsp;。token 继续进行传递<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646360043739-e67c3e2d-8ff9-429f-a96e-6f16e18f0736.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;id=vjNry&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=738&amp;originWidth=1194&amp;originalType=binary%E2%88%B6=1&amp;size=137027&amp;status=done&amp;style=stroke&amp;taskId=u154dd7ba-00bd-4d3a-9780-5944d905956" alt="image.png"><br>继续跟进，就到我们自定义的 Realm.doGetAuthenticationInfo()<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646360897711-8f591032-5886-4e71-b0df-153e1f77806b.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;id=r1lKF&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=686&amp;originWidth=1239&amp;originalType=binary%E2%88%B6=1&amp;size=138715&amp;status=done&amp;style=stroke&amp;taskId=u90d05225-8164-4519-b464-f4456935ce9" alt="image.png"><br>到这里认证”用户名”的操作结束了，接着我们要一层一层的进行返回。我们先回到了 <code>AuthenticatingRealm.getAuthenticationInfo(AuthenticationToken token)</code>&nbsp; 方法中。因为查询出来的 <code>info</code>&nbsp; 肯定是不为空的，我们直接看到 <code>assertCredentialsMatch(token, info);</code>&nbsp; 这个方法中。&nbsp; 接下来就是开始认证”密码”。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646361249934-659ca0a5-f400-4662-a40f-12d57bc9d68f.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;id=dqOSd&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=431&amp;originWidth=1208&amp;originalType=binary%E2%88%B6=1&amp;size=66184&amp;status=done&amp;style=stroke&amp;taskId=u06f7042f-c42e-49de-a003-d3d3e4a2a1f" alt="image.png"><br>跟进代码，我们会跳转到<br><code>AuthenticatingRealm.assertCredentialsMatch(AuthenticationToken token, AuthenticationInfo info)</code>&nbsp;<br>这个方法，第一句话是获取加密器<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646361315177-5b961449-d542-44c1-824d-2da52bd021bf.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;id=SkLms&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=454&amp;originWidth=1183&amp;originalType=binary%E2%88%B6=1&amp;size=94657&amp;status=done&amp;style=stroke&amp;taskId=u43fbc24e-0663-48ef-bf40-eccbdc83da4" alt="image.png"><br>getCredentialsMatcher() 获取凭证（密码）匹配器，这里返回了 HashedCredentialsMatcher 就是我们在 ShiroConfig.java 中配置的<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646361393002-91cdb565-3633-4681-846e-e5bb23526de4.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;id=pPKrg&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=91&amp;originWidth=747&amp;originalType=binary%E2%88%B6=1&amp;size=15759&amp;status=done&amp;style=none&amp;taskId=u8f95ea46-4afa-44d9-868f-bbf56f57422" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646361476720-4d412404-e872-4e0b-86a6-4da83d3ef909.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;id=KoqCz&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=505&amp;originWidth=935&amp;originalType=binary%E2%88%B6=1&amp;size=69644&amp;status=done&amp;style=stroke&amp;taskId=u61e0613e-a454-4767-a5a3-afba9ae05b2" alt="image.png"><br>重点在 <code>cm.doCredentialsMatch(token, info)</code>&nbsp; 这个方法，他需要两个参数，都是数据类型</p>
+<ul>
+<li>token：当前待认证密码的用户信息</li>
+<li>info：从 Realm 中根据用户名查询出来的用户信息</li>
+</ul>
+<p>跟进代码后，这个方法的代码很简洁明了，就是从我们的两个参数中取出密码的值，然后进行判断是否相等，返回一个 boolean 的数据类型即可。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646361673446-b37a72fc-9df5-499e-a8e5-c17190b50d31.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;id=mzmjc&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=282&amp;originWidth=1332&amp;originalType=binary%E2%88%B6=1&amp;size=65059&amp;status=done&amp;style=stroke&amp;taskId=u6898d02c-a002-40db-a969-cfe5b347f79" alt="image.png"><br>在两个密码判断完成之后，返回到上一层代码中 <code>if (!cm.doCredentialsMatch(token, info))</code>&nbsp;，如果密码不正确就会抛出 <code>IncorrectCredentialsException</code>&nbsp; 这个异常，我们之前也是提到过的。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646362295576-9ce30cd8-37f5-4e70-9564-9a11455566d0.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;id=o7cAQ&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=477&amp;originWidth=1248&amp;originalType=binary%E2%88%B6=1&amp;size=264853&amp;status=done&amp;style=stroke&amp;taskId=uf31bfaaf-6075-4910-9765-a0c6094012b" alt="image.png"><br>最后，密码验证通过后返回 AuthenticationInfo 对象，这个 info 包含 principals、credentials、credentialsSalt<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646361772664-1369ad1b-a120-43a5-9944-952e9e2e1c7b.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;height=474&amp;id=YALQn&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=947&amp;originWidth=1351&amp;originalType=binary%E2%88%B6=1&amp;size=159407&amp;status=done&amp;style=stroke&amp;taskId=u3ff11870-68bf-402a-8cd3-63da8962278&amp;width=675.5" alt="image.png"><br>之后就是一层层的返回 AuthenticationInfo 对象了<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646362579132-fba80540-aa56-4fbe-be01-adcc438ad10b.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;height=244&amp;id=D6Myi&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=487&amp;originWidth=1341&amp;originalType=binary%E2%88%B6=1&amp;size=108024&amp;status=done&amp;style=stroke&amp;taskId=ue5f311ba-418a-4686-8430-a6d866cd17d&amp;width=670.5" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646362615832-22594d26-c888-4808-8922-b270aa27dc61.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;id=MmwzO&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=377&amp;originWidth=836&amp;originalType=binary%E2%88%B6=1&amp;size=69261&amp;status=done&amp;style=stroke&amp;taskId=u52963102-ed53-4dc6-8efd-32564aef216" alt="image.png"><br>走到 AbstractAuthenticator.authenticate()，doAuthenticate(token)认证成功获取到认证对象<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646362683819-4ad9ff29-1521-46da-ab25-a6954a29ff0b.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;id=sKMer&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=761&amp;originWidth=1007&amp;originalType=binary%E2%88%B6=1&amp;size=111987&amp;status=done&amp;style=stroke&amp;taskId=u206411b9-e604-4560-8dc8-73af3d04110" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646362821426-ce9515bc-bf0d-4e3f-bf5a-fd275df49a9c.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;id=IvCob&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=298&amp;originWidth=987&amp;originalType=binary%E2%88%B6=1&amp;size=60725&amp;status=done&amp;style=stroke&amp;taskId=ufe61d94a-4d52-40ef-8f59-6a9c1806cfb" alt="image.png"><br>创建 Subject 对象<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646362949974-11915e12-47df-4344-9f23-5064a893c2c1.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;id=OiZco&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=667&amp;originWidth=1448&amp;originalType=binary%E2%88%B6=1&amp;size=141361&amp;status=done&amp;style=stroke&amp;taskId=uc931dd31-6343-45b9-a9c7-c3410766d29" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1646363019106-3ff8eb0f-7331-4838-aa4a-700b1bd8e92f.png#clientId=u121813cf-f75c-4&amp;from=paste&amp;id=g3n5E&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=298&amp;originWidth=1330&amp;originalType=binary%E2%88%B6=1&amp;size=56842&amp;status=done&amp;style=stroke&amp;taskId=u7549c3db-1030-4237-af7d-e452472d750" alt="image.png"><br>执行 DefaultSecurityManager.createSubject(context) 具体创建，这个过程使用了代理模式 过程复杂就不具体赘述了</p>
+<p><strong>总结：</strong></p>
+<ol>
+<li>页面传来认证信息，我们封装成 UsernamePasswordToken</li>
+<li>使用 Subject.login() 方法提交认证，参数就是 token</li>
+<li>Subject 委托给 SecurityManager，然后执行 SecurityManager.login() 方法，这里需要借助 Realm 数据源进行认证。</li>
+<li>SecurityManager 再次委托给 Authenticator 进行真正的认证过程<ol>
+<li>先认证用户名</li>
+<li>用户名正确后再认证密码</li>
+</ol>
+</li>
+</ol>
+<p><strong>用一幅图来总结一下对上述代码的流程</strong></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">CoderXiong</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://example.com/2022/05/28/yuque/shiro-ren-zheng-liu-cheng-fen-xi/">http://example.com/2022/05/28/yuque/shiro-ren-zheng-liu-cheng-fen-xi/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">CoderXiong</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/shiro/">
+                                    <span class="chip bg-color">shiro</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%AE%89%E5%85%A8%E6%A1%86%E6%9E%B6/">
+                                    <span class="chip bg-color">安全框架</span>
+                                </a>
+                            
+                                <a href="/tags/%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B/">
+                                    <span class="chip bg-color">认证流程</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/zhifubao.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wx.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/05/28/yuque/shiro-shou-quan-liu-cheng-fen-xi/">
+                    <div class="card-image">
+                        
+                        <img src="https://xiong-test-srt.oss-cn-shenzhen.aliyuncs.com/typoraimages/0022263YUbJ.jpg" class="responsive-img" alt="shiro授权流程分析">
+                        
+                        <span class="card-title">shiro授权流程分析</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-28
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/shiro/" class="post-category">
+                                    shiro
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/shiro/">
+                        <span class="chip bg-color">shiro</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%8E%88%E6%9D%83%E6%B5%81%E7%A8%8B/">
+                        <span class="chip bg-color">授权流程</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AE%89%E5%85%A8%E6%A1%86%E6%9E%B6/">
+                        <span class="chip bg-color">安全框架</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/05/28/yuque/ping-lun-hui-fu-gong-neng/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="评论回复功能">
+                        
+                        <span class="card-title">评论回复功能</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            CoderXiong
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE' || selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Hexo-Xiong<br />'
+            + '文章作者: CoderXiong<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <a href="/about" target="_blank">CoderXiong</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">198.6k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/BFD2018" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1351655382@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1351655382" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1351655382" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+
+        
+            <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7c405b5ffa810bbaa048f6a986ca94a5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+        
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <style>
+    #backTop{
+        margin-bottom: 110px;
+    }
+</style>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+    
+
+    <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7c405b5ffa810bbaa048f6a986ca94a5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: "6f359642"
+        });
+        daovoice('update');
+    </script>
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+    <script type="text/javascript" color="0,0,255"
+        pointColor="0,0,255" opacity='0.7'
+        zIndex="-1" count="99"
+        src="/libs/background/canvas-nest.js"></script>
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon-refresh.min.js" async="async"></script>
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+    <!-- 天气接口 -->
+    
+        <!-- 天气接口-->
+<script type="text/javascript">
+    WIDGET = { FID: '1tFpFZ5Mtj' }
+</script>
+<script type="text/javascript">
+    //只在桌面版网页启用特效
+    var windowWidth = $(window).width();
+    if (windowWidth > 768) {
+        document.write('<script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"><\/script>');
+    }
+</script>
+    
+
+</body>
+
+</html>
