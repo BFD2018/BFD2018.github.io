@@ -4,13 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="4、异常处理, Hexo-Xiong">
-    <meta name="description" content="异常概述System.out.println(1/0);
-System.out.println(&#34;呵呵&#34;);
-
-//这段代码编译是可以通过的,但是运行的时候就出问题了,这种异常被称为运行时异常
-//JVM帮我们捕获到异常
-/*Excepti">
+    <meta name="keywords" content="推荐10个神奇网站让你受用无穷！, Hexo-Xiong">
+    <meta name="description" content="最近小熊又陆续收藏了不少好玩、有趣、实用的网站工具，我相信这些工具，知道的没有几个，而且个个都很刚需。  
+本次小熊一共整理测评了6个网站，如果大家感兴趣，可以先将文章收藏，等有时间的时候慢慢看。
+废话不多说，今天直接上干货。‍  
+01、">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -24,7 +22,7 @@ System.out.println(&#34;呵呵&#34;);
 
     
 
-    <title>4、异常处理 | Hexo-Xiong</title>
+    <title>推荐10个神奇网站让你受用无穷！ | Hexo-Xiong</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -449,12 +447,12 @@ System.out.println(&#34;呵呵&#34;);
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/39.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://xiong-test-srt.oss-cn-shenzhen.aliyuncs.com/typoraimages/003625OIwU8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">4、异常处理</h1>
+                    <h1 class="description center-align post-title">推荐10个神奇网站让你受用无穷！</h1>
                 </div>
             </div>
         </div>
@@ -568,12 +566,29 @@ System.out.println(&#34;呵呵&#34;);
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%8E%A8%E8%8D%90%E7%BD%91%E7%AB%99/">
+                                <span class="chip bg-color">推荐网站</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%B7%A5%E5%85%B7%E5%88%86%E4%BA%AB/">
+                                <span class="chip bg-color">工具分享</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%B7%A5%E5%85%B7/" class="post-category">
+                                工具
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -582,14 +597,14 @@ System.out.println(&#34;呵呵&#34;);
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-28
+                    2022-05-30
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-28
+                    2022-05-30
                 </div>
                 
 
@@ -603,7 +618,7 @@ System.out.println(&#34;呵呵&#34;);
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    4 分
                 </div>
                 
 
@@ -626,117 +641,79 @@ System.out.println(&#34;呵呵&#34;);
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="异常概述"><a href="#异常概述" class="headerlink" title="异常概述"></a>异常概述</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"呵呵"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">//这段代码编译是可以通过的,但是运行的时候就出问题了,这种异常被称为运行时异常</span>
-<span class="token comment">//JVM帮我们捕获到异常</span>
-<span class="token comment">/*Exception in thread "main" java.lang.ArithmeticException: / by zero
-	at com.xjt.demo01.ExceptDemo.main(ExceptDemo.java:5)
-这一段报错信息中，前面告诉你出现了xxxx错误.
-后一段告诉你在哪一行出的错误
-*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>那么异常是如何产生的呢?</p>
-<blockquote>
-<p>在运行到 1/0 的时候. 程序会创建一个异常对象对外抛出，然后被 JVM 捕获. JVM 也不知道怎么办. 就丢了出来，最终显示给用户了. 如果没有人处理异常, 程序会被中断. 这也是为什么我们没有看到”呵呵”两个字的原因</p>
-</blockquote>
-<ul>
-<li>程序产生错误对象的过程被称为抛异常；</li>
-<li>获取到这个错误信息. 被称为捕获异常；</li>
-</ul>
-<h3 id="异常分类"><a href="#异常分类" class="headerlink" title="异常分类"></a>异常分类</h3><p>程序的错误千奇百怪，有的编译的时候就告诉你错了, 有的得运行起来才告诉你错了. 那我们就对异常进行分类.<br>分类之前, 我们想这么一个事儿，异常是错误对象，那有对象一定有类啊，对吧，异常类都有哪些呢?<br><img src="https://cdn.nlark.com/yuque/0/2020/png/1559629/1604459018658-2a9d6d89-9b30-4e97-bd72-7fd44451a662.png#align=left&amp;display=inline&amp;height=332&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=332&amp;originWidth=571&amp;size=92713&amp;status=done&amp;style=none&amp;width=571" alt="image.png"><br>异常类的根: Throwable<br>两个分支: Error 和 Exception<br>Exception 又分为 RuntimeException 和其他 Exception<br>RuntimeException 表示运行时异常<br>其他 Exception: 不用运行就知道错了<br>Error: 表示严重的问题 合理的应用程序不应该试图捕获. 程序员一般不好处理.<br>Error, Exception, RuntimeException 的区别:<br>RuntimeException: 运行时异常, 可以不用主动去处理. 就好比,开车上山, 路上很多的小石子, 不可能把每个小石子都处理掉吧. 等着小石子把轮胎扎破了. 再修就是了<br>Exception: 异常. 必须要手动处理. 还是开车上山, 路上突然出现一个大石头在前面. 你不把石头拿走. 你上不了山.<br>Error: 系统错误，这个就比较狠了。你开车上山 山塌了……你是解决不了的 只能避免 怎么避免? 换个山呗</p>
-<h3 id="区分编译时异常和运行时异常"><a href="#区分编译时异常和运行时异常" class="headerlink" title="区分编译时异常和运行时异常"></a>区分编译时异常和运行时异常</h3><p><img src="https://cdn.nlark.com/yuque/0/2020/png/1559629/1604461543351-38117ca8-9a65-4ee3-9deb-ac4946064fa1.png#align=left&amp;display=inline&amp;height=166&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=166&amp;originWidth=562&amp;size=74869&amp;status=done&amp;style=none&amp;width=562" alt="image.png"><br>补充：<br>编译时异常就是在 IDEA 等编译器中写的代码有异常时飘红，需要我们手动处理；<br>运行时异常，如 1/0 编译器不会飘红，但是运行时会报错；</p>
-<p>如何查看某个异常属于编译时异常和运行时异常呢？<br><img src="https://cdn.nlark.com/yuque/0/2020/png/1559629/1604461817262-f092e60a-10e8-4b88-b2b9-8fecd9b4a537.png#align=left&amp;display=inline&amp;height=110&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=110&amp;originWidth=281&amp;size=7576&amp;status=done&amp;style=none&amp;width=281" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2020/png/1559629/1604461841274-9a432ec4-3d7b-4456-9ec2-47c707be36f1.png#align=left&amp;display=inline&amp;height=156&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=156&amp;originWidth=443&amp;size=12796&amp;status=done&amp;style=none&amp;width=443" alt="image.png"></p>
-<h3 id="Throwable-成员方法"><a href="#Throwable-成员方法" class="headerlink" title="Throwable 成员方法"></a>Throwable 成员方法</h3><table>
-<thead>
-<tr>
-<th><strong>方法</strong></th>
-<th><strong>描述</strong></th>
-<th><strong>示例</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>public String getMessage()</td>
-<td>返回此 throwable 的详细消息字符串</td>
-<td>public String getMessage()</td>
-</tr>
-</tbody></table>
-<p>返回此 throwable 的详细消息字符串。 &nbsp;<br>Index 3 out of bounds for length 3 |<br>| public void printStackTrace() | 将此 throwable 及其回溯打印到标准错误流。 此方法在错误输出流上打印此 Throwable 对象的堆栈跟踪，该字段为 System.err 字段的值。 第一行输出包含此对象的 toString()方法的结果。 剩余行表示先前由方法 fillInStackTrace()记录的数据。 此信息的格式取决于实现，但以下示例可能被视为典型： &nbsp; | java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3<br>at com.xjt.demo01.ExceptDemo.method(ExceptDemo.java:26)<br>at com.xjt.demo01.ExceptDemo.main(ExceptDemo.java:20) |<br>| public String toString() | 返回此 throwable 的简短描述,<br>结果是连接： &nbsp; 1)这个对象的类的 name &nbsp;<br>2)”:”（冒号和空格） &nbsp; 3)调用此对象的 getMessage()方法的结果 | java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3 |</p>
-<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><h3 id="try…catch…"><a href="#try…catch…" class="headerlink" title="try…catch…"></a>try…catch…</h3><p><img src="https://cdn.nlark.com/yuque/0/2020/png/1559629/1604461203275-521854e3-9a81-4057-8b9c-5ca5641bb4ce.png#align=left&amp;display=inline&amp;height=342&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=342&amp;originWidth=570&amp;size=76055&amp;status=done&amp;style=none&amp;width=570" alt="image.png"><br>示例：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExceptDemo</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"开始"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">method</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"结束"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">method</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">try</span> <span class="token punctuation">{</span>
-            <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">11</span><span class="token punctuation">,</span><span class="token number">22</span><span class="token punctuation">,</span><span class="token number">33</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span><span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ArrayIndexOutOfBoundsException</span> e<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>打印结果：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">开始
-<span class="token class-name">Index</span> <span class="token number">3</span> out of bounds <span class="token keyword">for</span> length <span class="token number">3</span>
-<span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span></span>ArrayIndexOutOfBoundsException</span><span class="token operator">:</span> <span class="token class-name">Index</span> <span class="token number">3</span> out of bounds <span class="token keyword">for</span> length <span class="token number">3</span>
-结束
-<span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span></span>ArrayIndexOutOfBoundsException</span><span class="token operator">:</span> <span class="token class-name">Index</span> <span class="token number">3</span> out of bounds <span class="token keyword">for</span> length <span class="token number">3</span>
-	at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>xjt<span class="token punctuation">.</span>demo01<span class="token punctuation">.</span></span>ExceptDemo</span><span class="token punctuation">.</span><span class="token function">method</span><span class="token punctuation">(</span><span class="token class-name">ExceptDemo</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">4</span><span class="token punctuation">)</span>
-	at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>xjt<span class="token punctuation">.</span>demo01<span class="token punctuation">.</span></span>ExceptDemo</span><span class="token punctuation">.</span><span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">ExceptDemo</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">10</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="try…catch…finally"><a href="#try…catch…finally" class="headerlink" title="try…catch…finally"></a>try…catch…finally</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">try</span> <span class="token punctuation">{</span>
-   <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>  <span class="token comment">//监视代码执行过程，一旦返现异常则直接跳转至catch，</span>
-        <span class="token comment">// 如果没有异常则直接跳转至finally</span>
-<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SomeException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token comment">//可选执行的代码块，如果没有任何异常发生则不会执行；</span>
-        <span class="token comment">//如果发现异常则进行处理或向上抛出。</span>
-<span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
-    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token comment">//必选执行的代码块，不管是否有异常发生，</span>
-        <span class="token comment">// 即使发生内存溢出异常也会执行，通常用于处理善后清理工作。</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="throws"><a href="#throws" class="headerlink" title="throws"></a>throws</h3><p><img src="https://cdn.nlark.com/yuque/0/2020/png/1559629/1604462000143-e987788c-a5f9-4ce6-8b95-a83e632e12cf.png#align=left&amp;display=inline&amp;height=322&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=322&amp;originWidth=751&amp;size=104427&amp;status=done&amp;style=none&amp;width=751" alt="image.png"><br>有时候出现的异常时我们解决不了的，要通过 throws 将异常抛出去，由调用者解决（try…catch…）。<br>IDEA 工具使用 Alt+Enter 快速生成声明抛出异常 throws，<br>它运用于方法声明之上，用于表示当前方法不处理异常，而是提醒该方法的调用者来处理异常<br>使用格式：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">修饰符 返回值类型 方法名（参数） throws 异常类名1，异常类名2 <span class="token punctuation">..</span>. <span class="token punctuation">{</span> <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="https://cdn.nlark.com/yuque/0/2020/png/1559629/1604461996210-612ca4bc-73a6-41f4-9810-35e12d8ddf9d.png#align=left&amp;display=inline&amp;height=426&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=491&amp;originWidth=685&amp;size=228361&amp;status=done&amp;style=none&amp;width=594" alt="image.png"></p>
-<h4 id="throws-和-throw-的区别"><a href="#throws-和-throw-的区别" class="headerlink" title="throws 和 throw 的区别"></a>throws 和 throw 的区别</h4><p><img src="https://cdn.nlark.com/yuque/0/2020/png/1559629/1604479035793-81f64d06-f260-4cda-9e33-ad549ae367d2.png#align=left&amp;display=inline&amp;height=181&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=181&amp;originWidth=671&amp;size=56411&amp;status=done&amp;style=none&amp;width=671" alt="image.png"></p>
-<h3 id="自定义异常"><a href="#自定义异常" class="headerlink" title="自定义异常"></a>自定义异常</h3><p><img src="https://cdn.nlark.com/yuque/0/2020/png/1559629/1604470734609-fae6b6ff-0995-406c-8684-1532b048a01c.png#align=left&amp;display=inline&amp;height=370&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=370&amp;originWidth=424&amp;size=57614&amp;status=done&amp;style=none&amp;width=424" alt="image.png"><br>示例：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//ScoreException.java</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ScoreException</span> <span class="token keyword">extends</span> <span class="token class-name">Exception</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token class-name">ScoreException</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token class-name">ScoreException</span><span class="token punctuation">(</span><span class="token class-name">String</span> message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">super</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token comment">//MyDefineExcept.java</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyDefineExcept</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">checkScore</span><span class="token punctuation">(</span><span class="token keyword">int</span> score<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ScoreException</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>score<span class="token operator">&lt;</span><span class="token number">0</span> <span class="token operator">||</span> score<span class="token operator">&gt;</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">ScoreException</span><span class="token punctuation">(</span><span class="token string">"你给的分数有误，0&lt;=score&lt;=100"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
-            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"分数正常"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token class-name">MyDefineExcept</span> mde <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyDefineExcept</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">try</span> <span class="token punctuation">{</span>
-            mde<span class="token punctuation">.</span><span class="token function">checkScore</span><span class="token punctuation">(</span><span class="token number">120</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ScoreException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <p>最近小熊又陆续收藏了不少好玩、有趣、实用的网站工具，我相信这些工具，知道的没有几个，而且个个都很刚需。  </p>
+<p>本次小熊一共整理测评了6个网站，如果大家感兴趣，可以先将文章收藏，等有时间的时候慢慢看。</p>
+<p><strong>废话不多说，今天直接上干货。</strong><br>‍  </p>
+<p><strong>01、Windows 文件下载站</strong></p>
+<p>▌<strong>最佳</strong>指数：★★★★</p>
+<p>这个网站名字叫“TechBench by WZT”&nbsp;一个可以从微软官网获取安装程序的在线网站，可下载所有版本的微软软件哦！</p>
+<p>不过说实话，这个网站UI设计是真的不好，里面竟然还有全球的语言版本，看着还很国际范，如果你经常重装系统，可以收藏。</p>
+<p><strong>传送门：<a target="_blank" rel="noopener" href="https://tb.rg-adguard.net/public.php">https://tb.rg-adguard.net/public.php</a></strong></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/18a90bdadece4e85a9a37887edf09250~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<p><strong>02、在线LOGO设计神器</strong></p>
+<p>▌最佳指数：★★★</p>
+<p>丢盖网：<a target="_blank" rel="noopener" href="https://www.diugai.com/">https://www.diugai.com/</a></p>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cce2f8e70cdc4f6f822d26f2b2c11f15~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<p>可以对背景图和文字随意替换移动，随意DIY你自己的LOGO</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/07993b7d7be04982b0494714fa64fadd~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<p><strong>03、极简插件</strong><br>▌最佳指数：★★★</p>
+<p>相信小伙伴们都使用的Chrome浏览器吧，没有插件的浏览器是没有灵魂的，但是Chrome商城加载速度让小伙伴们早已深恶痛绝了吧，小熊这里重点推荐一下这个网站</p>
+<p>收录了排名靠前的浏览器插件，装上之后浏览器玩的飞起</p>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b1cbe74131864fca90fa987d910f32f7~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<p>瞄一眼小熊的浏览器常用的哪些插件吧</p>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ba8aaba9a04c43e78cfe6e29f7786973~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<p>最后贴上地址吧：<a target="_blank" rel="noopener" href="https://chrome.zzzmh.cn/#/index">https://chrome.zzzmh.cn/#/index</a></p>
+<p><strong>04、Ins图片视频下载</strong></p>
+<p>▌最佳指数：★★★</p>
+<p>这是一个可以免费下载Instagram图片和视频的在线工具，并且还支持IGTV、Reels，无需任何特殊网络，直接可以使用。</p>
+<p>由于ins在国内无法访问，这个工具虽然不错，但是对于很多人而言价值不大，但是对于一小部分搬运图片视频的人来说，还是刚需的。</p>
+<p>传送门：<a target="_blank" rel="noopener" href="https://instaer.app/cn">https://instaer.app/cn</a></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ca01efd327714bb3ae97b8b16887e62b~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<p><strong>05、8K影视</strong></p>
+<p>▌最佳指数：★★★★</p>
+<p>影视类的网站，我推荐了不少，这个网站也是我在逛其他论坛的时候看到的，由于名字比较有吸引力，所以就收藏了。  </p>
+<p>不得不说，周末我追剧的时候，确实找到了很多其他网站搜不到的影视，重点是免费，画质还不错，没有杂七杂八的内容。</p>
+<p>传送门：<a target="_blank" rel="noopener" href="http://vip.8kvod.com:888/">http://vip.8kvod.com:888/</a></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/93806aabc6a5480c94ca1cdb07ec12c1~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<p><strong>06、插画动画下载</strong></p>
+<p>▌最佳指数：★★★</p>
+<p>这个网站是设计师必备的一个网站，一个可以免费用于个人和商业用途的插画下载站，除了数量多，还支持自定义插画内容。  </p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d55ff049f3fa49d8bd28e70a777d02fa~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<p>小佳随便找了一张插画进行下载，打开后我们可以发现，你可以自定义显示插画的背景内容，可以全部隐藏，也可以简单和详细显示内容。</p>
+<p>重点是你还可以隐藏插画里面的图层，可惜不能自定义修改插画内容，下载也是非常的方便，直接点击就可以下载PNG、SVG格式的图片。  </p>
+<p>传送门：<a target="_blank" rel="noopener" href="https://storyset.com/">https://storyset.com/</a></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/73b81237383744b896d1b146b750e422~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<p><strong>07、视频转换成动漫风格</strong></p>
+<p>▌最佳指数：★★★★★</p>
+<p>现在短视频发展迅猛，想要与众不同着实有点难度了，除非你有好的剧本和创意，否则单纯靠数量根本不可能吸引别人。</p>
+<p>这个工具可以将视频转化成动漫风格，怎么样，是不是第一次听说这样的工具呢？网站支持上传25分钟以下的视频视频。</p>
+<p>也可以直接贴入油管或tiktok的地址，然后它会截取视频里画面生成漫画图片，或漫画风格的视频，还可以选择不同的风格。</p>
+<p>传送门：<a target="_blank" rel="noopener" href="https://www.comixify.ai/">https://www.comixify.ai/</a></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8943733b722944baaf92c5e9ec43fb60~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<p><strong>08、在线绘图制作</strong></p>
+<p>▌最佳指数：★★★★★</p>
+<p>这个网站是小佳特别喜欢的一个在线工具。一个功能很全，高颜值的像素画编辑器，完全在网页里完成。</p>
+<p>它和PS一样，有完善的编辑器功能，在线创作，最后可以导出成图片。工具里面有很多绘图工具，喜欢绘图的可以试试哦。</p>
+<p>传送门：<a target="_blank" rel="noopener" href="https://www.pixilart.com/draw">https://www.pixilart.com/draw</a></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f120224c82e74ae58eb95aaed63181b8~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<p><strong>09、免费在线流程图思维导图</strong></p>
+<p>▌最佳指数：★★★★★</p>
+<p>相信它的鼎鼎大名应该画过流程图/思维导图的小伙伴应该无人不知无人不晓了吧！</p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9241003d2088459db3e0633ee6161063~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<p>我最喜欢白嫖它的推荐模板</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3034cd42ba5142bdbbf6472ede94a79a~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<p>哈哈哈！大神们总结的知识点尽归我有！！！</p>
+<p>传送门：<a target="_blank" rel="noopener" href="https://www.processon.com/">https://www.processon.com/</a></p>
+<p><strong>10、高清壁纸图片</strong></p>
+<p>▌最佳指数：★★★★</p>
+<p>最后再推荐一个免费的高清壁纸大图的网站，小熊有很多图片素材都是来自它哦</p>
+<p>虽然它的图片做了防盗链处理，但是丝毫不能阻碍小熊对它的热爱（哈哈哈！其实我是把它download之后放到自己的图床上啦！）</p>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d7e6c044fdd24e53ae2088a60143edcf~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<p>画个重点，分类里面 有大家需要的哦！</p>
+<p>传送门：<a target="_blank" rel="noopener" href="http://www.netbian.com/">http://www.netbian.com/</a></p>
+<p><strong>写在最后</strong></p>
+<p><strong>今天的所有工具/网站都已经分享了，估计这期的分享能帮助很多人，喜欢的记得给我点个赞哦！</strong></p>
+<p><strong>如果有价值，不要吝啬“赞”和“在看”哦</strong></p>
 
                 
             </div>
@@ -763,7 +740,7 @@ System.out.println(&#34;呵呵&#34;);
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://bfd2018.github.io/2022/05/28/yuque/4-yi-chang-chu-li/">http://bfd2018.github.io/2022/05/28/yuque/4-yi-chang-chu-li/</a>
+                    <a href="http://bfd2018.github.io/2022/05/30/tui-jian-10-ge-shen-qi-wang-zhan-rang-ni-shou-yong-wu-qiong/">http://bfd2018.github.io/2022/05/30/tui-jian-10-ge-shen-qi-wang-zhan-rang-ni-shou-yong-wu-qiong/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -800,7 +777,15 @@ System.out.println(&#34;呵呵&#34;);
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E6%8E%A8%E8%8D%90%E7%BD%91%E7%AB%99/">
+                                    <span class="chip bg-color">推荐网站</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%B7%A5%E5%85%B7%E5%88%86%E4%BA%AB/">
+                                    <span class="chip bg-color">工具分享</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -972,16 +957,17 @@ System.out.println(&#34;呵呵&#34;);
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/05/28/yuque/6-java-ji-he/">
+                <a href="/2022/05/30/tui-jian-10-ge-shen-qi-wang-zhan-rang-ni-shou-yong-wu-qiong/">
                     <div class="card-image">
                         
-                        <img src="https://xiong-test-srt.oss-cn-shenzhen.aliyuncs.com/typoraimages/011639aP011.jpg" class="responsive-img" alt="6、Java集合">
+                        <img src="https://xiong-test-srt.oss-cn-shenzhen.aliyuncs.com/typoraimages/003625OIwU8.jpg" class="responsive-img" alt="推荐10个神奇网站让你受用无穷！">
                         
-                        <span class="card-title">6、Java集合</span>
+                        <span class="card-title">推荐10个神奇网站让你受用无穷！</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -991,30 +977,31 @@ System.out.println(&#34;呵呵&#34;);
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java/" class="post-category">
-                                    Java
+                            <a href="/categories/%E5%B7%A5%E5%85%B7/" class="post-category">
+                                    工具
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JavaSE/">
-                        <span class="chip bg-color">JavaSE</span>
+                    <a href="/tags/%E6%8E%A8%E8%8D%90%E7%BD%91%E7%AB%99/">
+                        <span class="chip bg-color">推荐网站</span>
                     </a>
                     
-                    <a href="/tags/%E9%9B%86%E5%90%88/">
-                        <span class="chip bg-color">集合</span>
+                    <a href="/tags/%E5%B7%A5%E5%85%B7%E5%88%86%E4%BA%AB/">
+                        <span class="chip bg-color">工具分享</span>
                     </a>
                     
                 </div>
@@ -1028,13 +1015,12 @@ System.out.println(&#34;呵呵&#34;);
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/28/yuque/3-java-mian-xiang-dui-xiang-2/">
+                <a href="/2022/05/29/yi-tao-ji-yu-springboot-vue-de-kai-yuan-wu-lian-wang-zhi-neng-jia-ju-xi-tong/">
                     <div class="card-image">
                         
+                        <img src="https://xiong-test-srt.oss-cn-shenzhen.aliyuncs.com/typoraimages/003038ZnNuz.jpg" class="responsive-img" alt="一套基于SpringBoot + Vue 的开源物联网智能家居系统">
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="3、Java面向对象2">
-                        
-                        <span class="card-title">3、Java面向对象2</span>
+                        <span class="card-title">一套基于SpringBoot + Vue 的开源物联网智能家居系统</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1045,15 +1031,43 @@ System.out.println(&#34;呵呵&#34;);
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-29
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            CoderXiong
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/SpringBoot%E9%A1%B9%E7%9B%AE/" class="post-category">
+                                    SpringBoot项目
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/SpringBoot/">
+                        <span class="chip bg-color">SpringBoot</span>
+                    </a>
+                    
+                    <a href="/tags/Vue/">
+                        <span class="chip bg-color">Vue</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/">
+                        <span class="chip bg-color">前后端分离</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%89%A9%E8%81%94%E7%BD%91/">
+                        <span class="chip bg-color">物联网</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/">
+                        <span class="chip bg-color">智能家居</span>
+                    </a>
+                    
                 </div>
                 
             </div>
