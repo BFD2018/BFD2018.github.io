@@ -1,0 +1,1913 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="【MySQL_02】MySQL环境搭建, Hexo-Xiong">
+    <meta name="description" content="MySQL环境搭建1. MySQL的卸载步骤 1 ：停止MySQL服务在卸载之前，先停止MySQL8.0的服务。按键盘上的“Ctrl + Alt + Delete”组合键，打开“任务管理器”对话框，可以在“服务”列表找到“MySQL8.0”">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    
+
+    <title>【MySQL_02】MySQL环境搭建 | Hexo-Xiong</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Hexo-Xiong</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/journal" class="waves-effect waves-light">
+      
+      <i class="fa fa-book" style="zoom: 0.6;"></i>
+      
+      <span>日志</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/census" class="waves-effect waves-light">
+      
+      <i class="fa fa-layer-group" style="zoom: 0.6;"></i>
+      
+      <span>统计</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Medias</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/musics">
+          
+          <i class="fa-solid fa-music" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Musics</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/movies">
+          
+          <i class="fas fa-film" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Movies</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/mygallery">
+          
+          <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>myGallery</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Hexo-Xiong</div>
+        <div class="logo-desc">
+            
+            小熊同学是一名Java开发工程师，在编程的道路上孜孜不倦的追求技术成长，愿与诸位共同进步！
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/journal" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fa fa-book"></i>
+			
+			日志
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/census" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fa fa-layer-group"></i>
+			
+			统计
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			Medias
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/musics " style="margin-left:75px">
+				  
+				   <i class="fa fa-solid fa-music" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Musics</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/movies " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-film" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Movies</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/mygallery " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
+			      
+		          <span>myGallery</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/bfd2018/" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/bfd2018/" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    <meta name="referrer" content="no-referrer" />
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://xiong-test-srt.oss-cn-shenzhen.aliyuncs.com/typoraimages/Snipaste_2022-05-22_22-44-45.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">【MySQL_02】MySQL环境搭建</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AF%87/">
+                                <span class="chip bg-color">MySQL基础篇</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/MySQL/" class="post-category">
+                                MySQL
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-06-02
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-06-02
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    8k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    31 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="MySQL环境搭建"><a href="#MySQL环境搭建" class="headerlink" title="MySQL环境搭建"></a>MySQL环境搭建</h1><h2 id="1-MySQL的卸载"><a href="#1-MySQL的卸载" class="headerlink" title="1. MySQL的卸载"></a>1. MySQL的卸载</h2><h3 id="步骤-1-：停止MySQL服务"><a href="#步骤-1-：停止MySQL服务" class="headerlink" title="步骤 1 ：停止MySQL服务"></a>步骤 1 ：停止MySQL服务</h3><p>在卸载之前，先停止MySQL8.0的服务。按键盘上的“Ctrl + Alt + Delete”组合键，打开“任务管理器”对话框，可以在“服务”列表找到“MySQL8.0”的服务，如果现在“正在运行”状态，可以右键单击服务，选择“停止”选项停止MySQL8.0的服务，如图所示。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654095596318-1ed004cf-57ef-497d-911b-ab6c6794c029.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=565&amp;id=u134544fb&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=837&amp;originWidth=940&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=464825&amp;status=done&amp;style=shadow&amp;taskId=u5e0a5edc-5a9b-47f3-a6db-f08e0776d98&amp;title=&amp;width=634" alt="image.png"></p>
+<h3 id="步骤-2-：软件的卸载"><a href="#步骤-2-：软件的卸载" class="headerlink" title="步骤 2 ：软件的卸载"></a>步骤 2 ：软件的卸载</h3><p><strong>方式 1 ：通过控制面板方式</strong><br>卸载MySQL8.0的程序可以和其他桌面应用程序一样直接在“控制面板”选择“卸载程序”，并在程序列表中找到MySQL8.0服务器程序，直接双击卸载即可，如图所示。这种方式删除，数据目录下的数据不会跟着删除。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654095649021-ba74e95b-33a8-44fc-a40d-e84fe1710c3c.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=355&amp;id=uced6356c&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=633&amp;originWidth=941&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=277304&amp;status=done&amp;style=shadow&amp;taskId=u884040a1-64ec-4721-972a-bb9fe335156&amp;title=&amp;width=528" alt="image.png"><br><strong>方式 2 ：通过 360 或电脑管家等软件卸载</strong><br><strong>方式 3 ：通过安装包提供的卸载功能卸载</strong><br>你也可以通过安装向导程序进行MySQL8.0服务器程序的卸载。<br>① 再次双击下载的mysql-installer-community-8.0.26.0.msi文件，打开安装向导。安装向导会自动检测已<br>安装的MySQL服务器程序。<br>② 选择要卸载的MySQL服务器程序，单击“Remove”（移除），即可进行卸载。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654095699031-526bec06-1bd7-4ee4-a52e-092f418543d1.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=458&amp;id=u87ab8731&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=572&amp;originWidth=753&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=97551&amp;status=done&amp;style=shadow&amp;taskId=u812f71fc-2dcd-46a6-95bf-ee8e232c2e1&amp;title=&amp;width=602.4" alt="image.png"><br>③ 单击“Next”（下一步）按钮，确认卸载。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654095710069-8fd7d7dc-31b5-4518-92dc-c650231e1161.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=456&amp;id=u0689dddb&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=570&amp;originWidth=752&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=67777&amp;status=done&amp;style=shadow&amp;taskId=u57a84d40-6794-44e5-b155-63946031eda&amp;title=&amp;width=601.6" alt="image.png"><br>④ 弹出是否同时移除数据目录选择窗口。如果想要同时删除MySQL服务器中的数据，则勾选“Remove the<br>data directory”，如图所示。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654095719179-bec42c29-8f2a-4bb4-bb1a-219b3cd71bef.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=459&amp;id=u77067d42&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=574&amp;originWidth=750&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=77481&amp;status=done&amp;style=shadow&amp;taskId=u31b7ce37-82d7-4eda-b07a-b1928f4d107&amp;title=&amp;width=600" alt="image.png"><br>⑤ 执行卸载。单击“Execute”（执行）按钮进行卸载。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654095727921-ae799f5c-847a-4c66-9034-1230d6824710.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=456&amp;id=u3da064fc&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=570&amp;originWidth=752&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=93523&amp;status=done&amp;style=shadow&amp;taskId=u1c98ef34-02d2-4a8c-8419-3a4cedbddee&amp;title=&amp;width=601.6" alt="image.png"><br>⑥ 完成卸载。单击“Finish”（完成）按钮即可。如果想要同时卸载MySQL8.0的安装向导程序，勾选“Yes，<br>Uninstall MySQL Installer”即可，如图所示。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654095735608-90df55a4-5baf-434b-904c-83aab2638c03.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=458&amp;id=u7ea31f85&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=572&amp;originWidth=750&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=115718&amp;status=done&amp;style=shadow&amp;taskId=ua25a2e4f-d615-436f-8766-b0f40915878&amp;title=&amp;width=600" alt="image.png"></p>
+<h3 id="步骤-3-：残余文件的清理"><a href="#步骤-3-：残余文件的清理" class="headerlink" title="步骤 3 ：残余文件的清理"></a>步骤 3 ：残余文件的清理</h3><p>如果再次安装不成功，可以卸载后对残余文件进行清理后再安装。<br>（ 1 ）服务目录：mysql服务的安装目录<br>（ 2 ）数据目录：默认在C:\ProgramData\MySQL</p>
+<blockquote>
+<p>如果自己单独指定过数据目录，就找到自己的数据目录进行删除即可。<br>注意：请在卸载前做好数据备份<br>在操作完以后，需要重启计算机，然后进行安装即可。 如果仍然安装失败，需要继续操作如下步骤 4 </p>
+</blockquote>
+<h3 id="步骤-4-：清理注册表（选做）"><a href="#步骤-4-：清理注册表（选做）" class="headerlink" title="步骤 4 ：清理注册表（选做）"></a>步骤 4 ：清理注册表（选做）</h3><p>如果前几步做了，再次安装还是失败，那么可以清理注册表。<br>如何打开注册表编辑器：在系统的搜索框中输入regedit<br>:::warning<br>HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\Eventlog\Application\MySQL服务 目录删除<br>HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\MySQL服务 目录删除<br>HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\Eventlog\Application\MySQL服务 目录删除<br>HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\MySQL服务 目录删除<br>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog\Application\MySQL服务目录删除<br>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MySQL服务删除<br>:::<br>注册表中的ControlSet001,ControlSet002,不一定是001和002,可能是ControlSet005、006之类</p>
+<h3 id="步骤-5-：删除环境变量配置"><a href="#步骤-5-：删除环境变量配置" class="headerlink" title="步骤 5 ：删除环境变量配置"></a>步骤 5 ：删除环境变量配置</h3><p>找到path环境变量，将其中关于mysql的环境变量删除， <strong>切记不要全部删除。</strong><br>例如：删除 D:\develop_tools\mysql\MySQLServer8.0.26\bin; 这个部分<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654095904659-df3ac01d-3871-42ff-a0c6-e744f690cffa.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=499&amp;id=ud6ea6664&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=624&amp;originWidth=747&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=175392&amp;status=done&amp;style=shadow&amp;taskId=ucc18d343-8ca5-4cfc-80e4-55e10ff1982&amp;title=&amp;width=597.6" alt="image.png"></p>
+<h2 id="2-MySQL的下载、安装、配置"><a href="#2-MySQL的下载、安装、配置" class="headerlink" title="2. MySQL的下载、安装、配置"></a>2. MySQL的下载、安装、配置</h2><h3 id="2-1-MySQL的-4-大版本"><a href="#2-1-MySQL的-4-大版本" class="headerlink" title="2. 1 MySQL的 4 大版本"></a>2. 1 MySQL的 4 大版本</h3><p>:::success<br><strong>MySQL Community Server 社区版本</strong> ，开源免费，自由下载，但不提供官方技术支持，适用于大多数普通用户。</p>
+<p><strong>MySQL Enterprise Edition 企业版本</strong> ，需付费，不能在线下载，可以试用 30 天。提供了更多的功能和更完备的技术支持，更适合于对数据库的功能和可靠性要求较高的企业客户。</p>
+<p>**MySQL Cluster 集群版 **，开源免费。用于架设集群服务器，可将几个MySQL Server封装成一个Server。需要在社区版或企业版的基础上使用。</p>
+<p><strong>MySQL Cluster CGE 高级集群版</strong> ，需付费。<br>:::</p>
+<ul>
+<li>目前最新版本为8.0.27，发布时间 2021 年 10 月。此前，8.0.0 在 2016.9.12日就发布了。</li>
+<li>本课程中使用8.0.26版本。</li>
+</ul>
+<p>此外，官方还提供了MySQL Workbench（GUITOOL）一款专为MySQL设计的图形界面管理工具。MySQLWorkbench又分为两个版本，分别是社区版（MySQL Workbench OSS）、商用版（MySQL WorkbenchSE）。</p>
+<h3 id="2-2-软件的下载"><a href="#2-2-软件的下载" class="headerlink" title="2. 2 软件的下载"></a>2. 2 软件的下载</h3><ol>
+<li>下载地址<br>官网： <a target="_blank" rel="noopener" href="https://www.mysql.com/"><strong>https://www.mysql.com</strong></a><br><strong>2. 打开官网，点击DOWNLOADS</strong><br>然后，点击MySQL Community(GPL) Downloads<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654096053235-56e195ff-7f91-4a5f-8739-cf9146740ea5.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=458&amp;id=u6ca68854&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=573&amp;originWidth=929&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=144990&amp;status=done&amp;style=shadow&amp;taskId=u3a2dee9e-5b6f-4f7d-ad2d-b2a6701ec68&amp;title=&amp;width=743.2" alt="image.png"><br><strong>3. 点击 MySQL Community Server</strong><br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654096067495-d1c461ef-e2bc-4bb4-90b8-b7cea328e6c3.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=494&amp;id=u1f73228e&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=618&amp;originWidth=910&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=144318&amp;status=done&amp;style=shadow&amp;taskId=ud2b4ab42-bb02-4887-8759-f815e092ff3&amp;title=&amp;width=728" alt="image.png"><br><strong>4. 在General Availability(GA) Releases中选择适合的版本</strong><br>Windows平台下提供两种安装文件：MySQL二进制分发版（.msi安装文件）和免安装版（.zip压缩文<br>件）。一般来讲，应当使用二进制分发版，因为该版本提供了图形化的安装向导过程，比其他的分发版<br>使用起来要简单，不再需要其他工具启动就可以运行MySQL。</li>
+</ol>
+<ul>
+<li>这里在Windows 系统下推荐下载MSI安装程序；点击Go to Download Page进行下载即可</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654096095169-dda5dc11-c170-4776-9f51-ab0629cddaf1.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=386&amp;id=u646643b3&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=483&amp;originWidth=894&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=100490&amp;status=done&amp;style=shadow&amp;taskId=u76e12bef-2452-4e4f-bd8c-9ceb0d96afc&amp;title=&amp;width=715.2" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654096123946-45ae7774-5001-4272-90ca-de3261f5f6c1.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=510&amp;id=u6e125ae5&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=638&amp;originWidth=920&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=153743&amp;status=done&amp;style=shadow&amp;taskId=ub1fb188c-e7e6-48f4-b04f-2eb862adae5&amp;title=&amp;width=736" alt="image.png"></p>
+<ul>
+<li>Windows下的MySQL 8. 0 安装有两种安装程序<ul>
+<li>mysql-installer-web-community-8.0.26.0.msi 下载程序大小： 2. 4 M；安装时需要联网安装组件。</li>
+<li>mysql-installer-community-8.0.26.0.msi 下载程序大小： 450. 7 M；安装时离线安装即可。 <strong>推荐。</strong></li>
+</ul>
+</li>
+<li>如果安装MySQL 5. 7 版本的话，选择Archives 接着选择MySQL 5. 7 的相应版本即可。这里下载最近期的MySQL 5. 7. 34 版本。</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654096174133-24b0b370-79fa-4a43-ad38-466219e4cf78.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=409&amp;id=ue68a56c8&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=511&amp;originWidth=908&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=122537&amp;status=done&amp;style=shadow&amp;taskId=ub4f819ce-2a48-4308-b88a-dd4acf59161&amp;title=&amp;width=726.4" alt="image.png"></p>
+<h3 id="2-3-MySQL-8-0-版本的安装"><a href="#2-3-MySQL-8-0-版本的安装" class="headerlink" title="2. 3 MySQL 8. 0 版本的安装"></a>2. 3 MySQL 8. 0 版本的安装</h3><p>MySQL下载完成后，找到下载文件，双击进行安装，具体操作步骤如下。<br>步骤 1 ：双击下载的mysql-installer-community-8.0.26.0.msi文件，打开安装向导。</p>
+<p>步骤 2 ：打开“Choosing a Setup Type”（选择安装类型）窗口，在其中列出了 5 种安装类型，分别是<br>Developer Default（默认安装类型）、Server only（仅作为服务器）、Client only（仅作为客户端）、<br>Full（完全安装）、Custom（自定义安装）。这里选择“Custom（自定义安装）”类型按钮，单击“Next(下<br>一步)”按钮。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654096194814-d7b7fbeb-68c4-4abd-9624-5190085a5314.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=574&amp;id=u04a790c0&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=717&amp;originWidth=935&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=194285&amp;status=done&amp;style=shadow&amp;taskId=u8b22db77-fcfa-49f5-bfa9-cfdec099c75&amp;title=&amp;width=748" alt="image.png"><br>步骤 3 ：打开“Select Products” （选择产品）窗口，可以定制需要安装的产品清单。例如，选择“MySQL<br>Server 8.0.26-X64”后，单击“→”添加按钮，即可选择安装MySQL服务器，如图所示。采用通用的方法，可<br>以添加其他你需要安装的产品。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654096218935-2887e72a-3980-4d8d-ae59-0e860a7c351f.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=573&amp;id=u8b512680&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=716&amp;originWidth=942&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=179928&amp;status=done&amp;style=shadow&amp;taskId=u2a5c9b7d-5b01-4362-adba-b5bbfcbe250&amp;title=&amp;width=753.6" alt="image.png"><br>此时如果直接“Next”（下一步），则产品的安装路径是默认的。如果想要自定义安装目录，则可以选中<br>对应的产品，然后在下面会出现“Advanced Options”（高级选项）的超链接。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654096229876-c256e836-8fbb-4818-8344-f7dc598beb34.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=571&amp;id=ucfd9bae0&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=714&amp;originWidth=937&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=171635&amp;status=done&amp;style=shadow&amp;taskId=u9dc9099a-b19f-4d6e-8df4-993ebc6b060&amp;title=&amp;width=749.6" alt="image.png"><br>单击“Advanced Options”（高级选项）则会弹出安装目录的选择窗口，如图所示，此时你可以分别设置<br>MySQL的服务程序安装目录和数据存储目录。如果不设置，默认分别在C盘的Program Files目录和<br>ProgramData目录（这是一个隐藏目录）。如果自定义安装目录，请避免“中文”目录。另外，建议服务目<br>录和数据目录分开存放。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654096239266-e9858d81-965d-4fc2-b13a-8316b3f61142.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=418&amp;id=u30c528e7&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=523&amp;originWidth=935&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=110250&amp;status=done&amp;style=shadow&amp;taskId=uba0119b4-739e-41ed-9706-a4d246679bc&amp;title=&amp;width=748" alt="image.png"><br>步骤 4 ：在上一步选择好要安装的产品之后，单击“Next”（下一步）进入确认窗口，如图所示。单击<br>“Execute”（执行）按钮开始安装。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654096248474-ddd1f6c2-0a37-4ffd-9652-2c9b558e857e.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=572&amp;id=u28bad86e&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=715&amp;originWidth=943&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=106816&amp;status=done&amp;style=shadow&amp;taskId=u3aa17f9a-0a97-4156-b5f5-7d5a38cb5d9&amp;title=&amp;width=754.4" alt="image.png"><br>步骤 5 ：安装完成后在“Status”（状态）列表下将显示“Complete”（安装完成），如图所示。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654096257206-58eb758a-86bd-4522-bdd1-8f11c147beb7.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=567&amp;id=u7781d1ae&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=709&amp;originWidth=932&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=91817&amp;status=done&amp;style=shadow&amp;taskId=ub501622a-b023-40bf-a9ba-d1a1bf313c0&amp;title=&amp;width=745.6" alt="image.png"></p>
+<h3 id="2-4-配置MySQL-8-0"><a href="#2-4-配置MySQL-8-0" class="headerlink" title="2. 4 配置MySQL 8. 0"></a>2. 4 配置MySQL 8. 0</h3><p>MySQL安装之后，需要对服务器进行配置。具体的配置步骤如下。<br><strong>步骤 1 ：</strong>在上一个小节的最后一步，单击“Next”（下一步）按钮，就可以进入产品配置窗口。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654096274750-c36ab951-2ed6-4c3c-946c-998ab6a8bd1e.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=567&amp;id=u7b32afcf&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=709&amp;originWidth=939&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=190904&amp;status=done&amp;style=shadow&amp;taskId=ud17b5a0d-b2fd-4eb8-90b3-b0dd0e9ddf1&amp;title=&amp;width=751.2" alt="image.png"><br><strong>步骤 2 ：</strong>单击“Next”（下一步）按钮，进入MySQL服务器类型配置窗口，如图所示。端口号一般选择默认端口号 3306 。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654096284742-445df851-c0c1-40bf-b060-9e3d96a73e1e.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=568&amp;id=ub7be38b4&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=710&amp;originWidth=931&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=332161&amp;status=done&amp;style=shadow&amp;taskId=u87765f96-9a74-473b-8595-dc5d6de84fd&amp;title=&amp;width=744.8" alt="image.png"><br>其中，“Config Type”选项用于设置服务器的类型。单击该选项右侧的下三角按钮，即可查看 3 个选项，如图所示。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654096294584-71102be8-16e0-4e69-8726-85b1686115a3.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=577&amp;id=uecdd2a5a&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=721&amp;originWidth=938&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=583576&amp;status=done&amp;style=shadow&amp;taskId=uade9c1b0-acdc-4f5f-a0db-24e5c5fb24c&amp;title=&amp;width=750.4" alt="image.png"></p>
+<ul>
+<li>Development Machine（开发机器）：该选项代表典型个人用桌面工作站。此时机器上需要运行多个应用程序，那么MySQL服务器将占用最少的系统资源。</li>
+<li>Server Machine（服务器）：该选项代表服务器，MySQL服务器可以同其他服务器应用程序一起运行，例如Web服务器等。MySQL服务器配置成适当比例的系统资源。</li>
+<li>Dedicated Machine（专用服务器）：该选项代表只运行MySQL服务的服务器。MySQL服务器配置成使用所有可用系统资源。</li>
+</ul>
+<p><strong>步骤 3 ：</strong>单击“Next”（下一步）按钮，打开设置授权方式窗口。其中，上面的选项是MySQL8.0提供的新的授权方式，采用SHA256基础的密码加密方法；下面的选项是传统授权方法（保留5.x版本兼容性）。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654096338101-bf2f1d16-ab19-46e9-bd97-dc75636593db.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=570&amp;id=u9782928e&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=713&amp;originWidth=937&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=494395&amp;status=done&amp;style=shadow&amp;taskId=u96569877-0f0f-420c-8570-2b09bb9f58b&amp;title=&amp;width=749.6" alt="image.png"><br><strong>步骤 4 ：</strong>单击“Next”（下一步）按钮，打开设置服务器root超级管理员的密码窗口，如图所示，需要输入两次同样的登录密码。也可以通过“Add User”添加其他用户，添加其他用户时，需要指定用户名、允许该用户名在哪台/哪些主机上登录，还可以指定用户角色等。此处暂不添加用户，用户管理在MySQL高级特性篇中讲解。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654096346916-92552ab9-5cfe-438d-997c-d06978dcb41c.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=570&amp;id=u1e50c059&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=712&amp;originWidth=938&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=276830&amp;status=done&amp;style=shadow&amp;taskId=u30eef90b-5689-4fb6-ad77-46fba0fb7d5&amp;title=&amp;width=750.4" alt="image.png"><br><strong>步骤 5 ：</strong>单击“Next”（下一步）按钮，打开设置服务器名称窗口，如图所示。该服务名会出现在Windows服务列表中，也可以在命令行窗口中使用该服务名进行启动和停止服务。本书将服务名设置为“MySQL80”。如果希望开机自启动服务，也可以勾选“Start the MySQL Server at System Startup”选项（推荐）。<br>下面是选择以什么方式运行服务？可以选择“Standard System Account”(标准系统用户)或者“Custom User”<br>(自定义用户)中的一个。这里推荐前者。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654096359362-69048964-1156-48ea-8891-499ae7ee99e6.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=569&amp;id=uaa889435&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=711&amp;originWidth=938&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=332695&amp;status=done&amp;style=shadow&amp;taskId=u0b4d523c-ae77-47d9-b14e-9e7e66530a1&amp;title=&amp;width=750.4" alt="image.png"><br><strong>步骤 6 ：</strong>单击“Next”（下一步）按钮，打开确认设置服务器窗口，单击“Execute”（执行）按钮。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654096379928-8d79567f-299a-4acd-8df6-4e2ae374a785.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=568&amp;id=u0fa4b543&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=710&amp;originWidth=935&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=217624&amp;status=done&amp;style=shadow&amp;taskId=uda8c4c6e-a268-47f4-88ec-c77861982de&amp;title=&amp;width=748" alt="image.png"><br><strong>步骤 7 ：</strong>完成配置，如图所示。单击“Finish”（完成）按钮，即可完成服务器的配置。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654096389282-8e74339d-6f27-4cc3-bc48-979e52d36a43.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=570&amp;id=ud43d602e&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=712&amp;originWidth=936&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=247797&amp;status=done&amp;style=shadow&amp;taskId=u3a037f8d-4628-4ec1-aac8-8cc69f1bfcd&amp;title=&amp;width=748.8" alt="image.png"><br><strong>步骤 8 ：</strong>如果还有其他产品需要配置，可以选择其他产品，然后继续配置。如果没有，直接选择“Next”<br>（下一步），直接完成整个安装和配置过程。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654096397432-1ae14584-ef50-4821-887f-32816d742a69.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=569&amp;id=ub1b4899b&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=711&amp;originWidth=943&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=201972&amp;status=done&amp;style=shadow&amp;taskId=u95016025-7398-4576-a2cd-cb25b180ba0&amp;title=&amp;width=754.4" alt="image.png"><br><strong>步骤 9 ：</strong>结束安装和配置。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654096405565-ee990eb9-0eda-42ce-b13d-88dabfed2a9e.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=574&amp;id=uda72e761&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=717&amp;originWidth=939&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=138930&amp;status=done&amp;style=shadow&amp;taskId=u99d04f34-8a33-4d6e-8d9f-e7595800b67&amp;title=&amp;width=751.2" alt="image.png"></p>
+<h3 id="2-5-配置MySQL-8-0-环境变量"><a href="#2-5-配置MySQL-8-0-环境变量" class="headerlink" title="2. 5 配置MySQL 8. 0 环境变量"></a>2. 5 配置MySQL 8. 0 环境变量</h3><p>如果不配置MySQL环境变量，就不能在命令行直接输入MySQL登录命令。下面说如何配置MySQL的环境变量：</p>
+<p>步骤 1 ：在桌面上右击【此电脑】图标，在弹出的快捷菜单中选择【属性】菜单命令。<br>步骤 2 ：打开【系统】窗口，单击【高级系统设置】链接。<br>步骤 3 ：打开【系统属性】对话框，选择【高级】选项卡，然后单击【环境变量】按钮。<br>步骤 4 ：打开【环境变量】对话框，在系统变量列表中选择path变量。<br>步骤5 ：单击【编辑】按钮，在【编辑环境变量】对话框中，将MySQL应用程序的bin目录（C:\Program<br>Files\MySQL\MySQL Server 8.0\bin）添加到变量值中，用分号将其与其他路径分隔开。<br>步骤 6 ：添加完成之后，单击【确定】按钮，这样就完成了配置path变量的操作，然后就可以直接输入MySQL命令来登录数据库了。</p>
+<h3 id="2-6-MySQL-5-7-版本的安装、配置"><a href="#2-6-MySQL-5-7-版本的安装、配置" class="headerlink" title="2. 6 MySQL 5. 7 版本的安装、配置"></a>2. 6 MySQL 5. 7 版本的安装、配置</h3><p><strong>安装</strong><br>此版本的安装过程与上述过程除了版本号不同之外，其它环节都是相同的。所以这里省略了MySQL5.7.<br>版本的安装截图。<br><strong>配置</strong><br>配置环节与MySQL8.0版本确有细微不同。大部分情况下直接选择“Next”即可，不影响整理使用。<br>这里配置MySQL5.7时，重点强调： <strong>与前面安装好的MySQL 8. 0 不能使用相同的端口号。</strong></p>
+<h3 id="2-7-安装失败问题"><a href="#2-7-安装失败问题" class="headerlink" title="2. 7 安装失败问题"></a>2. 7 安装失败问题</h3><p>MySQL的安装和配置是一件非常简单的事，但是在操作过程中也可能出现问题，特别是初学者。<br><strong>问题 1 ：无法打开MySQL 8. 0 软件安装包或者安装过程中失败，如何解决？</strong><br>在运行MySQL8.0软件安装包之前，用户需要确保系统中已经安装了.Net Framework相关软件，如果缺少<br>此软件，将不能正常地安装MySQL8.0软件。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654173574089-f86ac459-91d2-45ee-942a-8e15cf7c12df.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=433&amp;id=u16ca3636&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=541&amp;originWidth=720&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=452882&amp;status=done&amp;style=shadow&amp;taskId=ud87fbadf-750e-4e92-a4b3-40e6ae13abf&amp;title=&amp;width=576" alt="image.png"><br>解决方案：到这个地址 <a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/download/details.aspx?id=42642"><strong>https://www.microsoft.com/en-us/download/details.aspx?id=42642</strong></a> 下载Microsoft<br>.NET Framework 4.5并安装后，再去安装MySQL。<br>另外，还要确保Windows Installer正常安装。windows上安装mysql8.0需要操作系统提前已安装好<br>Microsoft Visual C++ 2015-2019。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654173591366-0201f519-9488-47f0-8b3b-577e60a4e146.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=469&amp;id=u06cf7886&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=586&amp;originWidth=753&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=497069&amp;status=done&amp;style=shadow&amp;taskId=ucda204fd-7cd3-41b5-b9f3-33fac8caa0e&amp;title=&amp;width=602.4" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654173599566-cf9bdc6a-9c61-4a6f-aab4-a09fcc6f10e6.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=455&amp;id=u925c616d&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=569&amp;originWidth=745&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=459526&amp;status=done&amp;style=shadow&amp;taskId=u81d70b61-b712-418d-ab02-90d4f9676fd&amp;title=&amp;width=596" alt="image.png"><br>解决方案同样是，提前到微软官网 <strong><a target="_blank" rel="noopener" href="https://support.microsoft.com/en-us/topic/the-latest-supported-visual">https://support.microsoft.com/en-us/topic/the-latest-supported-visual</a><br>-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0</strong> ，下载相应的环境。</p>
+<p><strong>问题 2 ：卸载重装MySQL失败？</strong><br>该问题通常是因为MySQL卸载时，没有完全清除相关信息导致的。<br>解决办法是，把以前的安装目录删除。如果之前安装并未单独指定过服务安装目录，则默认安装目录是<br>“C:\Program Files\MySQL”，彻底删除该目录。同时删除MySQL的Data目录，如果之前安装并未单独指定过数据目录，则默认安装目录是“C:\ProgramData\MySQL”，该目录一般为隐藏目录。删除后，重新安装即可。</p>
+<p><strong>问题 3 ：如何在Windows系统删除之前的未卸载干净的MySQL服务列表？</strong><br>操作方法如下，在系统“搜索框”中输入“cmd”，按“Enter”（回车）键确认，弹出命令提示符界面。<br>然后输入“sc delete MySQL服务名”,按“Enter”（回车）键，就能彻底删除残余的MySQL服务了。</p>
+<h2 id="3-MySQL的登录"><a href="#3-MySQL的登录" class="headerlink" title="3. MySQL的登录"></a>3. MySQL的登录</h2><h3 id="3-1-服务的启动与停止"><a href="#3-1-服务的启动与停止" class="headerlink" title="3. 1 服务的启动与停止"></a>3. 1 服务的启动与停止</h3><p>MySQL安装完毕之后，需要启动服务器进程，不然客户端无法连接数据库。<br>在前面的配置过程中，已经将MySQL安装为Windows服务，并且勾选当Windows启动、停止时，MySQL也自动启动、停止。</p>
+<h4 id="方式-1-：使用图形界面工具"><a href="#方式-1-：使用图形界面工具" class="headerlink" title="方式 1 ：使用图形界面工具"></a>方式 1 ：使用图形界面工具</h4><p>步骤 1 ：打开windows服务</p>
+<ul>
+<li>方式 1 ：计算机（点击鼠标右键）→ 管理（点击）→ 服务和应用程序（点击）→ 服务（点击）</li>
+<li>方式 2 ：控制面板（点击）→ 系统和安全（点击）→ 管理工具（点击）→ 服务（点击）</li>
+<li>方式 3 ：任务栏（点击鼠标右键）→ 启动任务管理器（点击）→ 服务（点击）</li>
+<li>方式 4 ：单击【开始】菜单，在搜索框中输入“services.msc”，按Enter键确认</li>
+</ul>
+<p>步骤 2 ：找到MySQL80（点击鼠标右键）→ 启动或停止（点击）<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654173682191-07736498-ff59-4d5f-b4f7-54be1d99f10e.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=310&amp;id=u197f86af&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=387&amp;originWidth=938&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=163198&amp;status=done&amp;style=shadow&amp;taskId=u53e6f824-bb90-4d62-a262-a0b67c3e253&amp;title=&amp;width=750.4" alt="image.png"></p>
+<h4 id="方式-2-：使用命令行工具"><a href="#方式-2-：使用命令行工具" class="headerlink" title="方式 2 ：使用命令行工具"></a>方式 2 ：使用命令行工具</h4><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 启动 MySQL 服务命令：</span>
+net <span class="token function">start</span> MySQL服务名
+
+<span class="token comment"># 停止 MySQL 服务命令：</span>
+net stop MySQL服务名<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654173732743-45646dad-a47b-4740-be3e-f95fa4cfe6a3.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=300&amp;id=u6365103b&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=458&amp;originWidth=893&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=178632&amp;status=done&amp;style=shadow&amp;taskId=u98c5bd46-679d-48e5-9710-7865ab57e5f&amp;title=&amp;width=585.4000244140625" alt="image.png"><br>说明：</p>
+<ol>
+<li>start和stop后面的服务名应与之前配置时指定的服务名一致。</li>
+<li>如果当你输入命令后，提示“拒绝服务”，请以 系统管理员身份 打开命令提示符界面重新尝试。<h3 id="3-2-自带客户端的登录与退出"><a href="#3-2-自带客户端的登录与退出" class="headerlink" title="3. 2 自带客户端的登录与退出"></a>3. 2 自带客户端的登录与退出</h3>当MySQL服务启动完成后，便可以通过客户端来登录MySQL数据库。注意：确认服务是开启的。<h4 id="登录方式-1-：MySQL自带客户端"><a href="#登录方式-1-：MySQL自带客户端" class="headerlink" title="登录方式 1 ：MySQL自带客户端"></a>登录方式 1 ：MySQL自带客户端</h4></li>
+</ol>
+<p>开始菜单 → 所有程序 → MySQL → MySQL 8.0 Command Line Client<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654173767190-e1f9fd4f-ba5a-44f8-b2b0-6405feb216f8.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=352&amp;id=u58ee234c&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=440&amp;originWidth=932&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=138734&amp;status=done&amp;style=shadow&amp;taskId=uff0a2df8-62b4-4311-be3e-e8c9f958513&amp;title=&amp;width=745.6" alt="image.png"><br>说明：仅限于root用户</p>
+<h4 id="登录方式-2-：windows命令行"><a href="#登录方式-2-：windows命令行" class="headerlink" title="登录方式 2 ：windows命令行"></a>登录方式 2 ：windows命令行</h4><pre class="line-numbers language-none"><code class="language-none">mysql -u用户名 -p密码 [-h 主机名 -P 端口号]
+
+#命令行连接本机mysql
+mysql -uroot -proot
+
+#命令行连接远程mysql
+mysql -uroot -proot -h 192.168.157.135 -P 3306<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>注意：<br>（1）-p与密码之间不能有空格，其他参数名与参数值之间可以有空格也可以没有空格。如：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mysql -hlocalhost -P3306 -uroot -pabc123<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>（2）密码建议在下一行输入，保证安全</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mysql -h localhost -P <span class="token number">3306</span> -u root -p
+Enter password:****<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>（3）客户端和服务器在同一台机器上，所以输入localhost或者IP地址127.0.0.1。<br>同时，因为是连接本机： -hlocalhost就可以省略，如果端口号没有修改：-P3306也可以省略<br>简写成：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mysql -u root -p
+Enter password:****<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>连接成功后，有关于MySQL Server服务版本的信息，还有第几次连接的id标识。<br>也可以在命令行通过以下方式获取MySQL Server服务版本的信息：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">c:<span class="token punctuation">\</span><span class="token operator">&gt;</span> mysql -V
+
+c:<span class="token punctuation">\</span><span class="token operator">&gt;</span> mysql --version<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>或登录后，通过以下方式查看当前版本信息：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> version<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>退出登录</strong></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">exit</span>
+
+<span class="token comment">#或</span>
+quit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="4-MySQL演示使用"><a href="#4-MySQL演示使用" class="headerlink" title="4. MySQL演示使用"></a>4. MySQL演示使用</h2><h3 id="4-1-MySQL的使用演示"><a href="#4-1-MySQL的使用演示" class="headerlink" title="4. 1 MySQL的使用演示"></a>4. 1 MySQL的使用演示</h3><p><strong>1 、查看所有的数据库</strong></p>
+<pre class="line-numbers language-plsql" data-language="plsql"><code class="language-plsql">show databases<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<p>“information_schema”是 MySQL 系统自带的数据库，主要保存 MySQL 数据库服务器的系统信息，<br>比如数据库的名称、数据表的名称、字段名称、存取权限、数据文件 所在的文件夹和系统使用的<br>文件夹，等等<br>“performance_schema”是 MySQL 系统自带的数据库，可以用来监控 MySQL 的各类性能指标。<br>“sys”数据库是 MySQL 系统自带的数据库，主要作用是以一种更容易被理解的方式展示 MySQL 数据<br>库服务器的各类性能指标，帮助系统管理员和开发人员监控 MySQL 的技术性能。<br>“mysql”数据库保存了 MySQL 数据库服务器运行时需要的系统信息，比如数据文件夹、当前使用的<br>字符集、约束检查信息，等等</p>
+</blockquote>
+<p>为什么 Workbench 里面我们只能看到“demo”和“sys”这 2 个数据库呢？<br>这是因为，Workbench 是图形化的管理工具，主要面向开发人 员，“demo”和“sys”这 2 个数据库已经够用了。如果有特殊需求，比如，需要监控 MySQL 数据库各项性能指标、直接操作 MySQL 数据库系统文件等，可以由 DBA 通过 SQL 语句，查看其它的系统数据库。</p>
+<p><strong>2 、创建自己的数据库</strong></p>
+<pre class="line-numbers language-plsql" data-language="plsql"><code class="language-plsql"><span class="token keyword">create</span> database 数据库名<span class="token punctuation">;</span>
+
+#创建atguigudb数据库，该名称不能与已经存在的数据库重名。
+<span class="token keyword">create</span> database atguigudb<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>3 、使用自己的数据库</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">use</span> 数据库名<span class="token punctuation">;</span>
+
+<span class="token comment">#使用atguigudb数据库</span>
+<span class="token keyword">use</span> atguigudb<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>说明：如果没有使用use语句，后面针对数据库的操作也没有加“数据名”的限定，那么会报“ERROR 1046<br>(3D000): No database selected”（没有选择数据库）<br>使用完use语句之后，如果接下来的SQL都是针对一个数据库操作的，那就不用重复use了，如果要针对另<br>一个数据库操作，那么要重新use。<br><strong>4 、查看某个库的所有表格</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">show</span> <span class="token keyword">tables</span><span class="token punctuation">;</span>  <span class="token comment">#要求前面有use语句</span>
+
+<span class="token keyword">show</span> <span class="token keyword">tables</span> <span class="token keyword">from</span> 数据库名<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><strong>5 、创建表</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> 表名称<span class="token punctuation">(</span>
+    字段名  数据类型<span class="token punctuation">,</span>
+    字段名 数据类型
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 示例</span>
+<span class="token comment">#创建学生表</span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> student<span class="token punctuation">(</span>
+    id <span class="token keyword">int</span><span class="token punctuation">,</span>
+    name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span>  <span class="token comment">#说名字最长不超过20个字符</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>说明：如果是最后一个字段，后面就不要加逗号，因为逗号的作用是分割每个字段。<br><strong>6 、查看一个表的数据</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> 数据库表名称<span class="token punctuation">;</span>
+
+<span class="token comment">#查看学生表的数据</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> student<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>7 、添加一条记录</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">insert</span> <span class="token keyword">into</span> 表名称 <span class="token keyword">values</span><span class="token punctuation">(</span>值列表<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">#添加两条记录到student表中</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> student <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">'张三'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> student <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token string">'李四'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>报错：</strong></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mysql<span class="token operator">&gt;</span> insert into student values<span class="token punctuation">(</span><span class="token number">1</span>,<span class="token string">'张三'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ERROR <span class="token number">1366</span> <span class="token punctuation">(</span>HY000<span class="token punctuation">)</span>: Incorrect string value: <span class="token string">'\xD5\xC5\xC8\xFD'</span> <span class="token keyword">for</span> <span class="token function">column</span> <span class="token string">'name'</span> at 
+row <span class="token number">1</span>
+mysql<span class="token operator">&gt;</span> insert into student values<span class="token punctuation">(</span><span class="token number">2</span>,<span class="token string">'李四'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ERROR <span class="token number">1366</span> <span class="token punctuation">(</span>HY000<span class="token punctuation">)</span>: Incorrect string value: <span class="token string">'\xC0\xEE\xCB\xC4'</span> <span class="token keyword">for</span> <span class="token function">column</span> <span class="token string">'name'</span> at 
+row <span class="token number">1</span>
+mysql<span class="token operator">&gt;</span> show create table student<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>字符集的问题。<br><strong>8 、查看表的创建信息</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">show</span> <span class="token keyword">create</span> <span class="token keyword">table</span> 表名称\G
+
+<span class="token comment">#查看student表的详细创建信息</span>
+<span class="token keyword">show</span> <span class="token keyword">create</span> <span class="token keyword">table</span> student\G
+
+<span class="token comment">#结果如下</span>
+<span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span> <span class="token number">1.</span> <span class="token keyword">row</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span>
+       <span class="token keyword">Table</span>: student
+<span class="token keyword">Create</span> <span class="token keyword">Table</span>: <span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token identifier"><span class="token punctuation">`</span>student<span class="token punctuation">`</span></span> <span class="token punctuation">(</span>
+  <span class="token identifier"><span class="token punctuation">`</span>id<span class="token punctuation">`</span></span> <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span> <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  <span class="token identifier"><span class="token punctuation">`</span>name<span class="token punctuation">`</span></span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span>
+<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span><span class="token operator">=</span><span class="token keyword">InnoDB</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CHARSET</span><span class="token operator">=</span>latin1
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>上面的结果显示student的表格的默认字符集是“latin1”不支持中文。</p>
+<p><strong>9 、查看数据库的创建信息</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">show</span> <span class="token keyword">create</span> <span class="token keyword">database</span> 数据库名\G
+
+<span class="token comment">#查看atguigudb数据库的详细创建信息</span>
+<span class="token keyword">show</span> <span class="token keyword">create</span> <span class="token keyword">database</span> atguigudb\G
+
+<span class="token comment">#结果如下</span>
+<span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span> <span class="token number">1.</span> <span class="token keyword">row</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span><span class="token operator">*</span>
+       <span class="token keyword">Database</span>: atguigudb
+<span class="token keyword">Create</span> <span class="token keyword">Database</span>: <span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> <span class="token identifier"><span class="token punctuation">`</span>atguigudb<span class="token punctuation">`</span></span> <span class="token comment">/*!40100 DEFAULT CHARACTER SET latin1 */</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>上面的结果显示atguigudb数据库也不支持中文，字符集默认是latin1。</p>
+<p><strong>10 、删除表格</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">drop</span> <span class="token keyword">table</span> 表名称<span class="token punctuation">;</span>
+
+<span class="token comment">#删除学生表</span>
+<span class="token keyword">drop</span> <span class="token keyword">table</span> student<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>11 、删除数据库</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">drop</span> <span class="token keyword">database</span> 数据库名<span class="token punctuation">;</span>
+
+<span class="token comment">#删除atguigudb数据库</span>
+<span class="token keyword">drop</span> <span class="token keyword">database</span> atguigudb<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="4-2-MySQL的编码设置"><a href="#4-2-MySQL的编码设置" class="headerlink" title="4. 2 MySQL的编码设置"></a>4. 2 MySQL的编码设置</h3><p>MySQL 5. 7 中<br><strong>问题再现：命令行操作sql乱码问题</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> t_stu <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">'张三'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ERROR <span class="token number">1366</span> <span class="token punctuation">(</span>HY000<span class="token punctuation">)</span>: Incorrect string <span class="token keyword">value</span>: <span class="token string">'\xD5\xC5\xC8\xFD'</span> <span class="token keyword">for</span> <span class="token keyword">column</span> <span class="token string">'sname'</span> at 
+<span class="token keyword">row</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><strong>问题解决</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#步骤 1 ：查看编码命令</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">show</span> variables <span class="token operator">like</span> <span class="token string">'character_%'</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">--------------------------+-----------------------------------------------+</span>
+<span class="token operator">|</span> Variable_name            <span class="token operator">|</span> <span class="token keyword">Value</span>                                         <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------------------+-----------------------------------------------+</span>
+<span class="token operator">|</span> character_set_client     <span class="token operator">|</span> gbk                                           <span class="token operator">|</span>
+<span class="token operator">|</span> character_set_connection <span class="token operator">|</span> gbk                                           <span class="token operator">|</span>
+<span class="token operator">|</span> character_set_database   <span class="token operator">|</span> utf8mb4                                       <span class="token operator">|</span>
+<span class="token operator">|</span> character_set_filesystem <span class="token operator">|</span> <span class="token keyword">binary</span>                                        <span class="token operator">|</span>
+<span class="token operator">|</span> character_set_results    <span class="token operator">|</span> gbk                                           <span class="token operator">|</span>
+<span class="token operator">|</span> character_set_server     <span class="token operator">|</span> utf8mb4                                       <span class="token operator">|</span>
+<span class="token operator">|</span> character_set_system     <span class="token operator">|</span> utf8mb3                                       <span class="token operator">|</span>
+<span class="token operator">|</span> character_sets_dir       <span class="token operator">|</span> D:\softwares\MySQL Server <span class="token number">8.0</span>\<span class="token keyword">share</span>\charsets\ <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------------------+-----------------------------------------------+</span>
+<span class="token number">8</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span><span class="token punctuation">,</span> <span class="token number">1</span> warning <span class="token punctuation">(</span><span class="token number">0.02</span> sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">&gt;</span> <span class="token keyword">show</span> variables <span class="token operator">like</span> <span class="token string">'collation_%'</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------------------+--------------------+</span>
+<span class="token operator">|</span> Variable_name        <span class="token operator">|</span> <span class="token keyword">Value</span>              <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------------------+--------------------+</span>
+<span class="token operator">|</span> collation_connection <span class="token operator">|</span> gbk_chinese_ci     <span class="token operator">|</span>
+<span class="token operator">|</span> collation_database   <span class="token operator">|</span> utf8mb4_0900_ai_ci <span class="token operator">|</span>
+<span class="token operator">|</span> collation_server     <span class="token operator">|</span> utf8mb4_0900_ai_ci <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------------------+--------------------+</span>
+<span class="token number">3</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span><span class="token punctuation">,</span> <span class="token number">1</span> warning <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+
+<span class="token comment">#步骤 2 ：修改mysql的数据目录下的my.ini配置文件</span>
+<span class="token punctuation">[</span>mysql<span class="token punctuation">]</span>  <span class="token comment">#大概在63行左右，在其下添加</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 
+<span class="token keyword">default</span><span class="token operator">-</span><span class="token keyword">character</span><span class="token operator">-</span><span class="token keyword">set</span><span class="token operator">=</span>utf8  <span class="token comment">#默认字符集</span>
+<span class="token punctuation">[</span>mysqld<span class="token punctuation">]</span>  <span class="token comment"># 大概在76行左右，在其下添加</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">character</span><span class="token operator">-</span><span class="token keyword">set</span><span class="token operator">-</span>server<span class="token operator">=</span>utf8
+collation<span class="token operator">-</span>server<span class="token operator">=</span>utf8_general_ci
+
+<span class="token comment">#注意：建议修改配置文件使用notepad++等高级文本编辑器，使用记事本等软件打开修改后可能会导致文件编码修改为“含BOM头”的编码，从而服务重启失败。</span>
+
+<span class="token comment">#步骤3：重启服务</span>
+<span class="token comment">#步骤4：查看编码命令</span>
+<span class="token keyword">show</span> variables <span class="token operator">like</span> <span class="token string">'character_%'</span><span class="token punctuation">;</span>
+<span class="token keyword">show</span> variables <span class="token operator">like</span> <span class="token string">'collation_%'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果是以上配置就说明对了。接着我们就可以新创建数据库、新创建数据表，接着添加包含中文的数据了。</p>
+<p><strong>MySQL 8. 0 中</strong><br>在MySQL 8.0版本之前，默认字符集为latin1，utf8字符集指向的是utf8mb3。网站开发人员在数据库设计的时候往往会将编码修改为utf8字符集。如果遗忘修改默认的编码，就会出现乱码的问题。从MySQL 8.0开始，数据库的默认编码改为utf8mb4，从而避免了上述的乱码问题。</p>
+<h2 id="5-MySQL图形化管理工具"><a href="#5-MySQL图形化管理工具" class="headerlink" title="5. MySQL图形化管理工具"></a>5. MySQL图形化管理工具</h2><p>MySQL图形化管理工具极大地方便了数据库的操作与管理，常用的图形化管理工具有：MySQL Workbench、phpMyAdmin、<strong>Navicat Preminum</strong>、MySQLDumper、<strong>SQLyog</strong>、dbeaver、MySQL ODBC Connector。</p>
+<h4 id="MySQL-Workbench"><a href="#MySQL-Workbench" class="headerlink" title="MySQL Workbench"></a>MySQL Workbench</h4><p>MySQL官方提供的图形化管理工具MySQL Workbench完全支持MySQL 5.0以上的版本。MySQL Workbench<br>分为社区版和商业版，社区版完全免费，而商业版则是按年收费。<br>MySQL Workbench 为数据库管理员、程序开发者和系统规划师提供可视化设计、模型建立、以及数据库管理功能。它包含了用于创建复杂的数据建模ER模型，正向和逆向数据库工程，也可以用于执行通常需要花费大量时间的、难以变更和管理的文档任务。<br>下载地址： <a target="_blank" rel="noopener" href="http://dev.mysql.com/downloads/workbench/"><strong>http://dev.mysql.com/downloads/workbench/</strong></a> 。<br>使用：<br>首先，我们点击 Windows 左下角的“开始”按钮，如果你是 Win10 系统，可以直接看到所有程序。接着，<br>找到“MySQL”，点开，找到“MySQL Workbench 8.0 CE”。点击打开 Workbench，如下图所示：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654175628810-f10edc52-b9ce-4dff-b99b-ade609ffb8ca.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=428&amp;id=u006aba9b&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=535&amp;originWidth=933&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=149889&amp;status=done&amp;style=shadow&amp;taskId=uf4be3004-b318-4f67-83cc-80707a7fa99&amp;title=&amp;width=746.4" alt="image.png"><br>左下角有个本地连接，点击，录入 Root 的密码，登录本地 MySQL 数据库服务器，如下图所示：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654175639464-b8443f32-1390-48d8-9e4b-4eb00a2ea48b.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=504&amp;id=ufc9dc478&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=630&amp;originWidth=928&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=157710&amp;status=done&amp;style=shadow&amp;taskId=u9d323806-a300-43b2-9348-09c7cc55aac&amp;title=&amp;width=742.4" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654175654301-a5fbfd1a-c2ff-497d-99ae-4a9cee8094df.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=544&amp;id=uf2436f8e&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=680&amp;originWidth=931&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=160937&amp;status=done&amp;style=shadow&amp;taskId=u988e3f22-5f31-4a02-b6fb-bb41463ca9f&amp;title=&amp;width=744.8" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654175664893-2fea44b0-cdaa-4392-bef9-393d9e9011a2.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=498&amp;id=uf3bb56f8&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=622&amp;originWidth=934&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=212000&amp;status=done&amp;style=shadow&amp;taskId=u0244f62d-9d63-45a4-9608-eb9c43dcd25&amp;title=&amp;width=747.2" alt="image.png"><br>这是一个图形化的界面，下面来介绍下这个界面。</p>
+<ul>
+<li>上方是菜单。左上方是导航栏，这里我们可以看到 MySQL 数据库服务器里面的数据 库，包括数据表、视图、存储过程和函数；左下方是信息栏，可以显示上方选中的数据 库、数据表等对象的信息。</li>
+<li>中间上方是工作区，你可以在这里写 SQL 语句，点击上方菜单栏左边的第三个运行按 钮，就可以执行工作区的 SQL 语句了。</li>
+<li>中间下方是输出区，用来显示 SQL 语句的运行情况，包括什么时间开始运行的、运行的 内容、运行的输出，以及所花费的时长等信息。</li>
+</ul>
+<p>好了，下面我们就用 Workbench 实际创建一个数据库，并且导入一个 Excel 数据文件， 来生成一个数据<br>表。数据表是存储数据的载体，有了数据表以后，我们就能对数据进行操作了。</p>
+<h4 id="Navicat"><a href="#Navicat" class="headerlink" title="Navicat"></a>Navicat</h4><p>Navicat 是一个强大的MySQL数据库服务器管理和开发工具。它可以与任何3.21或以上版本的MySQL一起工作，支持触发器、存储过程、函数、事件、视图、管理用户等，对于新手来说易学易用。其精心设计的图形用户界面可以让用户用一种安全简便的方式来快速方便地创建、组织、访问和共享信息。Navicat支持中文，有免费版本提供。<br>下载地址： <a target="_blank" rel="noopener" href="http://www.navicat.com/"><strong>http://www.navicat.com/</strong></a> 。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654175947409-17e2dad8-ec53-4897-a57c-e8561a5447eb.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=221&amp;id=u8bce657f&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=276&amp;originWidth=882&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=87348&amp;status=done&amp;style=shadow&amp;taskId=ua8b4d6d6-7d84-438a-9ee2-22967cfa403&amp;title=&amp;width=705.6" alt="image.png"></p>
+<h4 id="SQLyog"><a href="#SQLyog" class="headerlink" title="SQLyog"></a>SQLyog</h4><p>SQLyog 是业界著名的 Webyog 公司出品的一款简洁高效、功能强大的图形化 MySQL 数据库管理工具。这款工具是使用C++语言开发的。该工具可以方便地创建数据库、表、视图和索引等，还可以方便地进行插入、更新和删除等操作，同时可以方便地进行数据库、数据表的备份和还原。该工具不仅可以通过SQL文件进行大量文件的导入和导出，还可以导入和导出XML、HTML和CSV等多种格式的数据。<br>下载地址： <a target="_blank" rel="noopener" href="http://www.webyog.com/"><strong>http://www.webyog.com/</strong></a> ，读者也可以搜索中文版的下载地址。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654175926421-e88328ee-b052-4fe1-9051-113da94c318d.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=770&amp;id=ue059e42b&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=962&amp;originWidth=1577&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=167616&amp;status=done&amp;style=shadow&amp;taskId=u72a65d85-30dd-4715-8d98-b6a09b001d5&amp;title=&amp;width=1261.6" alt="image.png"></p>
+<h4 id="dbeaver"><a href="#dbeaver" class="headerlink" title="dbeaver"></a>dbeaver</h4><p>DBeaver是一个通用的数据库管理工具和 SQL 客户端，支持所有流行的数据库：MySQL、PostgreSQL、SQLite、Oracle、DB2、SQL Server、 Sybase、MS Access、Teradata、 Firebird、Apache Hive、Phoenix、Presto等。DBeaver比大多数的SQL管理工具要轻量，而且支持中文界面。DBeaver社区版作为一个免费开源的产品，和其他类似的软件相比，在功能和易用性上都毫不逊色。<br>唯一需要注意是 DBeaver 是用Java编程语言开发的，所以需要拥有 JDK（Java Development ToolKit）环境。如果电脑上没有JDK，在选择安装DBeaver组件时，勾选“Include Java”即可。<br>下载地址： <a target="_blank" rel="noopener" href="https://dbeaver.io/download/"><strong>https://dbeaver.io/download/</strong></a></p>
+<h4 id="可能出现连接问题："><a href="#可能出现连接问题：" class="headerlink" title="可能出现连接问题："></a>可能出现连接问题：</h4><p>有些图形界面工具，特别是旧版本的图形界面工具，在连接MySQL8时出现<br>“Authentication plugin caching_sha2_password’ cannot be loaded”错误。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654176000035-1845a50a-e604-4e0b-a3fa-ea2ba4929363.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=557&amp;id=ueef98185&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=696&amp;originWidth=875&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=228075&amp;status=done&amp;style=shadow&amp;taskId=ubfbf1a30-4818-4650-9560-31dc0917d44&amp;title=&amp;width=700" alt="image.png"><br>出现这个原因是MySQL8之前的版本中加密规则是mysql_native_password，而在MySQL8之后，加密规则是caching_sha2_password。<br>解决问题方法有两种，第一种是升级图形界面工具版本，<br>第二种是把MySQL8用户登录密码加密规则还原成mysql_native_password。<br>第二种解决方案如下，用命令行登录MySQL数据库之后，执行如下命令修改用户密码加密规则并更新用户密码，这里修改用户名为“root@localhost”的用户密码规则为“mysql_native_password”，密码值为“123456”，如图所示。</p>
+<pre class="line-numbers language-none"><code class="language-none">#使用mysql数据库
+USE mysql; 
+
+#修改'root'@'localhost'用户的密码规则和密码
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'abc123'; 
+
+#刷新权限
+FLUSH PRIVILEGES;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="6-MySQL目录结构与源码"><a href="#6-MySQL目录结构与源码" class="headerlink" title="6. MySQL目录结构与源码"></a>6. MySQL目录结构与源码</h2><h3 id="6-1-主要目录结构"><a href="#6-1-主要目录结构" class="headerlink" title="6. 1 主要目录结构"></a>6. 1 主要目录结构</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654176264785-d6d25e45-ad14-4ad8-8c7b-33b08d283a63.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=258&amp;id=ud2b707fc&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=322&amp;originWidth=939&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=64923&amp;status=done&amp;style=shadow&amp;taskId=u08c1403b-1ae7-4677-9974-d1b318c81df&amp;title=&amp;width=751.2" alt="image.png"><br>目录结构</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">MySQL Server <span class="token number">8</span>
+ ├── bin
+ │   ├── harness-library.dll
+ │   ├── ibd2sdi.exe
+ │   ├── innochecksum.exe
+ │   ├── libcrypto-1_1-x64.dll
+ │   ├── libmecab.dll
+ │   ├── libprotobuf-debug.dll
+ │   ├── libprotobuf-lite-debug.dll
+ │   ├── libprotobuf-lite.dll
+ │   ├── libprotobuf-lite.lib
+ │   ├── libprotobuf.dll
+ │   ├── libprotobuf.lib
+ │   ├── libssl-1_1-x64.dll
+ │   ├── lz4_decompress.exe
+ │   ├── myisamchk.exe
+ │   ├── myisamlog.exe
+ │   ├── myisampack.exe
+ │   ├── myisam_ftdump.exe
+ │   ├── mysql.exe
+ │   ├── mysql80.exe
+ │   ├── mysqladmin.exe
+ │   ├── mysqlbinlog.exe
+ │   ├── mysqlcheck.exe
+ │   ├── mysqld.exe
+ │   ├── mysqldump.exe
+ │   ├── mysqldumpslow.pl
+ │   ├── mysqld_multi.pl
+ │   ├── mysqlharness_stdx.dll
+ │   ├── mysqlharness_tls.dll
+ │   ├── mysqlimport.exe
+ │   ├── mysqlpump.exe
+ │   ├── mysqlrouter.exe
+ │   ├── mysqlrouter_http.dll
+ │   ├── mysqlrouter_http_auth_backend.dll
+ │   ├── mysqlrouter_http_auth_realm.dll
+ │   ├── mysqlrouter_io_component.dll
+ │   ├── mysqlrouter_keyring.exe
+ │   ├── mysqlrouter_passwd.exe
+ │   ├── mysqlrouter_plugin_info.exe
+ │   ├── mysqlshow.exe
+ │   ├── mysqlslap.exe
+ │   ├── mysql_config_editor.exe
+ │   ├── mysql_migrate_keyring.exe
+ │   ├── mysql_secure_installation.exe
+ │   ├── mysql_ssl_rsa_setup.exe
+ │   ├── mysql_tzinfo_to_sql.exe
+ │   ├── mysql_upgrade.exe
+ │   ├── my_print_defaults.exe
+ │   ├── perror.exe
+ │   └── zlib_decompress.exe
+ ├── data
+ │   ├── Data
+ │   ├── installer_config.xml
+ │   ├── my.ini
+ │   └── Uploads
+ ├── docs
+ │   ├── ChangeLog
+ │   ├── INFO_SRC
+ │   └── sample_mysqlrouter.conf
+ ├── etc
+ │   └── mysqlrouter.conf.sample
+ ├── include
+ │   ├── errmsg.h
+ │   ├── field_types.h
+ │   ├── mysql
+ │   ├── mysql.h
+ │   ├── mysqld_error.h
+ │   ├── mysqlx_ername.h
+ │   ├── mysqlx_error.h
+ │   ├── mysqlx_version.h
+ │   ├── mysql_com.h
+ │   ├── mysql_time.h
+ │   ├── mysql_version.h
+ │   ├── my_command.h
+ │   ├── my_compress.h
+ │   ├── my_list.h
+ │   └── openssl
+ ├── lib
+ │   ├── http_auth_backend.dll
+ │   ├── http_auth_realm.dll
+ │   ├── http_server.dll
+ │   ├── io.dll
+ │   ├── keepalive.dll
+ │   ├── libmysql.dll
+ │   ├── libmysql.lib
+ │   ├── libprotobuf-lite.dll
+ │   ├── libprotobuf-lite.lib
+ │   ├── mecab
+ │   ├── metadata_cache.dll
+ │   ├── mysqlclient.lib
+ │   ├── mysqlharness_stdx.lib
+ │   ├── mysqlharness_tls.lib
+ │   ├── mysqlrouter_http.lib
+ │   ├── mysqlrouter_http_auth_backend.lib
+ │   ├── mysqlrouter_http_auth_realm.lib
+ │   ├── mysqlrouter_io_component.lib
+ │   ├── mysqlrouter_lib.lib
+ │   ├── plugin
+ │   ├── rest_api.dll
+ │   ├── rest_metadata_cache.dll
+ │   ├── rest_router.dll
+ │   ├── rest_routing.dll
+ │   ├── router_openssl.dll
+ │   ├── router_protobuf.dll
+ │   └── routing.dll
+ ├── LICENSE
+ ├── LICENSE.router
+ ├── README
+ ├── README.router
+ └── share
+     ├── bulgarian
+     ├── charsets
+     ├── czech
+     ├── danish
+     ├── dictionary.txt
+     ├── dutch
+     ├── english
+     ├── estonian
+     ├── french
+     ├── german
+     ├── greek
+     ├── hungarian
+     ├── italian
+     ├── japanese
+     ├── korean
+     ├── messages_to_clients.txt
+     ├── messages_to_error_log.txt
+     ├── norwegian
+     ├── norwegian-ny
+     ├── polish
+     ├── portuguese
+     ├── romanian
+     ├── russian
+     ├── serbian
+     ├── slovak
+     ├── spanish
+     ├── swedish
+     └── ukrainian<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="6-2-MySQL-源代码获取"><a href="#6-2-MySQL-源代码获取" class="headerlink" title="6. 2 MySQL 源代码获取"></a>6. 2 MySQL 源代码获取</h3><p>首先，你要进入 MySQL下载界面。 这里你不要选择用默认的“Microsoft Windows”，而是要通过下拉栏，找到“Source Code”，在下面的操作系统版本里面， 选择 Windows（Architecture Independent），然后点击下载。<br>接下来，把下载下来的压缩文件解压，我们就得到了 MySQL 的源代码。<br>MySQL 是用 C++ 开发而成的，我简单介绍一下源代码的组成。<br>mysql-8.0.22 目录下的各个子目录，包含了 MySQL 各部分组件的源代码：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654176465443-c06696b7-c253-41b2-ba9e-9481e6396960.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=501&amp;id=u22b3bd43&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=626&amp;originWidth=729&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=221254&amp;status=done&amp;style=shadow&amp;taskId=u995e511d-03a2-4f2c-8861-337f726c772&amp;title=&amp;width=583.2" alt="image.png"></p>
+<ul>
+<li>sql 子目录是 MySQL 核心代码；</li>
+<li>libmysql 子目录是客户端程序 API；</li>
+<li>mysql-test 子目录是测试工具；</li>
+<li>mysys 子目录是操作系统相关函数和辅助函数；</li>
+</ul>
+<p>源代码可以用记事本打开查看，如果你有 C++ 的开发环境，也可以在开发环境中打开查看。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654176565092-ef2103d4-08b6-477f-a372-f858e9f1597e.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=506&amp;id=u1d4f5ab0&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=632&amp;originWidth=914&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=187413&amp;status=done&amp;style=shadow&amp;taskId=u20ce7208-0ee9-4cd4-82c8-8d7a482eb73&amp;title=&amp;width=731.2" alt="image.png"><br>如上图所示，源代码并不神秘，就是普通的 C++ 代码，跟你熟悉的一样，而且有很多注释，可以帮助你<br>理解。阅读源代码就像在跟 MySQL 的开发人员对话一样，十分有趣。</p>
+<h2 id="7-常见问题的解决"><a href="#7-常见问题的解决" class="headerlink" title="7. 常见问题的解决"></a>7. 常见问题的解决</h2><h3 id="Q1：root用户密码忘记-重置的操作"><a href="#Q1：root用户密码忘记-重置的操作" class="headerlink" title="Q1：root用户密码忘记 重置的操作"></a>Q1：root用户密码忘记 重置的操作</h3><p>1: 通过任务管理器或者服务管理，关掉mysqld(服务进程)<br>2: 通过命令行+特殊参数开启<br><code>mysqld mysqld --defaults-file="D:\ProgramFiles\mysql\MySQLServer5.7Data\my.ini" --skip-grant-tables</code></p>
+<p>3: 此时，mysqld服务进程已经打开。并且不需要权限检查<br>4: mysql -uroot 无密码登陆服务器。另启动一个客户端进行<br>5: 修改权限表<br>5.1) <code>use mysql; </code><br>5.2) <code>update user set authentication_string=password('新密码') where user='root' and Host='localhost'; </code><br>5.3) <code>flush privileges; </code><br>6: 通过任务管理器，关掉mysqld服务进程。<br>7: 再次通过服务管理，打开mysql服务。<br>8: 即可用修改后的新密码登陆。</p>
+<h3 id="Q2：mysql命令报“不是内部或外部命令”"><a href="#Q2：mysql命令报“不是内部或外部命令”" class="headerlink" title="Q2：mysql命令报“不是内部或外部命令”"></a>Q2：mysql命令报“不是内部或外部命令”</h3><p>如果cmd 输入mysql命令报“不是内部或外部命令”，把mysql安装目录的bin目录配置到环境变量path中。<br>如下：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654176718021-05c281c5-2f7e-41cd-9d21-1df6c93d8944.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=534&amp;id=uf8111010&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=667&amp;originWidth=914&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=153071&amp;status=done&amp;style=shadow&amp;taskId=u502c8a3f-7e3f-4101-8e77-9dcfa6fb6e2&amp;title=&amp;width=731.2" alt="image.png"></p>
+<h3 id="Q3-：错误ERROR-：没有选择数据库就操作表格和数据"><a href="#Q3-：错误ERROR-：没有选择数据库就操作表格和数据" class="headerlink" title="Q3 ：错误ERROR ：没有选择数据库就操作表格和数据"></a>Q3 ：错误ERROR ：没有选择数据库就操作表格和数据</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654176772806-5213fd5b-d154-490f-8a29-e22544fa6ca2.png#clientId=u686be1f8-9f00-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=133&amp;id=u8b625204&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=166&amp;originWidth=934&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=43774&amp;status=done&amp;style=shadow&amp;taskId=u25848b00-497d-4929-a258-df2831e6b44&amp;title=&amp;width=747.2" alt="image.png"></p>
+<h3 id="Q4-：命令行客户端的字符集问题"><a href="#Q4-：命令行客户端的字符集问题" class="headerlink" title="Q4 ：命令行客户端的字符集问题"></a>Q4 ：命令行客户端的字符集问题</h3><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> t_stu <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">'张三'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ERROR <span class="token number">1366</span> <span class="token punctuation">(</span>HY000<span class="token punctuation">)</span>: Incorrect string <span class="token keyword">value</span>: <span class="token string">'\xD5\xC5\xC8\xFD'</span> <span class="token keyword">for</span> <span class="token keyword">column</span> <span class="token string">'sname'</span> at 
+<span class="token keyword">row</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>原因：服务器端认为你的客户端的字符集是utf- 8 ，而实际上你的客户端的字符集是GBK。<br>查看所有字符集： <code>**SHOW VARIABLES LIKE 'character_set_%';**</code><br>解决方案，设置当前连接的客户端字符集 “SET NAMES GBK;”</p>
+<h3 id="Q5-：修改数据库和表的字符编码"><a href="#Q5-：修改数据库和表的字符编码" class="headerlink" title="Q5 ：修改数据库和表的字符编码"></a>Q5 ：修改数据库和表的字符编码</h3><p><strong>修改编码：</strong><br>（1)先停止服务<br>（ 2 ）修改my.ini文件<br>（ 3 ）重新启动服务<br>说明：<br>如果是在修改my.ini之前建的库和表，那么库和表的编码还是原来的Latin1，要么删了重建，要么使用alter语句修改编码。</p>
+<pre class="line-numbers language-none"><code class="language-none">mysql&gt; create database 0728 db charset Latin1;
+Query OK, 1 row affected (0.00 sec)
+
+mysql&gt; use 0728db;
+Database changed
+
+mysql&gt; create table student (id int , name varchar(20)) charset Latin1;
+Query OK, 0 rows affected (0.02 sec)
+mysql&gt; show create table student\G
+*************************** 1. row ***************************
+       Table: student
+Create Table: CREATE TABLE `student` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+1 row in set (0.00 sec)
+
+mysql&gt; alter table student charset utf8; #修改表字符编码为UTF8
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql&gt; show create table student\G
+*************************** 1. row ***************************
+       Table: student
+Create Table: CREATE TABLE `student` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) CHARACTER SET latin1 DEFAULT NULL,  #字段仍然是latin1编码
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+1 row in set (0.00 sec)
+mysql&gt; alter table student modify name varchar(20) charset utf8; #修改字段字符编码为UTF8
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql&gt; show create table student\G
+*************************** 1. row ***************************
+       Table: student
+Create Table: CREATE TABLE `student` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+1 row in set (0.00 sec)
+
+mysql&gt; show create database 0728db;;
++--------+-----------------------------------------------------------------+
+|Database| Create Database                                                 |
++------+-------------------------------------------------------------------+
+|0728db| CREATE DATABASE `0728db` /*!40100 DEFAULT CHARACTER SET latin1 */ |
++------+-------------------------------------------------------------------+
+1 row in set (0.00 sec)
+mysql&gt; alter database 0728db charset utf8; #修改数据库的字符编码为utf8
+Query OK, 1 row affected (0.00 sec)
+
+mysql&gt; show create database 0728db;
++--------+-----------------------------------------------------------------+
+|Database| Create Database                                                 |
++--------+-----------------------------------------------------------------+
+| 0728db | CREATE DATABASE `0728db` /*!40100 DEFAULT CHARACTER SET utf8 */ |
++--------+-----------------------------------------------------------------+
+1 row in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">CoderXiong</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://bfd2018.github.io/2022/06/02/mysql/mysql-02-mysql-huan-jing-da-jian/">http://bfd2018.github.io/2022/06/02/mysql/mysql-02-mysql-huan-jing-da-jian/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">CoderXiong</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AF%87/">
+                                    <span class="chip bg-color">MySQL基础篇</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/zhifubao.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wx.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2022/06/02/mysql/mysql-02-mysql-huan-jing-da-jian/">
+                    <div class="card-image">
+                        
+                        <img src="https://xiong-test-srt.oss-cn-shenzhen.aliyuncs.com/typoraimages/Snipaste_2022-05-22_22-44-45.png" class="responsive-img" alt="【MySQL_02】MySQL环境搭建">
+                        
+                        <span class="card-title">【MySQL_02】MySQL环境搭建</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/MySQL/" class="post-category">
+                                    MySQL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AF%87/">
+                        <span class="chip bg-color">MySQL基础篇</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/06/02/mysql/mysql-01-shu-ju-ku-gai-shu/">
+                    <div class="card-image">
+                        
+                        <img src="https://xiong-test-srt.oss-cn-shenzhen.aliyuncs.com/typoraimages/02fe45ae880511ebb6edd017c2d2eca2.jpg" class="responsive-img" alt="【MySQL_01】数据库概述">
+                        
+                        <span class="card-title">【MySQL_01】数据库概述</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/MySQL/" class="post-category">
+                                    MySQL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AF%87/">
+                        <span class="chip bg-color">MySQL基础篇</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%A6%82%E8%BF%B0/">
+                        <span class="chip bg-color">概述</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE' || selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Hexo-Xiong<br />'
+            + '文章作者: CoderXiong<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <a href="/about" target="_blank">CoderXiong</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">222.6k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/BFD2018" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1351655382@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1351655382" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1351655382" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+
+        
+            <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7c405b5ffa810bbaa048f6a986ca94a5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+        
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <style>
+    #backTop{
+        margin-bottom: 110px;
+    }
+</style>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+    
+
+    <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7c405b5ffa810bbaa048f6a986ca94a5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: "6f359642"
+        });
+        daovoice('update');
+    </script>
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+    <script type="text/javascript" color="0,0,255"
+        pointColor="0,0,255" opacity='0.7'
+        zIndex="-1" count="99"
+        src="/libs/background/canvas-nest.js"></script>
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon-refresh.min.js" async="async"></script>
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+    <!-- 天气接口 -->
+    
+        <!-- 天气接口-->
+<script type="text/javascript">
+    WIDGET = { FID: '1tFpFZ5Mtj' }
+</script>
+<script type="text/javascript">
+    //只在桌面版网页启用特效
+    var windowWidth = $(window).width();
+    if (windowWidth > 768) {
+        document.write('<script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"><\/script>');
+    }
+</script>
+    
+
+</body>
+
+</html>
