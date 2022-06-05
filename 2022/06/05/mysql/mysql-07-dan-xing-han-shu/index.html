@@ -1,0 +1,1913 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="【MySQL_07】单行函数, Hexo-Xiong">
+    <meta name="description" content="1. 函数的理解1. 1 什么是函数函数在计算机语言的使用中贯穿始终，函数的作用是什么呢？它可以把我们经常使用的代码封装起来，需要的时候直接调用即可。这样既提高了代码效率，又提高了可维护性。在 SQL 中我们也可以使用函数对检索出来的数据进">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    
+
+    <title>【MySQL_07】单行函数 | Hexo-Xiong</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Hexo-Xiong</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/journal" class="waves-effect waves-light">
+      
+      <i class="fa fa-book" style="zoom: 0.6;"></i>
+      
+      <span>日志</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/census" class="waves-effect waves-light">
+      
+      <i class="fa fa-layer-group" style="zoom: 0.6;"></i>
+      
+      <span>统计</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Medias</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/musics">
+          
+          <i class="fa-solid fa-music" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Musics</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/movies">
+          
+          <i class="fas fa-film" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Movies</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/mygallery">
+          
+          <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>myGallery</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Hexo-Xiong</div>
+        <div class="logo-desc">
+            
+            小熊同学是一名Java开发工程师，在编程的道路上孜孜不倦的追求技术成长，愿与诸位共同进步！
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/journal" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fa fa-book"></i>
+			
+			日志
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/census" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fa fa-layer-group"></i>
+			
+			统计
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			Medias
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/musics " style="margin-left:75px">
+				  
+				   <i class="fa fa-solid fa-music" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Musics</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/movies " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-film" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Movies</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/mygallery " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
+			      
+		          <span>myGallery</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/bfd2018/" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/bfd2018/" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    <meta name="referrer" content="no-referrer" />
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://xiong-test-srt.oss-cn-shenzhen.aliyuncs.com/typoraimages/002531RiPKv.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">【MySQL_07】单行函数</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AF%87/">
+                                <span class="chip bg-color">MySQL基础篇</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/MySQL/" class="post-category">
+                                MySQL
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-06-05
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-06-05
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.1k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    14 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="1-函数的理解"><a href="#1-函数的理解" class="headerlink" title="1. 函数的理解"></a>1. 函数的理解</h2><h3 id="1-1-什么是函数"><a href="#1-1-什么是函数" class="headerlink" title="1. 1 什么是函数"></a>1. 1 什么是函数</h3><p>函数在计算机语言的使用中贯穿始终，函数的作用是什么呢？它可以把我们经常使用的代码封装起来，需要的时候直接调用即可。这样既提高了代码效率，又提高了可维护性。在 SQL 中我们也可以使用函数对检索出来的数据进行函数操作。使用这些函数，可以极大地提高用户对数据库的管理效率。从函数定义的角度出发，我们可以将函数分成内置函数和自定义函数。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654351378548-c519fb1a-eed5-4f55-a758-b32cdace88b1.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=338&amp;id=u01b0ed0a&amp;name=image.png&amp;originHeight=422&amp;originWidth=756&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=49960&amp;status=done&amp;style=shadow&amp;taskId=u9e1d9049-f382-4bc9-8e9a-de5e7353d59&amp;title=&amp;width=604.8" alt="image.png"><br>在 SQL 语言中，同样也包括了内置函数和自定义函数。内置函数是系统内置的通用函数，而自定义函数是我们根据自己的需要编写的，本章及下一章讲解的是 SQL 的内置函数。</p>
+<h3 id="1-2-不同DBMS函数的差异"><a href="#1-2-不同DBMS函数的差异" class="headerlink" title="1. 2 不同DBMS函数的差异"></a>1. 2 不同DBMS函数的差异</h3><p>我们在使用 SQL 语言的时候，不是直接和这门语言打交道，而是通过它使用不同的数据库软件，即DBMS。<br><strong>DBMS 之间的差异性很大，远大于同一个语言不同版本之间的差异</strong>。<br>实际上，只有很少的函数是被 DBMS 同时支持的。<br>比如，大多数 DBMS 使用（||）或者（+）来做拼接符，而在 MySQL 中的字符串拼接函数为concat()。<br>大部分 DBMS 会有自己特定的函数，这就意味着 采用 SQL 函数的代码可移植性是很差的 ，因此在使用函数的时候需要特别注意。</p>
+<h3 id="1-3-MySQL的内置函数及分类"><a href="#1-3-MySQL的内置函数及分类" class="headerlink" title="1. 3 MySQL的内置函数及分类"></a>1. 3 MySQL的内置函数及分类</h3><p>MySQL提供了丰富的内置函数，这些函数使得数据的维护与管理更加方便，能够更好地提供数据的分析<br>与统计功能，在一定程度上提高了开发人员进行数据分析与统计的效率。<br>MySQL提供的内置函数从实现的功能角度可以分为<strong>数值函数、字符串函数、日期和时间函数、流程控制</strong><br><strong>函数、加密与解密函数、获取MySQL信息函数、聚合函数</strong>等。这里，我将这些丰富的内置函数再分为两<br>类：单行函数、聚合函数（或分组函数）。<br>两种SQL函数<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654351546107-33ebd55b-5808-4375-b1cf-a8fd596798d4.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=203&amp;id=u73989314&amp;name=image.png&amp;originHeight=365&amp;originWidth=926&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=33829&amp;status=done&amp;style=shadow&amp;taskId=u5c68cbce-aeee-4bc9-b87d-fcae6d93d4e&amp;title=&amp;width=513.7999877929688" alt="image.png"><br><strong>单行函数</strong></p>
+<ul>
+<li>操作数据对象</li>
+<li>接受参数返回一个结果</li>
+<li><strong>只对一行进行变换</strong></li>
+<li><strong>每行返回一个结果</strong></li>
+<li>可以嵌套</li>
+<li>参数可以是一列或一个值<h2 id="2-数值函数"><a href="#2-数值函数" class="headerlink" title="2. 数值函数"></a>2. 数值函数</h2><h3 id="2-1-基本函数"><a href="#2-1-基本函数" class="headerlink" title="2.1 基本函数"></a>2.1 基本函数</h3><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654351694708-da959f3f-47a3-4755-8663-dddf492081e2.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=571&amp;id=u5c038898&amp;name=image.png&amp;originHeight=825&amp;originWidth=943&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=163582&amp;status=done&amp;style=shadow&amp;taskId=u50f78996-d1c8-4311-99e2-cdab7c5e1a7&amp;title=&amp;width=653" alt="image.png"><br>举例：<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> 
+ABS<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">123</span><span class="token punctuation">)</span><span class="token punctuation">,</span>ABS<span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">,</span>SIGN<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">23</span><span class="token punctuation">)</span><span class="token punctuation">,</span>SIGN<span class="token punctuation">(</span><span class="token number">43</span><span class="token punctuation">)</span><span class="token punctuation">,</span>PI<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>CEIL<span class="token punctuation">(</span><span class="token number">32.32</span><span class="token punctuation">)</span><span class="token punctuation">,</span>CEILING<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">43.23</span><span class="token punctuation">)</span><span class="token punctuation">,</span>FLOOR<span class="token punctuation">(</span><span class="token number">32.32</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+FLOOR<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">43.23</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">MOD</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> DUAL<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654351750124-99420d3b-cd4d-4aad-9e90-c6ad89287ceb.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=177&amp;id=ub9968b91&amp;name=image.png&amp;originHeight=221&amp;originWidth=1326&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=21126&amp;status=done&amp;style=shadow&amp;taskId=u45c6a994-7537-4766-87c5-12cf8497f6e&amp;title=&amp;width=1060.8" alt="image.png"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> RAND<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>RAND<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>RAND<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>RAND<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>RAND<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>RAND<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> DUAL<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654351771446-27f028af-967b-4286-9a2d-979f16925809.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=146&amp;id=ub3f25634&amp;name=image.png&amp;originHeight=183&amp;originWidth=1297&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=14365&amp;status=done&amp;style=shadow&amp;taskId=u4f8c3c26-d021-4d3c-98c7-5c8ca48a2f5&amp;title=&amp;width=1037.6" alt="image.png"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> 
+<span class="token function">ROUND</span><span class="token punctuation">(</span><span class="token number">12.33</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">ROUND</span><span class="token punctuation">(</span><span class="token number">12.343</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">ROUND</span><span class="token punctuation">(</span><span class="token number">12.324</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">TRUNCATE</span><span class="token punctuation">(</span><span class="token number">12.66</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">TRUNCATE</span><span class="token punctuation">(</span><span class="token number">12.66</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> DUAL<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654351858638-68f37704-3129-4aa5-b109-b28496c41203.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=154&amp;id=u33f774c0&amp;name=image.png&amp;originHeight=192&amp;originWidth=955&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=15378&amp;status=done&amp;style=shadow&amp;taskId=u3ac6ef0f-8478-43f1-b95d-c95100ede97&amp;title=&amp;width=764" alt="image.png"><h3 id="2-2-角度与弧度互换函数"><a href="#2-2-角度与弧度互换函数" class="headerlink" title="2.2 角度与弧度互换函数"></a>2.2 角度与弧度互换函数</h3><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654351905291-e8781435-4695-415b-bd7f-23ab56de28fc.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=136&amp;id=ubce3e571&amp;name=image.png&amp;originHeight=170&amp;originWidth=939&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=30874&amp;status=done&amp;style=shadow&amp;taskId=u71bb93f2-bbe3-4bd4-ae9a-5c94329a46d&amp;title=&amp;width=751.2" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654351917843-0fca8036-2eb2-494e-8739-5d0730a47917.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=151&amp;id=uc7dcd58a&amp;name=image.png&amp;originHeight=189&amp;originWidth=1059&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=16802&amp;status=done&amp;style=shadow&amp;taskId=ud1ed42e3-5316-463d-a7f1-ad9cfb81031&amp;title=&amp;width=847.2" alt="image.png"><h3 id="2-3-三角函数"><a href="#2-3-三角函数" class="headerlink" title="2. 3 三角函数"></a>2. 3 三角函数</h3><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654351931381-ed5adf52-0fa8-4729-a0c3-effc15b29545.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=380&amp;id=u3972c344&amp;name=image.png&amp;originHeight=475&amp;originWidth=936&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=105744&amp;status=done&amp;style=shadow&amp;taskId=u1d991c25-a25d-4e9e-8e33-0be95499880&amp;title=&amp;width=748.8" alt="image.png"><br>举例：<br>ATAN2(M,N)函数返回两个参数的反正切值。 与ATAN(X)函数相比，ATAN2(M,N)需要两个参数，例如有两个点point(x1,y1)和point(x2,y2)，使用ATAN(X)函数计算反正切值为ATAN((y2-y1)/(x2-x1))，使用ATAN2(M,N)计算反正切值则为ATAN2(y2-y1,x2-x1)。由使用方式可以看出，当x2-x1等于0时，ATAN(X)函数会报错，而ATAN2(M,N)函数则仍然可以计算。<br>ATAN2(M,N)函数的使用示例如下：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654351978367-74abcd90-5f19-4ac9-8a89-b7c6ebf2bfc8.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=187&amp;id=u57b89ef0&amp;name=image.png&amp;originHeight=234&amp;originWidth=1052&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=17011&amp;status=done&amp;style=shadow&amp;taskId=u8a9b6f8c-7660-4f77-8ff3-b8c1c493970&amp;title=&amp;width=841.6" alt="image.png"><h3 id="2-4-指数与对数"><a href="#2-4-指数与对数" class="headerlink" title="2.4 指数与对数"></a>2.4 指数与对数</h3><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654352005885-8ab5d0eb-e75d-4805-9dab-dc30ac7f33ba.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=258&amp;id=u48aada7e&amp;name=image.png&amp;originHeight=322&amp;originWidth=826&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=66862&amp;status=done&amp;style=shadow&amp;taskId=ue612666e-fc94-4c61-a420-c7c4a4b9ad0&amp;title=&amp;width=660.8" alt="image.png"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> POW<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span>POWER<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span>EXP<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>LN<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>LOG10<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>LOG2<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> DUAL<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+------------------+-------------------+-----------+---------+</span>
+<span class="token operator">|</span> POW<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">|</span> POWER<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">|</span> EXP<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>           <span class="token operator">|</span> LN<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>            <span class="token operator">|</span> LOG10<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">|</span> LOG2<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+------------------+-------------------+-----------+---------+</span>
+<span class="token operator">|</span>       <span class="token number">32</span> <span class="token operator">|</span>         <span class="token number">16</span> <span class="token operator">|</span> <span class="token number">7.38905609893065</span> <span class="token operator">|</span> <span class="token number">2.302585092994046</span> <span class="token operator">|</span>         <span class="token number">1</span> <span class="token operator">|</span>       <span class="token number">2</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+------------------+-------------------+-----------+---------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.01</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="2-5-进制间的转换"><a href="#2-5-进制间的转换" class="headerlink" title="2.5 进制间的转换"></a>2.5 进制间的转换</h3><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654352054142-6a2e91b0-9164-4779-be18-a8ff75c0fd08.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=217&amp;id=uaa2d366e&amp;name=image.png&amp;originHeight=271&amp;originWidth=626&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=35868&amp;status=done&amp;style=shadow&amp;taskId=u69fc1939-4efd-477e-8cb7-cf59a5d7622&amp;title=&amp;width=500.8" alt="image.png"><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> BIN<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>HEX<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>OCT<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>CONV<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> DUAL<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------+---------+---------+--------------+</span>
+<span class="token operator">|</span> BIN<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">|</span> HEX<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">|</span> OCT<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">|</span> CONV<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------+---------+---------+--------------+</span>
+<span class="token operator">|</span> <span class="token number">1010</span>    <span class="token operator">|</span> A       <span class="token operator">|</span> <span class="token number">12</span>      <span class="token operator">|</span> <span class="token number">2</span>            <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------+---------+---------+--------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.01</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="3-字符串函数"><a href="#3-字符串函数" class="headerlink" title="3. 字符串函数"></a>3. 字符串函数</h2><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ASCII(S)</td>
+<td>返回字符串S中的第一个字符的ASCII码值</td>
+</tr>
+<tr>
+<td>CHAR_LENGTH(s)</td>
+<td>返回字符串s的字符数。作用与CHARACTER_LENGTH(s)相同</td>
+</tr>
+<tr>
+<td>LENGTH(s)</td>
+<td>返回字符串s的字节数，和字符集有关</td>
+</tr>
+<tr>
+<td>CONCAT(s1,s2,……,sn)</td>
+<td>连接s1,s2,……,sn为一个字符串</td>
+</tr>
+<tr>
+<td>CONCAT_WS(x,s1,s2,……,sn)</td>
+<td>同CONCAT(s1,s2,…)函数，但是每个字符串之间要加上x</td>
+</tr>
+<tr>
+<td>INSERT(str, idx, len,replacestr)</td>
+<td>将字符串str从第idx位置开始，len个字符长的子串替换为字符串replacestr</td>
+</tr>
+<tr>
+<td>REPLACE(str, a, b)</td>
+<td>用字符串b替换字符串str中所有出现的字符串a</td>
+</tr>
+<tr>
+<td>UPPER(s) 或 UCASE(s)</td>
+<td>将字符串s的所有字母转成大写字母</td>
+</tr>
+<tr>
+<td>LOWER(s) 或LCASE(s)</td>
+<td>将字符串s的所有字母转成小写字母</td>
+</tr>
+<tr>
+<td>LEFT(str,n)</td>
+<td>返回字符串str最左边的n个字符</td>
+</tr>
+<tr>
+<td>RIGHT(str,n)</td>
+<td>返回字符串str最右边的n个字符</td>
+</tr>
+<tr>
+<td>LPAD(str, len, pad)</td>
+<td>用字符串pad对str最左边进行填充，直到str的长度为len个字符</td>
+</tr>
+<tr>
+<td>RPAD(str ,len, pad)</td>
+<td>用字符串pad对str最右边进行填充，直到str的长度为len个字符</td>
+</tr>
+<tr>
+<td>LTRIM(s)</td>
+<td>去掉字符串s左侧的空格</td>
+</tr>
+<tr>
+<td>RTRIM(s)</td>
+<td>去掉字符串s右侧的空格</td>
+</tr>
+<tr>
+<td>TRIM(s)</td>
+<td>去掉字符串s开始与结尾的空格</td>
+</tr>
+<tr>
+<td>TRIM(s1 FROM s)</td>
+<td>去掉字符串s开始与结尾的s1</td>
+</tr>
+<tr>
+<td>TRIM(LEADING s1 FROM s)</td>
+<td>去掉字符串s开始处的s1</td>
+</tr>
+<tr>
+<td>TRIM(TRAILING s1 FROM s)</td>
+<td>去掉字符串s结尾处的s1</td>
+</tr>
+<tr>
+<td>REPEAT(str, n)</td>
+<td>返回str重复n次的结果</td>
+</tr>
+<tr>
+<td>SPACE(n)</td>
+<td>返回n个空格</td>
+</tr>
+<tr>
+<td>STRCMP(s1,s2)</td>
+<td>比较字符串s1,s2的ASCII码值的大小</td>
+</tr>
+<tr>
+<td>SUBSTR(s,index,len)</td>
+<td>返回从字符串s的index位置其len个字符，作用与SUBSTRING(s,n,len)、MID(s,n,len)相同</td>
+</tr>
+<tr>
+<td>LOCATE(substr,str)</td>
+<td>返回字符串substr在字符串str中首次出现的位置，作用于POSITION(substr</td>
+</tr>
+<tr>
+<td>IN str)、INSTR(str,substr)相同。未找到，返回0</td>
+<td></td>
+</tr>
+<tr>
+<td>ELT(m,s1,s2,…,sn)</td>
+<td>返回指定位置的字符串，如果m=1，则返回s1，如果m=2，则返回s2，如果m=n，则返回sn</td>
+</tr>
+<tr>
+<td>FIELD(s,s1,s2,…,sn)</td>
+<td>返回字符串s在字符串列表中第一次出现的位置</td>
+</tr>
+<tr>
+<td>FIND_IN_SET(s1,s2)</td>
+<td>返回字符串s1在字符串s2中出现的位置。其中，字符串s2是一个以逗号分隔的字符串</td>
+</tr>
+<tr>
+<td>REVERSE(s)</td>
+<td>返回s反转后的字符串</td>
+</tr>
+<tr>
+<td>NULLIF(value1,value2)</td>
+<td>比较两个字符串，如果value1与value2相等，则返回NULL，否则返回value1</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<blockquote>
+<p>注意：MySQL中，字符串的位置是从1开始的。</p>
+</blockquote>
+<p>举例：</p>
+<pre class="line-numbers language-plsql" data-language="plsql"><code class="language-plsql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> POW<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span>POWER<span class="token punctuation">(</span><span class="token number">2</span> <span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span>EXP<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>LN<span class="token punctuation">(</span> <span class="token number">10</span> <span class="token punctuation">)</span><span class="token punctuation">,</span>LOG10<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>LOG2<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token keyword">FROM</span> DUAL<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------+------------+------------------+-------------------+-----------+---------+</span>
+| POW<span class="token punctuation">(</span> <span class="token number">2</span> <span class="token punctuation">,</span> <span class="token number">5</span> <span class="token punctuation">)</span> | POWER<span class="token punctuation">(</span> <span class="token number">2</span> <span class="token punctuation">,</span> <span class="token number">4</span> <span class="token punctuation">)</span> | EXP<span class="token punctuation">(</span> <span class="token number">2</span> <span class="token punctuation">)</span> | LN<span class="token punctuation">(</span> <span class="token number">10</span> <span class="token punctuation">)</span> | LOG10<span class="token punctuation">(</span> <span class="token number">10</span> <span class="token punctuation">)</span> | LOG2<span class="token punctuation">(</span> <span class="token number">4</span> <span class="token punctuation">)</span> |
+<span class="token operator">+</span><span class="token comment">----------+------------+------------------+-------------------+-----------+---------+</span>
+| <span class="token number">32</span> | <span class="token number">16</span> | <span class="token number">7.38905609893065</span> | <span class="token number">2.302585092994046</span> | <span class="token number">1</span> | <span class="token number">2</span> |
+<span class="token operator">+</span><span class="token comment">----------+------------+------------------+-------------------+-----------+---------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> BIN<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>HEX<span class="token punctuation">(</span> <span class="token number">10</span> <span class="token punctuation">)</span><span class="token punctuation">,</span>OCT<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>CONV<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> DUAL<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------+---------+---------+--------------+</span>
+<span class="token operator">|</span> BIN<span class="token punctuation">(</span> <span class="token number">10</span> <span class="token punctuation">)</span> <span class="token operator">|</span> HEX<span class="token punctuation">(</span> <span class="token number">10</span> <span class="token punctuation">)</span> <span class="token operator">|</span> OCT<span class="token punctuation">(</span> <span class="token number">10</span> <span class="token punctuation">)</span> <span class="token operator">|</span> CONV<span class="token punctuation">(</span> <span class="token number">10</span> <span class="token punctuation">,</span> <span class="token number">2</span> <span class="token punctuation">,</span> <span class="token number">8</span> <span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------+---------+---------+--------------+</span>
+<span class="token operator">|</span> <span class="token number">1010</span> <span class="token operator">|</span> A <span class="token operator">|</span> <span class="token number">12</span> <span class="token operator">|</span> <span class="token number">2</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------+---------+---------+--------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="4-日期和时间函数"><a href="#4-日期和时间函数" class="headerlink" title="4. 日期和时间函数"></a>4. 日期和时间函数</h2><h3 id="4-1-获取日期、时间"><a href="#4-1-获取日期、时间" class="headerlink" title="4. 1 获取日期、时间"></a>4. 1 获取日期、时间</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654352646000-8539dd06-10b8-471c-9362-5da07bc96991.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=347&amp;id=uf8ccb1cf&amp;name=image.png&amp;originHeight=483&amp;originWidth=937&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=66300&amp;status=done&amp;style=shadow&amp;taskId=u3da21b42-b0f4-40c8-87f1-889c656d953&amp;title=&amp;width=674" alt="image.png"><br>举例：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> 
+CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>CURTIME<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>SYSDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">0</span><span class="token punctuation">,</span>UTC_DATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>UTC_DATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">0</span><span class="token punctuation">,</span>UTC_TIME<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>UTC_TIME<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">0</span>
+<span class="token keyword">FROM</span> DUAL<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654352867072-584b1daa-eab4-4f12-8849-97fc4031d042.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=157&amp;id=u0f39b99e&amp;name=image.png&amp;originHeight=196&amp;originWidth=1225&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=17068&amp;status=done&amp;style=shadow&amp;taskId=ucfe92c5a-58cc-487a-902f-78f973ce840&amp;title=&amp;width=980" alt="image.png"></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> UNIX_TIMESTAMP<span class="token punctuation">(</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-----------------------+</span>
+<span class="token operator">|</span> UNIX_TIMESTAMP<span class="token punctuation">(</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------------------+</span>
+<span class="token operator">|</span>            <span class="token number">1576380910</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.01</span> sec<span class="token punctuation">)</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> UNIX_TIMESTAMP<span class="token punctuation">(</span>CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------------------------+</span>
+<span class="token operator">|</span> UNIX_TIMESTAMP<span class="token punctuation">(</span>CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------------------+</span>
+<span class="token operator">|</span>                <span class="token number">1576339200</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> UNIX_TIMESTAMP<span class="token punctuation">(</span>CURTIME<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------------------------+</span>
+<span class="token operator">|</span> UNIX_TIMESTAMP<span class="token punctuation">(</span>CURTIME<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------------------+</span>
+<span class="token operator">|</span>                <span class="token number">1576380969</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> UNIX_TIMESTAMP<span class="token punctuation">(</span><span class="token string">'2011-11-11 11:11:11'</span><span class="token punctuation">)</span>
+<span class="token operator">+</span><span class="token comment">---------------------------------------+</span>
+<span class="token operator">|</span> UNIX_TIMESTAMP<span class="token punctuation">(</span><span class="token string">'2011-11-11 11:11:11'</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------------------------------+</span>
+<span class="token operator">|</span>                            <span class="token number">1320981071</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------------------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> FROM_UNIXTIME<span class="token punctuation">(</span><span class="token number">1576380910</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------------------------+</span>
+<span class="token operator">|</span> FROM_UNIXTIME<span class="token punctuation">(</span><span class="token number">1576380910</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------------------+</span>
+<span class="token operator">|</span> <span class="token number">2019</span><span class="token operator">-</span><span class="token number">12</span><span class="token operator">-</span><span class="token number">15</span> <span class="token number">11</span>:<span class="token number">35</span>:<span class="token number">10</span>       <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="4-2-日期与时间戳的转换"><a href="#4-2-日期与时间戳的转换" class="headerlink" title="4. 2 日期与时间戳的转换"></a>4. 2 日期与时间戳的转换</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654352817386-7a340be5-d763-4576-b0ad-2cc0734c0af0.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=201&amp;id=u433d32b1&amp;name=image.png&amp;originHeight=251&amp;originWidth=936&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=50708&amp;status=done&amp;style=shadow&amp;taskId=ua6b8aa1d-0f7d-45ed-b62f-ca536fda70b&amp;title=&amp;width=748.8" alt="image.png"><br>举例：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> UNIX_TIMESTAMP<span class="token punctuation">(</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-----------------------+</span>
+<span class="token operator">|</span> UNIX_TIMESTAMP<span class="token punctuation">(</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------------------+</span>
+<span class="token operator">|</span>            <span class="token number">1576380910</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.01</span> sec<span class="token punctuation">)</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> UNIX_TIMESTAMP<span class="token punctuation">(</span>CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------------------------+</span>
+<span class="token operator">|</span> UNIX_TIMESTAMP<span class="token punctuation">(</span>CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------------------+</span>
+<span class="token operator">|</span>                <span class="token number">1576339200</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> UNIX_TIMESTAMP<span class="token punctuation">(</span>CURTIME<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------------------------+</span>
+<span class="token operator">|</span> UNIX_TIMESTAMP<span class="token punctuation">(</span>CURTIME<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------------------+</span>
+<span class="token operator">|</span>                <span class="token number">1576380969</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> UNIX_TIMESTAMP<span class="token punctuation">(</span><span class="token string">'2011-11-11 11:11:11'</span><span class="token punctuation">)</span>
+<span class="token operator">+</span><span class="token comment">---------------------------------------+</span>
+<span class="token operator">|</span> UNIX_TIMESTAMP<span class="token punctuation">(</span><span class="token string">'2011-11-11 11:11:11'</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------------------------------+</span>
+<span class="token operator">|</span>                            <span class="token number">1320981071</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------------------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> FROM_UNIXTIME<span class="token punctuation">(</span><span class="token number">1576380910</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------------------------+</span>
+<span class="token operator">|</span> FROM_UNIXTIME<span class="token punctuation">(</span><span class="token number">1576380910</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------------------+</span>
+<span class="token operator">|</span> <span class="token number">2019</span><span class="token operator">-</span><span class="token number">12</span><span class="token operator">-</span><span class="token number">15</span> <span class="token number">11</span>:<span class="token number">35</span>:<span class="token number">10</span>       <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="4-3-获取月份、星期、星期数、天数等函数"><a href="#4-3-获取月份、星期、星期数、天数等函数" class="headerlink" title="4. 3 获取月份、星期、星期数、天数等函数"></a>4. 3 获取月份、星期、星期数、天数等函数</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654352711961-59ad1026-0269-46fe-8c15-38a2e47362f0.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=514&amp;id=PrVYJ&amp;name=image.png&amp;originHeight=643&amp;originWidth=939&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=114579&amp;status=done&amp;style=shadow&amp;taskId=u788f22d1-d8c7-4017-90b3-86bf509ceb8&amp;title=&amp;width=751.2" alt="image.png"><br>举例：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token keyword">YEAR</span><span class="token punctuation">(</span>CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">MONTH</span><span class="token punctuation">(</span>CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">DAY</span><span class="token punctuation">(</span>CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token keyword">HOUR</span><span class="token punctuation">(</span>CURTIME<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">MINUTE</span><span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">SECOND</span><span class="token punctuation">(</span>SYSDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> DUAL<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654352783609-dfff6fee-d857-4f06-bc02-7800720826f6.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=158&amp;id=u33129764&amp;name=image.png&amp;originHeight=198&amp;originWidth=1101&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=18310&amp;status=done&amp;style=shadow&amp;taskId=udda9564a-6f99-4df5-aa47-2e0e4cc99da&amp;title=&amp;width=880.8" alt="image.png"></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> MONTHNAME<span class="token punctuation">(</span><span class="token string">'2021-10-26'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>DAYNAME<span class="token punctuation">(</span><span class="token string">'2021-10-26'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>WEEKDAY<span class="token punctuation">(</span><span class="token string">'2021-10-26'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+QUARTER<span class="token punctuation">(</span>CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>WEEK<span class="token punctuation">(</span>CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>DAYOFYEAR<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+DAYOFMONTH<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>DAYOFWEEK<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> DUAL<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654352752995-ab4bfef4-eb4c-44fa-b7d2-d58a66299c3e.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=178&amp;id=u6b7c3792&amp;name=image.png&amp;originHeight=222&amp;originWidth=1728&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=25582&amp;status=done&amp;style=shadow&amp;taskId=u86ed5f89-1fa8-48a1-a2ee-88a4727f86e&amp;title=&amp;width=1382.4" alt="image.png"></p>
+<h3 id="4-4-日期的操作函数"><a href="#4-4-日期的操作函数" class="headerlink" title="4. 4 日期的操作函数"></a>4. 4 日期的操作函数</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654352968393-d38312d5-a1f2-48c1-a7a4-348ae90caa5e.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=94&amp;id=ub4e449f1&amp;name=image.png&amp;originHeight=117&amp;originWidth=809&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=20292&amp;status=done&amp;style=shadow&amp;taskId=uef1e7455-89ce-47d9-a133-175ef3ae314&amp;title=&amp;width=647.2" alt="image.png"><br>EXTRACT(type FROM date)函数中type的取值与含义：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654352979181-12ae218c-c2fe-4ede-afe9-eec3446dc3a4.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=605&amp;id=ube8651e9&amp;name=image.png&amp;originHeight=756&amp;originWidth=945&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=204593&amp;status=done&amp;style=shadow&amp;taskId=u903c9c4d-7ade-45e6-9355-4e1d282b4c4&amp;title=&amp;width=756" alt="image.png"></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> EXTRACT<span class="token punctuation">(</span><span class="token keyword">MINUTE</span> <span class="token keyword">FROM</span> <span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>EXTRACT<span class="token punctuation">(</span> WEEK <span class="token keyword">FROM</span> <span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+EXTRACT<span class="token punctuation">(</span> QUARTER <span class="token keyword">FROM</span> <span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>EXTRACT<span class="token punctuation">(</span> MINUTE_SECOND <span class="token keyword">FROM</span> <span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> DUAL<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654352998442-2bcbca9d-153e-490f-8e22-68c9343f1d1d.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=166&amp;id=u7dcfb5dd&amp;name=image.png&amp;originHeight=207&amp;originWidth=1270&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=19278&amp;status=done&amp;style=shadow&amp;taskId=u581169c9-b9b7-4b35-a254-93fd051d4e3&amp;title=&amp;width=1016" alt="image.png"></p>
+<h3 id="4-5-时间和秒钟转换的函数"><a href="#4-5-时间和秒钟转换的函数" class="headerlink" title="4. 5 时间和秒钟转换的函数"></a>4. 5 时间和秒钟转换的函数</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654353015765-e09b0c77-d213-45a4-9ed6-1838594fbb6e.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=157&amp;id=u43aa5849&amp;name=image.png&amp;originHeight=196&amp;originWidth=864&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=40185&amp;status=done&amp;style=shadow&amp;taskId=u5db48d6a-d731-4665-941e-723c74b1fdc&amp;title=&amp;width=691.2" alt="image.png"><br>举例：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> TIME_TO_SEC<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">--------------------+</span>
+<span class="token operator">|</span> TIME_TO_SEC<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------------+</span>
+<span class="token operator">|</span>               <span class="token number">78774</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> SEC_TO_TIME<span class="token punctuation">(</span><span class="token number">78774</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">--------------------+</span>
+<span class="token operator">|</span> SEC_TO_TIME<span class="token punctuation">(</span><span class="token number">78774</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------------+</span>
+<span class="token operator">|</span> <span class="token number">21</span>:<span class="token number">52</span>:<span class="token number">54</span>            <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.12</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="4-6-计算日期和时间的函数"><a href="#4-6-计算日期和时间的函数" class="headerlink" title="4. 6 计算日期和时间的函数"></a>4. 6 计算日期和时间的函数</h3><p>第 1 组：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654353052329-00751108-b886-45a7-9ddd-8cc595640a58.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=186&amp;id=ue9c36270&amp;name=image.png&amp;originHeight=233&amp;originWidth=935&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=48303&amp;status=done&amp;style=shadow&amp;taskId=udd03dd55-35d4-4066-a3be-ef9add71c0a&amp;title=&amp;width=748" alt="image.png"><br>上述函数中type的取值：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654353060293-7e602b82-9e9d-47bf-aa49-2fe8f1e74383.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=401&amp;id=u35fb3a1e&amp;name=image.png&amp;originHeight=501&amp;originWidth=931&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=84133&amp;status=done&amp;style=shadow&amp;taskId=u197dcdf6-92b2-43be-90b2-aa751127373&amp;title=&amp;width=744.8" alt="image.png"><br>举例：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> DATE_ADD<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">INTERVAL</span> <span class="token number">1</span> <span class="token keyword">DAY</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> col1<span class="token punctuation">,</span>
+DATE_ADD<span class="token punctuation">(</span><span class="token string">'2021-10-21 23:32:12'</span><span class="token punctuation">,</span><span class="token keyword">INTERVAL</span> <span class="token number">1</span> <span class="token keyword">SECOND</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> col2<span class="token punctuation">,</span>
+ADDDATE<span class="token punctuation">(</span><span class="token string">'2021-10-21 23:32:12'</span><span class="token punctuation">,</span><span class="token keyword">INTERVAL</span> <span class="token number">1</span> <span class="token keyword">SECOND</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> col3<span class="token punctuation">,</span>
+DATE_ADD<span class="token punctuation">(</span><span class="token string">'2021-10-21 23:32:12'</span><span class="token punctuation">,</span><span class="token keyword">INTERVAL</span> <span class="token string">'1_1'</span> MINUTE_SECOND<span class="token punctuation">)</span> <span class="token keyword">AS</span> col4<span class="token punctuation">,</span>
+DATE_ADD<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">INTERVAL</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token keyword">YEAR</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> col5<span class="token punctuation">,</span> <span class="token comment">#可以是负数</span>
+DATE_ADD<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">INTERVAL</span> <span class="token string">'1_1'</span> YEAR_MONTH<span class="token punctuation">)</span> <span class="token keyword">AS</span> col6 <span class="token comment">#需要单引号</span>
+<span class="token keyword">FROM</span> DUAL<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> DATE_SUB<span class="token punctuation">(</span><span class="token string">'2021-01-21'</span><span class="token punctuation">,</span><span class="token keyword">INTERVAL</span> <span class="token number">31</span> <span class="token keyword">DAY</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> col1<span class="token punctuation">,</span>
+SUBDATE<span class="token punctuation">(</span><span class="token string">'2021-01-21'</span><span class="token punctuation">,</span><span class="token keyword">INTERVAL</span> <span class="token number">31</span> <span class="token keyword">DAY</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> col2<span class="token punctuation">,</span>
+DATE_SUB<span class="token punctuation">(</span><span class="token string">'2021-01-21 02:01:01'</span><span class="token punctuation">,</span><span class="token keyword">INTERVAL</span> <span class="token string">'1 1'</span> DAY_HOUR<span class="token punctuation">)</span> <span class="token keyword">AS</span> col3
+<span class="token keyword">FROM</span> DUAL<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>第 2 组：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654353134675-38294840-f241-4f3b-b1c6-d23e70d7a346.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=516&amp;id=u09af1728&amp;name=image.png&amp;originHeight=645&amp;originWidth=934&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=140391&amp;status=done&amp;style=shadow&amp;taskId=u547d3da9-de49-4742-9435-1c882a49321&amp;title=&amp;width=747.2" alt="image.png"><br>举例：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> 
+ADDTIME<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span>SUBTIME<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">,</span>SUBTIME<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'1:1:3'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+DATEDIFF<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'2021-10-01'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+TIMEDIFF<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'2021-10-25 22:10:10'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+FROM_DAYS<span class="token punctuation">(</span><span class="token number">366</span><span class="token punctuation">)</span><span class="token punctuation">,</span>TO_DAYS<span class="token punctuation">(</span><span class="token string">'0000-12-25'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+LAST_DAY<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>MAKEDATE<span class="token punctuation">(</span><span class="token keyword">YEAR</span><span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+MAKETIME<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">21</span><span class="token punctuation">,</span><span class="token number">23</span><span class="token punctuation">)</span><span class="token punctuation">,</span>PERIOD_ADD<span class="token punctuation">(</span><span class="token number">20200101010101</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> DUAL<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-plsql" data-language="plsql"><code class="language-plsql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> ADDTIME<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------------------+</span>
+| ADDTIME<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">)</span>  |
+<span class="token operator">+</span><span class="token comment">---------------------+</span>
+| <span class="token number">2019</span><span class="token operator">-</span><span class="token number">12</span><span class="token operator">-</span><span class="token number">15</span> <span class="token number">22</span><span class="token operator">:</span><span class="token number">17</span><span class="token operator">:</span><span class="token number">47</span> |
+<span class="token operator">+</span><span class="token comment">---------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> ADDTIME<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'1:1:1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-------------------------+</span>
+| ADDTIME<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'1:1:1'</span><span class="token punctuation">)</span> |
+<span class="token operator">+</span><span class="token comment">-------------------------+</span>
+| <span class="token number">2019</span><span class="token operator">-</span><span class="token number">12</span><span class="token operator">-</span><span class="token number">15</span> <span class="token number">23</span><span class="token operator">:</span><span class="token number">18</span><span class="token operator">:</span><span class="token number">46</span>     |
+<span class="token operator">+</span><span class="token comment">-------------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> SUBTIME<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'1:1:1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-------------------------+</span>
+| SUBTIME<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'1:1:1'</span><span class="token punctuation">)</span> |
+<span class="token operator">+</span><span class="token comment">-------------------------+</span>
+| <span class="token number">2019</span><span class="token operator">-</span><span class="token number">12</span><span class="token operator">-</span><span class="token number">15</span> <span class="token number">21</span><span class="token operator">:</span><span class="token number">23</span><span class="token operator">:</span><span class="token number">50</span>     |
+<span class="token operator">+</span><span class="token comment">-------------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> SUBTIME<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'-1:-1:-1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token operator">+</span><span class="token comment">----------------------------+</span>
+| SUBTIME<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'-1:-1:-1'</span><span class="token punctuation">)</span> |
+<span class="token operator">+</span><span class="token comment">----------------------------+</span>
+| <span class="token number">2019</span><span class="token operator">-</span><span class="token number">12</span><span class="token operator">-</span><span class="token number">15</span> <span class="token number">22</span><span class="token operator">:</span><span class="token number">25</span><span class="token operator">:</span><span class="token number">11</span>        |
+<span class="token operator">+</span><span class="token comment">----------------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token keyword">in</span> <span class="token keyword">set</span><span class="token punctuation">,</span> <span class="token number">1</span> warning <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> FROM_DAYS<span class="token punctuation">(</span><span class="token number">366</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------------+</span>
+| FROM_DAYS<span class="token punctuation">(</span><span class="token number">366</span><span class="token punctuation">)</span> |
+<span class="token operator">+</span><span class="token comment">----------------+</span>
+| <span class="token number">0001</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">01</span>     |
+<span class="token operator">+</span><span class="token comment">----------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> MAKEDATE<span class="token punctuation">(</span><span class="token number">2020</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">------------------+</span>
+| MAKEDATE<span class="token punctuation">(</span><span class="token number">2020</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span> |
+<span class="token operator">+</span><span class="token comment">------------------+</span>
+| <span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">01</span>       |
+<span class="token operator">+</span><span class="token comment">------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> MAKEDATE<span class="token punctuation">(</span><span class="token number">2020</span><span class="token punctuation">,</span><span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-------------------+</span>
+| MAKEDATE<span class="token punctuation">(</span><span class="token number">2020</span><span class="token punctuation">,</span><span class="token number">32</span><span class="token punctuation">)</span> |
+<span class="token operator">+</span><span class="token comment">-------------------+</span>
+| <span class="token number">2020</span><span class="token operator">-</span><span class="token number">02</span><span class="token operator">-</span><span class="token number">01</span>        |
+<span class="token operator">+</span><span class="token comment">-------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> MAKETIME<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-----------------+</span>
+| MAKETIME<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span> |
+<span class="token operator">+</span><span class="token comment">-----------------+</span>
+| <span class="token number">01</span><span class="token operator">:</span><span class="token number">01</span><span class="token operator">:</span><span class="token number">01</span>        |
+<span class="token operator">+</span><span class="token comment">-----------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> PERIOD_ADD<span class="token punctuation">(</span><span class="token number">20200101010101</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">------------------------------+</span>
+| PERIOD_ADD<span class="token punctuation">(</span><span class="token number">20200101010101</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span> |
+<span class="token operator">+</span><span class="token comment">------------------------------+</span>
+|               <span class="token number">20200101010102</span> |
+<span class="token operator">+</span><span class="token comment">------------------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> TO_DAYS<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------------+</span>
+| TO_DAYS<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> |
+<span class="token operator">+</span><span class="token comment">----------------+</span>
+|          <span class="token number">737773</span> |
+<span class="token operator">+</span><span class="token comment">----------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>举例：查询 7 天内的新增用户数有多少？</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">as</span> num <span class="token keyword">FROM</span> new_user <span class="token keyword">WHERE</span> TO_DAYS<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">-</span>TO_DAYS<span class="token punctuation">(</span>regist_time<span class="token punctuation">)</span><span class="token operator">&lt;=</span><span class="token number">7</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="4-7-日期的格式化与解析"><a href="#4-7-日期的格式化与解析" class="headerlink" title="4. 7 日期的格式化与解析"></a>4. 7 日期的格式化与解析</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654353253074-a801637c-4b3b-419a-850a-fbf69cc6d3c9.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=215&amp;id=u37fe2169&amp;name=image.png&amp;originHeight=269&amp;originWidth=936&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=56518&amp;status=done&amp;style=shadow&amp;taskId=uf48f8c49-eb0a-4c76-9f4f-6c079767de7&amp;title=&amp;width=748.8" alt="image.png"><br>上述非GET_FORMAT函数中fmt参数常用的格式符：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654353308873-5a6c429e-9846-4c6b-9b3d-ee26a4a6cd62.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=580&amp;id=ufff52736&amp;name=image.png&amp;originHeight=725&amp;originWidth=936&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=126565&amp;status=done&amp;style=shadow&amp;taskId=uec1a7151-5cd0-48ca-91bb-2d268599cf7&amp;title=&amp;width=748.8" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654353312765-6accb15f-d332-41c5-90af-05bb621c54e5.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=406&amp;id=u8db9af83&amp;name=image.png&amp;originHeight=508&amp;originWidth=938&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=79727&amp;status=done&amp;style=shadow&amp;taskId=u2ae0e688-e821-4a0b-8820-80a5626a12f&amp;title=&amp;width=750.4" alt="image.png"><br>GET_FORMAT函数中date_type和format_type参数取值如下：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654353346538-a4802753-eb86-4f05-b317-95cd0476f05d.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=457&amp;id=u85fc65c7&amp;name=image.png&amp;originHeight=571&amp;originWidth=937&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=149279&amp;status=done&amp;style=shadow&amp;taskId=uba099949-158b-4c1d-bda5-462e3f4a6a7&amp;title=&amp;width=749.6" alt="image.png"><br>举例：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> DATE_FORMAT<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'%H:%i:%s'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">--------------------------------+</span>
+<span class="token operator">|</span> DATE_FORMAT<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'%H:%i:%s'</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------------------------+</span>
+<span class="token operator">|</span> <span class="token number">22</span>:<span class="token number">57</span>:<span class="token number">34</span>                        <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+<span class="token keyword">SELECT</span> STR_TO_DATE<span class="token punctuation">(</span><span class="token string">'09/01/2009'</span><span class="token punctuation">,</span><span class="token string">'%m/%d/%Y'</span><span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> DUAL<span class="token punctuation">;</span>
+
+<span class="token keyword">SELECT</span> STR_TO_DATE<span class="token punctuation">(</span><span class="token string">'20140422154706'</span><span class="token punctuation">,</span><span class="token string">'%Y%m%d%H%i%s'</span><span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> DUAL<span class="token punctuation">;</span>
+
+<span class="token keyword">SELECT</span> STR_TO_DATE<span class="token punctuation">(</span><span class="token string">'2014-04-22 15:47:06'</span><span class="token punctuation">,</span><span class="token string">'%Y-%m-%d %H:%i:%s'</span><span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> DUAL<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> GET_FORMAT<span class="token punctuation">(</span><span class="token keyword">DATE</span><span class="token punctuation">,</span> <span class="token string">'USA'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-------------------------+</span>
+<span class="token operator">|</span> GET_FORMAT<span class="token punctuation">(</span><span class="token keyword">DATE</span><span class="token punctuation">,</span> <span class="token string">'USA'</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------------+</span>
+<span class="token operator">|</span> <span class="token operator">%</span>m<span class="token punctuation">.</span><span class="token operator">%</span>d<span class="token punctuation">.</span><span class="token operator">%</span>Y                <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> STR_TO_DATE<span class="token punctuation">(</span><span class="token string">'2020-01-01 00:00:00'</span><span class="token punctuation">,</span><span class="token string">'%Y-%m-%d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token operator">+</span><span class="token comment">-----------------------------------------------+</span>
+<span class="token operator">|</span> STR_TO_DATE<span class="token punctuation">(</span><span class="token string">'2020-01-01 00:00:00'</span><span class="token punctuation">,</span><span class="token string">'%Y-%m-%d'</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------------------------------------------+</span>
+<span class="token operator">|</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">01</span>                                    <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------------------------------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span><span class="token punctuation">,</span> <span class="token number">1</span> warning <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="5-流程控制函数"><a href="#5-流程控制函数" class="headerlink" title="5. 流程控制函数"></a>5. 流程控制函数</h2><p>流程处理函数可以根据不同的条件，执行不同的处理流程，可以在SQL语句中实现不同的条件选择。<br>MySQL中的流程处理函数主要包括IF()、IFNULL()和CASE()函数。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654353429686-7cf4e711-8017-4306-a4ac-460f7bb76c4a.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=314&amp;id=ud23a87ca&amp;name=image.png&amp;originHeight=393&amp;originWidth=937&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=63950&amp;status=done&amp;style=shadow&amp;taskId=u07ff848d-07d8-4683-8a5c-062d3669b26&amp;title=&amp;width=749.6" alt="image.png"></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token keyword">IF</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">,</span><span class="token string">'正确'</span><span class="token punctuation">,</span><span class="token string">'错误'</span><span class="token punctuation">)</span>    
+<span class="token operator">-</span><span class="token operator">&gt;</span>正确
+
+<span class="token keyword">SELECT</span> IFNULL<span class="token punctuation">(</span><span class="token boolean">null</span><span class="token punctuation">,</span><span class="token string">'Hello Word'</span><span class="token punctuation">)</span>
+<span class="token operator">-</span><span class="token operator">&gt;</span>Hello Word
+
+<span class="token keyword">SELECT</span> <span class="token keyword">CASE</span> 
+  <span class="token keyword">WHEN</span> <span class="token number">1</span> <span class="token operator">&gt;</span> <span class="token number">0</span>
+  <span class="token keyword">THEN</span> <span class="token string">'1 &gt; 0'</span>
+  <span class="token keyword">WHEN</span> <span class="token number">2</span> <span class="token operator">&gt;</span> <span class="token number">0</span>
+  <span class="token keyword">THEN</span> <span class="token string">'2 &gt; 0'</span>
+  <span class="token keyword">ELSE</span> <span class="token string">'3 &gt; 0'</span>
+  <span class="token keyword">END</span>
+<span class="token operator">-</span><span class="token operator">&gt;</span><span class="token number">1</span> <span class="token operator">&gt;</span> <span class="token number">0</span>
+
+<span class="token keyword">SELECT</span> <span class="token keyword">CASE</span> <span class="token number">1</span> 
+  <span class="token keyword">WHEN</span> <span class="token number">1</span> <span class="token keyword">THEN</span> <span class="token string">'我是1'</span>
+  <span class="token keyword">WHEN</span> <span class="token number">2</span> <span class="token keyword">THEN</span> <span class="token string">'我是2'</span>
+<span class="token keyword">ELSE</span> <span class="token string">'你是谁'</span>
+
+<span class="token keyword">SELECT</span> employee_id<span class="token punctuation">,</span>salary<span class="token punctuation">,</span> <span class="token keyword">CASE</span> <span class="token keyword">WHEN</span> salary<span class="token operator">&gt;=</span><span class="token number">15000</span> <span class="token keyword">THEN</span> <span class="token string">'高薪'</span> 
+                  <span class="token keyword">WHEN</span> salary<span class="token operator">&gt;=</span><span class="token number">10000</span> <span class="token keyword">THEN</span> <span class="token string">'潜力股'</span>  
+                  <span class="token keyword">WHEN</span> salary<span class="token operator">&gt;=</span><span class="token number">8000</span> <span class="token keyword">THEN</span> <span class="token string">'屌丝'</span> 
+                  <span class="token keyword">ELSE</span> <span class="token string">'草根'</span> <span class="token keyword">END</span>  <span class="token string">"描述"</span>
+<span class="token keyword">FROM</span> employees<span class="token punctuation">;</span> 
+
+<span class="token keyword">SELECT</span> oid<span class="token punctuation">,</span><span class="token identifier"><span class="token punctuation">`</span>status<span class="token punctuation">`</span></span><span class="token punctuation">,</span> <span class="token keyword">CASE</span> <span class="token identifier"><span class="token punctuation">`</span>status<span class="token punctuation">`</span></span> <span class="token keyword">WHEN</span> <span class="token number">1</span> <span class="token keyword">THEN</span> <span class="token string">'未付款'</span> 
+                                   <span class="token keyword">WHEN</span> <span class="token number">2</span> <span class="token keyword">THEN</span> <span class="token string">'已付款'</span> 
+                                   <span class="token keyword">WHEN</span> <span class="token number">3</span> <span class="token keyword">THEN</span> <span class="token string">'已发货'</span>  
+                                   <span class="token keyword">WHEN</span> <span class="token number">4</span> <span class="token keyword">THEN</span> <span class="token string">'确认收货'</span>  
+                                   <span class="token keyword">ELSE</span> <span class="token string">'无效订单'</span> <span class="token keyword">END</span> 
+<span class="token keyword">FROM</span> t_order<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654353488117-afd9e0fe-fb0b-4a2e-a9ed-608bf4cd2f9b.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=126&amp;id=uc612bf42&amp;name=image.png&amp;originHeight=158&amp;originWidth=827&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=11552&amp;status=done&amp;style=shadow&amp;taskId=u275f1a1c-2eb9-45ca-a98a-816162193b6&amp;title=&amp;width=661.6" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654353505831-4dce1f44-51fd-4e42-875b-cd6b5ac9dde8.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=126&amp;id=u7dba83bd&amp;name=image.png&amp;originHeight=157&amp;originWidth=818&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=11698&amp;status=done&amp;style=shadow&amp;taskId=u0e45556b-5f80-491f-853c-1f0b8c4bfca&amp;title=&amp;width=654.4" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654353522612-2baba15f-ecfb-4962-84f7-79e90186d736.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=108&amp;id=u8c43ca57&amp;name=image.png&amp;originHeight=135&amp;originWidth=619&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=6761&amp;status=done&amp;style=shadow&amp;taskId=ue3c041d8-482b-4e3b-8c49-0ef51c98480&amp;title=&amp;width=495.2" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654353549048-8e42d76c-2bf9-4583-aa3b-41d5685fd8fc.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=125&amp;id=u60cb0d9c&amp;name=image.png&amp;originHeight=156&amp;originWidth=631&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=8679&amp;status=done&amp;style=shadow&amp;taskId=ud63eca40-fe72-49f8-9ed5-7f71c99a726&amp;title=&amp;width=504.8" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654353569294-8b5cac83-78c1-4d62-8ca1-6b7c5412da02.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=318&amp;id=u3a50d3f0&amp;name=image.png&amp;originHeight=397&amp;originWidth=702&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=32251&amp;status=done&amp;style=shadow&amp;taskId=u4aaa21d0-7d07-49ea-9466-a062cb28a0c&amp;title=&amp;width=561.6" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654353602030-353df8a9-6d0d-4dc9-8709-14a6198ae846.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=388&amp;id=u1d44fc31&amp;name=image.png&amp;originHeight=485&amp;originWidth=698&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=62881&amp;status=done&amp;style=shadow&amp;taskId=u992db3c1-86e1-436c-8aec-f7c3df1a17f&amp;title=&amp;width=558.4" alt="image.png"><br>练习：查询部门号为 10,20, 30 的员工信息, 若部门号为 10, 则打印其工资的 1.1 倍, 20 号部门, 则打印其<br>工资的 1.2 倍, 30 号部门打印其工资的 1.3 倍数。</p>
+<h2 id="6-加密与解密函数"><a href="#6-加密与解密函数" class="headerlink" title="6. 加密与解密函数"></a>6. 加密与解密函数</h2><p>加密与解密函数主要用于对数据库中的数据进行加密和解密处理，以防止数据被他人窃取。这些函数在<br>保证数据库安全时非常有用。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654353631501-f66321b1-3856-4394-a837-44413dd48d32.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=341&amp;id=u9112caf4&amp;name=image.png&amp;originHeight=426&amp;originWidth=932&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=105481&amp;status=done&amp;style=shadow&amp;taskId=ud4e8c166-9a39-409d-8c24-7a84290efdd&amp;title=&amp;width=745.6" alt="image.png"><br>可以看到，ENCODE(value,password_seed)函数与DECODE(value,password_seed)函数互为反函数。<br>举例：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654353668341-0a249c8c-e4c4-4ab8-bb55-89fc5a5c748c.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=502&amp;id=u2ffe1256&amp;name=image.png&amp;originHeight=627&amp;originWidth=685&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=77899&amp;status=done&amp;style=shadow&amp;taskId=u78f9bbcc-3fac-4343-a89d-4ca7cc781b3&amp;title=&amp;width=548" alt="image.png"></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> DECODE<span class="token punctuation">(</span>ENCODE<span class="token punctuation">(</span><span class="token string">'mysql'</span><span class="token punctuation">,</span><span class="token string">'mysql'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'mysql'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-----------------------------------------+</span>
+<span class="token operator">|</span> DECODE<span class="token punctuation">(</span>ENCODE<span class="token punctuation">(</span><span class="token string">'mysql'</span><span class="token punctuation">,</span><span class="token string">'mysql'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'mysql'</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------------------------------------+</span>
+<span class="token operator">|</span> mysql                                   <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------------------------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token keyword">warnings</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="7-MySQL信息函数"><a href="#7-MySQL信息函数" class="headerlink" title="7. MySQL信息函数"></a>7. MySQL信息函数</h2><p>MySQL中内置了一些可以查询MySQL信息的函数，这些函数主要用于帮助数据库开发或运维人员更好地<br>对数据库进行维护工作。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654353693088-18cd3451-6924-44b6-948f-13ce36f9d153.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=322&amp;id=ua03d9d4e&amp;name=image.png&amp;originHeight=402&amp;originWidth=937&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=84391&amp;status=done&amp;style=shadow&amp;taskId=u93d54129-f67a-4fdb-a581-e1eaaa2953b&amp;title=&amp;width=749.6" alt="image.png"><br>举例：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token keyword">DATABASE</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">------------+</span>
+<span class="token operator">|</span> <span class="token keyword">DATABASE</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">------------+</span>
+<span class="token operator">|</span> test       <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token keyword">DATABASE</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">------------+</span>
+<span class="token operator">|</span> <span class="token keyword">DATABASE</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">------------+</span>
+<span class="token operator">|</span> test       <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654353763149-6d1289b1-1676-4688-be2e-627164ec3dce.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=537&amp;id=u0c60d41f&amp;name=image.png&amp;originHeight=671&amp;originWidth=830&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=72138&amp;status=done&amp;style=shadow&amp;taskId=u8f192bfe-c11e-4cb1-a53f-ae5705b1cfc&amp;title=&amp;width=664" alt="image.png"></p>
+<h2 id="8-其他函数"><a href="#8-其他函数" class="headerlink" title="8. 其他函数"></a>8. 其他函数</h2><p>MySQL中有些函数无法对其进行具体的分类，但是这些函数在MySQL的开发和运维过程中也是不容忽视的。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654353789578-6ac18e31-908a-4573-963a-43b9b0725b02.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=380&amp;id=u61dc7bd4&amp;name=image.png&amp;originHeight=475&amp;originWidth=942&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=110206&amp;status=done&amp;style=shadow&amp;taskId=ub552c9da-e378-4bba-a408-10b78e45a13&amp;title=&amp;width=753.6" alt="image.png"><br>举例：<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654353811181-b630af53-4ed6-4ca7-aec3-2581946ba584.png#clientId=u99dfe347-dd7f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=631&amp;id=ucb875647&amp;name=image.png&amp;originHeight=789&amp;originWidth=933&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=111455&amp;status=done&amp;style=shadow&amp;taskId=u28d4ffeb-275b-4d5e-9daa-575b0a51808&amp;title=&amp;width=746.4" alt="image.png"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">CoderXiong</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://bfd2018.github.io/2022/06/05/mysql/mysql-07-dan-xing-han-shu/">http://bfd2018.github.io/2022/06/05/mysql/mysql-07-dan-xing-han-shu/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">CoderXiong</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AF%87/">
+                                    <span class="chip bg-color">MySQL基础篇</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/zhifubao.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wx.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2022/06/05/mysql/mysql-07-dan-xing-han-shu/">
+                    <div class="card-image">
+                        
+                        <img src="https://xiong-test-srt.oss-cn-shenzhen.aliyuncs.com/typoraimages/002531RiPKv.jpg" class="responsive-img" alt="【MySQL_07】单行函数">
+                        
+                        <span class="card-title">【MySQL_07】单行函数</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/MySQL/" class="post-category">
+                                    MySQL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AF%87/">
+                        <span class="chip bg-color">MySQL基础篇</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/06/05/mysql/mysql-06-duo-biao-cha-xun/">
+                    <div class="card-image">
+                        
+                        <img src="https://xiong-test-srt.oss-cn-shenzhen.aliyuncs.com/typoraimages/wallhaven-9my8m1.jpg" class="responsive-img" alt="【MySQL_06】多表查询">
+                        
+                        <span class="card-title">【MySQL_06】多表查询</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/MySQL/" class="post-category">
+                                    MySQL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AF%87/">
+                        <span class="chip bg-color">MySQL基础篇</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE' || selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Hexo-Xiong<br />'
+            + '文章作者: CoderXiong<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <a href="/about" target="_blank">CoderXiong</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">252.5k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/BFD2018" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1351655382@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1351655382" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1351655382" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+
+        
+            <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7c405b5ffa810bbaa048f6a986ca94a5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+        
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <style>
+    #backTop{
+        margin-bottom: 110px;
+    }
+</style>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+    
+
+    <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7c405b5ffa810bbaa048f6a986ca94a5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: "6f359642"
+        });
+        daovoice('update');
+    </script>
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+    <script type="text/javascript" color="0,0,255"
+        pointColor="0,0,255" opacity='0.7'
+        zIndex="-1" count="99"
+        src="/libs/background/canvas-nest.js"></script>
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon-refresh.min.js" async="async"></script>
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+    <!-- 天气接口 -->
+    
+        <!-- 天气接口-->
+<script type="text/javascript">
+    WIDGET = { FID: '1tFpFZ5Mtj' }
+</script>
+<script type="text/javascript">
+    //只在桌面版网页启用特效
+    var windowWidth = $(window).width();
+    if (windowWidth > 768) {
+        document.write('<script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"><\/script>');
+    }
+</script>
+    
+
+</body>
+
+</html>
