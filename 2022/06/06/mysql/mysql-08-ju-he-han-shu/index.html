@@ -1,0 +1,1667 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="【MySQL_08】聚合函数, Hexo-Xiong">
+    <meta name="description" content="我们上一章讲到了 SQL 单行函数。实际上 SQL 函数还有一类，叫做聚合（或聚集、分组）函数，它是对一组数据进行汇总的函数，输入的是一组数据的集合，输出的是单个值。
+1. 聚合函数介绍什么是聚合函数？聚合函数作用于一组数据，并对一组数据返">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    
+
+    <title>【MySQL_08】聚合函数 | Hexo-Xiong</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Hexo-Xiong</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/journal" class="waves-effect waves-light">
+      
+      <i class="fa fa-book" style="zoom: 0.6;"></i>
+      
+      <span>日志</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/census" class="waves-effect waves-light">
+      
+      <i class="fa fa-layer-group" style="zoom: 0.6;"></i>
+      
+      <span>统计</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Medias</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/musics">
+          
+          <i class="fa-solid fa-music" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Musics</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/movies">
+          
+          <i class="fas fa-film" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Movies</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/mygallery">
+          
+          <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>myGallery</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Hexo-Xiong</div>
+        <div class="logo-desc">
+            
+            小熊同学是一名Java开发工程师，在编程的道路上孜孜不倦的追求技术成长，愿与诸位共同进步！
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/journal" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fa fa-book"></i>
+			
+			日志
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/census" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fa fa-layer-group"></i>
+			
+			统计
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			Medias
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/musics " style="margin-left:75px">
+				  
+				   <i class="fa fa-solid fa-music" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Musics</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/movies " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-film" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Movies</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/mygallery " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
+			      
+		          <span>myGallery</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/bfd2018/" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/bfd2018/" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    <meta name="referrer" content="no-referrer" />
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">【MySQL_08】聚合函数</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AF%87/">
+                                <span class="chip bg-color">MySQL基础篇</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/MySQL/" class="post-category">
+                                MySQL
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-06-06
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-06-06
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.6k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    10 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>我们上一章讲到了 SQL 单行函数。实际上 SQL 函数还有一类，叫做聚合（或聚集、分组）函数，它是对<br>一组数据进行汇总的函数，输入的是一组数据的集合，输出的是单个值。</p>
+<h2 id="1-聚合函数介绍"><a href="#1-聚合函数介绍" class="headerlink" title="1. 聚合函数介绍"></a>1. 聚合函数介绍</h2><p>什么是聚合函数？<br>聚合函数作用于一组数据，并对一组数据返回一个值。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654429682858-fc646d4b-6d26-432a-b007-d4540a3dd79e.png#clientId=ua1cf51b6-d91f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=399&amp;id=ua0e8ee34&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=614&amp;originWidth=984&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=91611&amp;status=done&amp;style=shadow&amp;taskId=u75c3cc7d-192b-4481-91cb-7c424a51047&amp;title=&amp;width=640" alt="image.png"><br><strong>聚合函数类型</strong></p>
+<ul>
+<li>AVG()</li>
+<li>SUM()</li>
+<li>MAX()</li>
+<li>MIN()</li>
+<li>COUNT()</li>
+</ul>
+<p><strong>聚合函数语法</strong><br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654429723388-56a53a7d-3c98-4cba-97b3-24f46cc6daf1.png#clientId=ua1cf51b6-d91f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=190&amp;id=uf8e61321&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=237&amp;originWidth=981&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=62001&amp;status=done&amp;style=shadow&amp;taskId=ua4438422-5125-4530-bf09-6a6be44cb35&amp;title=&amp;width=784.8" alt="image.png"><br>聚合函数不能嵌套调用。比如不能出现类似“AVG(SUM(字段名称))”形式的调用。</p>
+<h3 id="1-1-AVG和SUM函数"><a href="#1-1-AVG和SUM函数" class="headerlink" title="1.1 AVG和SUM函数"></a>1.1 AVG和SUM函数</h3><p>可以对 <strong>数值型数据</strong> 使用AVG 和 SUM 函数。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">MAX</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">MIN</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">SUM</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+    <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">FROM</span>   employees
+    <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">WHERE</span>  job_id <span class="token operator">LIKE</span> <span class="token string">'%REP%'</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">--------------+-------------+-------------+-------------+</span>
+<span class="token operator">|</span> <span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>  <span class="token operator">|</span> <span class="token function">MAX</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token function">MIN</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token function">SUM</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------+-------------+-------------+-------------+</span>
+<span class="token operator">|</span> <span class="token number">16127.112424</span> <span class="token operator">|</span>    <span class="token number">22410.26</span> <span class="token operator">|</span>    <span class="token number">11692.31</span> <span class="token operator">|</span>   <span class="token number">532194.71</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------+-------------+-------------+-------------+</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="1-2-MIN和MAX函数"><a href="#1-2-MIN和MAX函数" class="headerlink" title="1.2 MIN和MAX函数"></a>1.2 MIN和MAX函数</h3><p>可以对 <strong>任意数据类型</strong> 的数据使用 MIN 和 MAX 函数。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token function">MIN</span><span class="token punctuation">(</span>hire_date<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">MAX</span><span class="token punctuation">(</span>hire_date<span class="token punctuation">)</span>
+    <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">FROM</span>      employees<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------------+----------------+</span>
+<span class="token operator">|</span> <span class="token function">MIN</span><span class="token punctuation">(</span>hire_date<span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token function">MAX</span><span class="token punctuation">(</span>hire_date<span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------------+----------------+</span>
+<span class="token operator">|</span> <span class="token number">1987</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">17</span>     <span class="token operator">|</span> <span class="token number">2000</span><span class="token operator">-</span><span class="token number">04</span><span class="token operator">-</span><span class="token number">21</span>     <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------------+----------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.01</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="1-3-COUNT函数"><a href="#1-3-COUNT函数" class="headerlink" title="1.3 COUNT函数"></a>1.3 COUNT函数</h3><p>COUNT(*)返回表中记录总数，适用于 <strong>任意数据类型</strong> 。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span>
+    <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">FROM</span>      employees
+    <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">WHERE</span>  department_id <span class="token operator">=</span> <span class="token number">50</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">----------+</span>
+<span class="token operator">|</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+</span>
+<span class="token operator">|</span>       <span class="token number">45</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">----------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.01</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>COUNT(expr) 返回expr不为空的记录总数。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span>commission_pct<span class="token punctuation">)</span>
+    <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">FROM</span>   employees
+    <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">WHERE</span>  department_id <span class="token operator">=</span> <span class="token number">50</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-----------------------+</span>
+<span class="token operator">|</span> <span class="token function">COUNT</span><span class="token punctuation">(</span>commission_pct<span class="token punctuation">)</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------------------+</span>
+<span class="token operator">|</span>                     <span class="token number">0</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-----------------------+</span>
+<span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>问题：<strong>用count(*)，count(1)，count(列名)谁好呢?</strong><br>其实，对于MyISAM引擎的表是没有区别的。这种引擎内部有一计数器在维护着行数。<br>Innodb引擎的表用count(*),count(1)直接读行数，复杂度是O(n)，因为innodb真的要去数一遍。<br>但好于具体的count(列名)。</p>
+<p>问题：<strong>能不能使用count(列名)替换count(*)?</strong><br>不要使用 count(列名)来替代 count(<em>) ， count(</em>) 是 SQL92 定义的标准统计行数的语法，跟数<br>据库无关，跟 NULL 和非 NULL 无关。<br>说明：count(*)会统计值为 NULL 的行，而 count(列名)不会统计此列为 NULL 值的行。</p>
+<h2 id="2-GROUP-BY"><a href="#2-GROUP-BY" class="headerlink" title="2. GROUP BY"></a>2. GROUP BY</h2><h3 id="2-1-基本使用"><a href="#2-1-基本使用" class="headerlink" title="2.1 基本使用"></a>2.1 基本使用</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654436335711-53e8307d-5647-48b7-b6a5-be9b43126466.png#clientId=ua1cf51b6-d91f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=510&amp;id=u93f4788a&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=637&amp;originWidth=979&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=131238&amp;status=done&amp;style=shadow&amp;taskId=u09d8af49-c647-47f9-b69c-4d8f8a9fde6&amp;title=&amp;width=783.2" alt="image.png"><br>可以使用GROUP BY子句将表中的数据分成若干组</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token keyword">column</span><span class="token punctuation">,</span> group_function<span class="token punctuation">(</span><span class="token keyword">column</span><span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> <span class="token keyword">table</span>
+<span class="token punctuation">[</span><span class="token keyword">WHERE</span>  condition<span class="token punctuation">]</span>
+<span class="token punctuation">[</span><span class="token keyword">GROUP</span> <span class="token keyword">BY</span>   group_by_expression<span class="token punctuation">]</span>
+<span class="token punctuation">[</span><span class="token keyword">ORDER</span> <span class="token keyword">BY</span>   <span class="token keyword">column</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>明确：WHERE一定放在FROM后面</strong><br>在SELECT列表中所有未包含在组函数中的列都应该包含在 GROUP BY子句中</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span>   department_id<span class="token punctuation">,</span> <span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+    <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">FROM</span>     employees
+    <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> department_id <span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------------+--------------+</span>
+<span class="token operator">|</span> department_id <span class="token operator">|</span> <span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>  <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------+--------------+</span>
+<span class="token operator">|</span>          <span class="token boolean">NULL</span> <span class="token operator">|</span> <span class="token number">13641.020000</span> <span class="token operator">|</span>
+<span class="token operator">|</span>            <span class="token number">10</span> <span class="token operator">|</span>  <span class="token number">8574.350000</span> <span class="token operator">|</span>
+<span class="token operator">|</span>            <span class="token number">20</span> <span class="token operator">|</span> <span class="token number">18512.815000</span> <span class="token operator">|</span>
+<span class="token operator">|</span>            <span class="token number">30</span> <span class="token operator">|</span>  <span class="token number">8087.178333</span> <span class="token operator">|</span>
+<span class="token operator">|</span>            <span class="token number">40</span> <span class="token operator">|</span> <span class="token number">12666.670000</span> <span class="token operator">|</span>
+<span class="token operator">|</span>            <span class="token number">50</span> <span class="token operator">|</span>  <span class="token number">6772.874889</span> <span class="token operator">|</span>
+<span class="token operator">|</span>            <span class="token number">60</span> <span class="token operator">|</span> <span class="token number">12861.538000</span> <span class="token operator">|</span>
+<span class="token operator">|</span>            <span class="token number">70</span> <span class="token operator">|</span> <span class="token number">19487.170000</span> <span class="token operator">|</span>
+<span class="token operator">|</span>            <span class="token number">80</span> <span class="token operator">|</span> <span class="token number">17458.213529</span> <span class="token operator">|</span>
+<span class="token operator">|</span>            <span class="token number">90</span> <span class="token operator">|</span> <span class="token number">37675.196667</span> <span class="token operator">|</span>
+<span class="token operator">|</span>           <span class="token number">100</span> <span class="token operator">|</span> <span class="token number">16758.968333</span> <span class="token operator">|</span>
+<span class="token operator">|</span>           <span class="token number">110</span> <span class="token operator">|</span> <span class="token number">19779.475000</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">---------------+--------------+</span>
+<span class="token number">12</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.04</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>包含在 GROUP BY 子句中的列不必包含在SELECT 列表中</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span>   <span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+    <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">FROM</span>     employees
+    <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> department_id <span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">--------------+</span>
+<span class="token operator">|</span> <span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>  <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------+</span>
+<span class="token operator">|</span> <span class="token number">13641.020000</span> <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">8574.350000</span> <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">18512.815000</span> <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">8087.178333</span> <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">12666.670000</span> <span class="token operator">|</span>
+<span class="token operator">|</span>  <span class="token number">6772.874889</span> <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">12861.538000</span> <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">19487.170000</span> <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">17458.213529</span> <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">37675.196667</span> <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">16758.968333</span> <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token number">19779.475000</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">--------------+</span>
+<span class="token number">12</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="2-2-使用多个列分组"><a href="#2-2-使用多个列分组" class="headerlink" title="2.2 使用多个列分组"></a>2.2 使用多个列分组</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654436438423-e41b763a-00d2-4675-b580-d4c60a7b1c6c.png#clientId=ua1cf51b6-d91f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=485&amp;id=ubeb73817&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=606&amp;originWidth=999&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=179082&amp;status=done&amp;style=shadow&amp;taskId=uf08ee011-bfb8-4e69-a72c-01243983fc1&amp;title=&amp;width=799.2" alt="image.png"></p>
+<pre class="line-numbers language-plsql" data-language="plsql"><code class="language-plsql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span>   department_id dept_id<span class="token punctuation">,</span> job_id<span class="token punctuation">,</span> <span class="token function">SUM</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+<span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">FROM</span>     employees
+<span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> department_id<span class="token punctuation">,</span> job_id <span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------+------------+-------------+</span>
+| dept_id | job_id     | <span class="token function">SUM</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> |
+<span class="token operator">+</span><span class="token comment">---------+------------+-------------+</span>
+|      <span class="token number">90</span> | AD_PRES    |    <span class="token number">46769.21</span> |
+|      <span class="token number">90</span> | AD_VP      |    <span class="token number">66256.38</span> |
+|      <span class="token number">60</span> | IT_PROG    |    <span class="token number">64307.69</span> |
+|     <span class="token number">100</span> | FI_MGR     |    <span class="token number">23384.60</span> |
+|     <span class="token number">100</span> | FI_ACCOUNT |    <span class="token number">77169.21</span> |
+|      <span class="token number">30</span> | PU_MAN     |    <span class="token number">21435.89</span> |
+|      <span class="token number">30</span> | PU_CLERK   |    <span class="token number">27087.18</span> |
+|      <span class="token number">50</span> | ST_MAN     |    <span class="token number">70933.32</span> |
+|      <span class="token number">50</span> | ST_CLERK   |   <span class="token number">108543.55</span> |
+|      <span class="token number">80</span> | SA_MAN     |   <span class="token number">118871.72</span> |
+|      <span class="token number">80</span> | SA_REP     |   <span class="token number">474707.54</span> |
+|    <span class="token keyword">NULL</span> | SA_REP     |    <span class="token number">13641.02</span> |
+|      <span class="token number">50</span> | SH_CLERK   |   <span class="token number">125302.50</span> |
+|      <span class="token number">10</span> | AD_ASST    |     <span class="token number">8574.35</span> |
+|      <span class="token number">20</span> | MK_MAN     |    <span class="token number">25333.32</span> |
+|      <span class="token number">20</span> | MK_REP     |    <span class="token number">11692.31</span> |
+|      <span class="token number">40</span> | HR_REP     |    <span class="token number">12666.67</span> |
+|      <span class="token number">70</span> | PR_REP     |    <span class="token number">19487.17</span> |
+|     <span class="token number">110</span> | AC_MGR     |    <span class="token number">23384.60</span> |
+|     <span class="token number">110</span> | AC_ACCOUNT |    <span class="token number">16174.35</span> |
+<span class="token operator">+</span><span class="token comment">---------+------------+-------------+</span>
+<span class="token number">20</span> rows <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="2-3-GROUP-BY中使用WITH-ROLLUP"><a href="#2-3-GROUP-BY中使用WITH-ROLLUP" class="headerlink" title="2.3 GROUP BY中使用WITH ROLLUP"></a>2.3 GROUP BY中使用WITH ROLLUP</h3><p>使用<code>WITH ROLLUP</code>关键字之后，在所有查询出的分组记录之后增加一条记录，该记录计算查询出的所<br>有记录的总和，即统计记录数量。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> department_id<span class="token punctuation">,</span><span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> department_id <span class="token operator">&gt;</span> <span class="token number">80</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> department_id <span class="token keyword">WITH ROLLUP</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>注意：<br>当使用ROLLUP时，不能同时使用ORDER BY子句进行结果排序，即ROLLUP和ORDER BY是互相排斥的。</p>
+</blockquote>
+<h2 id="3-HAVING"><a href="#3-HAVING" class="headerlink" title="3. HAVING"></a>3. HAVING</h2><h3 id="3-1-基本使用"><a href="#3-1-基本使用" class="headerlink" title="3.1 基本使用"></a>3.1 基本使用</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654436516940-2c1273a3-037e-4fab-9071-2ed45e0c141b.png#clientId=ua1cf51b6-d91f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=492&amp;id=uf00c46b4&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=615&amp;originWidth=1024&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=97390&amp;status=done&amp;style=shadow&amp;taskId=ud26f60e2-3b26-4d47-ae32-76c13d5b370&amp;title=&amp;width=819.2" alt="image.png"><br>过滤分组：HAVING子句</p>
+<ol>
+<li>行已经被分组。</li>
+<li>使用了聚合函数。</li>
+<li>满足HAVING 子句中条件的分组将被显示。</li>
+<li>HAVING 不能单独使用，必须要跟 GROUP BY 一起使用。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654436565579-e3d87b6b-d350-432f-b7fd-6e85c54040d1.png#clientId=ua1cf51b6-d91f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=186&amp;id=uf674dff0&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=233&amp;originWidth=728&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=79877&amp;status=done&amp;style=shadow&amp;taskId=u490b4e60-a087-4910-a6a6-fbc72e9038b&amp;title=&amp;width=582.4" alt="image.png"><pre class="line-numbers language-plsql" data-language="plsql"><code class="language-plsql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span>   department_id<span class="token punctuation">,</span> <span class="token function">MAX</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+<span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">FROM</span>     employees
+<span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> department_id
+<span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">HAVING</span>   <span class="token function">MAX</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span><span class="token operator">&gt;</span><span class="token number">10000</span> <span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">---------------+-------------+</span>
+| department_id | <span class="token function">MAX</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> |
+<span class="token operator">+</span><span class="token comment">---------------+-------------+</span>
+|          <span class="token keyword">NULL</span> |    <span class="token number">13641.02</span> |
+|            <span class="token number">20</span> |    <span class="token number">25333.32</span> |
+|            <span class="token number">30</span> |    <span class="token number">21435.89</span> |
+|            <span class="token number">40</span> |    <span class="token number">12666.67</span> |
+|            <span class="token number">50</span> |    <span class="token number">15979.48</span> |
+|            <span class="token number">60</span> |    <span class="token number">17538.46</span> |
+|            <span class="token number">70</span> |    <span class="token number">19487.17</span> |
+|            <span class="token number">80</span> |    <span class="token number">27282.03</span> |
+|            <span class="token number">90</span> |    <span class="token number">46769.21</span> |
+|           <span class="token number">100</span> |    <span class="token number">23384.60</span> |
+|           <span class="token number">110</span> |    <span class="token number">23384.60</span> |
+<span class="token operator">+</span><span class="token comment">---------------+-------------+</span>
+<span class="token number">11</span> rows <span class="token keyword">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+<p>非法使用聚合函数 ： 不能在 WHERE 子句中使用聚合函数。 如下：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">SELECT</span>   department_id<span class="token punctuation">,</span> <span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+    <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">FROM</span>     employees
+    <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">WHERE</span>    <span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">8000</span>
+    <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> department_id<span class="token punctuation">;</span>
+ERROR <span class="token number">1111</span> <span class="token punctuation">(</span>HY000<span class="token punctuation">)</span>: Invalid <span class="token keyword">use</span> <span class="token keyword">of</span> <span class="token keyword">group</span> <span class="token keyword">function</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="3-2-WHERE和HAVING的对比"><a href="#3-2-WHERE和HAVING的对比" class="headerlink" title="3.2 WHERE和HAVING的对比"></a>3.2 WHERE和HAVING的对比</h3><p>区别 1 ：<strong>WHERE 可以直接使用表中的字段作为筛选条件，但不能使用分组中的计算函数作为筛选条件；</strong><br><strong>HAVING 必须要与 GROUP BY 配合使用，可以把分组计算的函数和分组字段作为筛选条件。</strong></p>
+<blockquote>
+<p>这决定了，在需要对数据进行分组统计的时候，HAVING 可以完成 WHERE 不能完成的任务。这是因为，在查询语法结构中，WHERE 在 GROUP BY 之前，所以无法对分组结果进行筛选。HAVING 在 GROUP BY 之后，可以使用分组字段和分组中的计算函数，对分组的结果集进行筛选，这个功能是 WHERE 无法完成的。另外，WHERE排除的记录不再包括在分组中。</p>
+</blockquote>
+<p>区别 2 ：<strong>如果需要通过连接从关联表中获取需要的数据，WHERE 是先筛选后连接，而 HAVING 是先连接后筛选。</strong> </p>
+<blockquote>
+<p>这一点，就决定了在关联查询中，WHERE 比 HAVING 更高效。因为 WHERE 可以先筛选，用一个筛选后的较小数据集和关联表进行连接，这样占用的资源比较少，执行效率也比较高。HAVING 则需要先把结果集准备好，也就是用未被筛选的数据集进行关联，然后对这个大的数据集进行筛选，这样占用的资源就比较多，执行效率也较低。</p>
+</blockquote>
+<p><strong>小结如下：</strong><br><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654436694120-426809b6-6fbd-4db8-a381-144f576fb825.png#clientId=ua1cf51b6-d91f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=151&amp;id=u0fd72cac&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=189&amp;originWidth=1031&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=46357&amp;status=done&amp;style=shadow&amp;taskId=u091e38a3-16b8-4486-8ba9-397928ef05e&amp;title=&amp;width=824.8" alt="image.png"><br><strong>开发中的选择：</strong><br>WHERE 和 HAVING 也不是互相排斥的，我们可以在一个查询里面同时使用 WHERE 和 HAVING。包含分组统计函数的条件用 HAVING，普通条件用 WHERE。这样，我们就既利用了 WHERE 条件的高效快速，又发挥了 HAVING 可以使用包含分组统计函数的查询条件的优点。当数据量特别大的时候，运行效率会有很大的差别。</p>
+<h2 id="4-SELECT的执行过程"><a href="#4-SELECT的执行过程" class="headerlink" title="4. SELECT的执行过程"></a>4. SELECT的执行过程</h2><h3 id="4-1-查询的结构"><a href="#4-1-查询的结构" class="headerlink" title="4.1 查询的结构"></a>4.1 查询的结构</h3><pre class="line-numbers language-none"><code class="language-none">#方式1：
+SELECT ...,....,...
+FROM ...,...,....
+WHERE 多表的连接条件
+AND 不包含组函数的过滤条件
+GROUP BY ...,...
+HAVING 包含组函数的过滤条件
+ORDER BY ... ASC/DESC
+LIMIT ...,...
+
+#方式2：
+SELECT ...,....,...
+FROM ... JOIN ... 
+ON 多表的连接条件
+JOIN ...
+ON ...
+WHERE 不包含组函数的过滤条件
+AND/OR 不包含组函数的过滤条件
+GROUP BY ...,...
+HAVING 包含组函数的过滤条件
+ORDER BY ... ASC/DESC
+LIMIT ...,...
+
+#其中：
+#（1）from：从哪些表中筛选
+#（2）on：关联多表查询时，去除笛卡尔积
+#（3）where：从表中筛选的条件
+#（4）group by：分组依据
+#（5）having：在统计结果中再次筛选
+#（6）order by：排序
+#（7）limit：分页<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="4-2-SELECT执行顺序"><a href="#4-2-SELECT执行顺序" class="headerlink" title="4.2 SELECT执行顺序"></a>4.2 SELECT执行顺序</h3><p>你需要记住 SELECT 查询时的两个顺序：<br><strong>1. 关键字的顺序是不能颠倒的：</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token keyword">FROM</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token keyword">WHERE</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token keyword">HAVING</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token keyword">LIMIT</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>2 .**SELECT 语句的执行顺序 **（在 MySQL 和 Oracle 中，SELECT 执行顺序基本相同）：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">FROM</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">WHERE</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">HAVING</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">SELECT</span> 的字段 <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">DISTINCT</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token keyword">LIMIT</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/1559629/1654436804567-7b31cefa-e8d9-4b14-903f-5f38d1615ae3.png#clientId=ua1cf51b6-d91f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=381&amp;id=ub639eb77&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=607&amp;originWidth=749&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=134914&amp;status=done&amp;style=shadow&amp;taskId=udd75c330-597f-4db5-b893-48a18c6524d&amp;title=&amp;width=470.20001220703125" alt="image.png"><br>比如你写了一个 SQL 语句，那么它的关键字顺序和执行顺序是下面这样的：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token keyword">DISTINCT</span> player_id<span class="token punctuation">,</span> player_name<span class="token punctuation">,</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">as</span> num <span class="token comment"># 顺序 5</span>
+<span class="token keyword">FROM</span> player <span class="token keyword">JOIN</span> team <span class="token keyword">ON</span> player<span class="token punctuation">.</span>team_id <span class="token operator">=</span> team<span class="token punctuation">.</span>team_id <span class="token comment"># 顺序 1</span>
+<span class="token keyword">WHERE</span> height <span class="token operator">&gt;</span> <span class="token number">1.80</span> <span class="token comment"># 顺序 2</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> player<span class="token punctuation">.</span>team_id <span class="token comment"># 顺序 3</span>
+<span class="token keyword">HAVING</span> num <span class="token operator">&gt;</span> <span class="token number">2</span> <span class="token comment"># 顺序 4</span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> num <span class="token keyword">DESC</span> <span class="token comment"># 顺序 6</span>
+<span class="token keyword">LIMIT</span> <span class="token number">2</span> <span class="token comment"># 顺序 7</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在 SELECT 语句执行这些步骤的时候，每个步骤都会产生一个虚拟表，然后将这个虚拟表传入下一个步骤中作为输入。需要注意的是，这些步骤隐含在 SQL 的执行过程中，对于我们来说是不可见的。</p>
+<h3 id="4-3-SQL-的执行原理"><a href="#4-3-SQL-的执行原理" class="headerlink" title="4.3 SQL 的执行原理"></a>4.3 SQL 的执行原理</h3><p>SELECT 是先执行 FROM 这一步的。在这个阶段，如果是多张表联查，还会经历下面的几个步骤：</p>
+<ol>
+<li>首先先通过 CROSS JOIN 求笛卡尔积，相当于得到虚拟表 vt（virtual table）1-1；</li>
+<li>通过 ON 进行筛选，在虚拟表 vt1-1 的基础上进行筛选，得到虚拟表 vt1-2；</li>
+<li>添加外部行。如果我们使用的是左连接、右链接或者全连接，就会涉及到外部行，也就是在虚拟表 vt1-2 的基础上增加外部行，得到虚拟表 vt1-3。<br>当然如果我们操作的是两张以上的表，还会重复上面的步骤，直到所有表都被处理完为止。这个过程得到是我们的原始数据。</li>
+</ol>
+<p>当我们拿到了查询数据表的原始数据，也就是最终的虚拟表 vt1，就可以在此基础上再进行 WHERE 阶段。在这个阶段中，会根据 vt1 表的结果进行筛选过滤，得到虚拟表 vt2。<br>然后进入第三步和第四步，也就是 GROUP 和 HAVING 阶段。在这个阶段中，实际上是在虚拟表 vt2 的基础上进行分组和分组过滤，得到中间的虚拟表 vt3 和 vt4。<br>当我们完成了条件筛选部分之后，就可以筛选表中提取的字段，也就是进入到 SELECT 和 DISTINCT阶段。<br>首先在 SELECT 阶段会提取想要的字段，然后在 DISTINCT 阶段过滤掉重复的行，分别得到中间的虚拟表vt5- 1 和 vt5- 2 。<br>当我们提取了想要的字段数据之后，就可以按照指定的字段进行排序，也就是 ORDER BY 阶段，得到虚拟表 vt6。<br>最后在 vt6 的基础上，取出指定行的记录，也就是 LIMIT 阶段，得到最终的结果，对应的是虚拟表vt7。<br>当然我们在写 SELECT 语句的时候，不一定存在所有的关键字，相应的阶段就会省略。<br>同时因为 SQL 是一门类似英语的结构化查询语言，所以我们在写 SELECT 语句的时候，还要注意相应的关键字顺序， <strong>所谓底层运行的原理，就是我们刚才讲到的执行顺序。</strong></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">CoderXiong</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://bfd2018.github.io/2022/06/06/mysql/mysql-08-ju-he-han-shu/">http://bfd2018.github.io/2022/06/06/mysql/mysql-08-ju-he-han-shu/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">CoderXiong</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AF%87/">
+                                    <span class="chip bg-color">MySQL基础篇</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/zhifubao.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wx.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/06/06/mysql/mysql-09-zi-cha-xun/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="【MySQL_09】子查询">
+                        
+                        <span class="card-title">【MySQL_09】子查询</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-06
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/MySQL/" class="post-category">
+                                    MySQL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AF%87/">
+                        <span class="chip bg-color">MySQL基础篇</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/06/05/mysql/mysql-07-dan-xing-han-shu/">
+                    <div class="card-image">
+                        
+                        <img src="https://xiong-test-srt.oss-cn-shenzhen.aliyuncs.com/typoraimages/002531RiPKv.jpg" class="responsive-img" alt="【MySQL_07】单行函数">
+                        
+                        <span class="card-title">【MySQL_07】单行函数</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/MySQL/" class="post-category">
+                                    MySQL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AF%87/">
+                        <span class="chip bg-color">MySQL基础篇</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE' || selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Hexo-Xiong<br />'
+            + '文章作者: CoderXiong<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <a href="/about" target="_blank">CoderXiong</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">257.6k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/BFD2018" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1351655382@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1351655382" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1351655382" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+
+        
+            <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7c405b5ffa810bbaa048f6a986ca94a5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+        
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <style>
+    #backTop{
+        margin-bottom: 110px;
+    }
+</style>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+    
+
+    <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7c405b5ffa810bbaa048f6a986ca94a5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: "6f359642"
+        });
+        daovoice('update');
+    </script>
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+    <script type="text/javascript" color="0,0,255"
+        pointColor="0,0,255" opacity='0.7'
+        zIndex="-1" count="99"
+        src="/libs/background/canvas-nest.js"></script>
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon-refresh.min.js" async="async"></script>
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+    <!-- 天气接口 -->
+    
+        <!-- 天气接口-->
+<script type="text/javascript">
+    WIDGET = { FID: '1tFpFZ5Mtj' }
+</script>
+<script type="text/javascript">
+    //只在桌面版网页启用特效
+    var windowWidth = $(window).width();
+    if (windowWidth > 768) {
+        document.write('<script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"><\/script>');
+    }
+</script>
+    
+
+</body>
+
+</html>
