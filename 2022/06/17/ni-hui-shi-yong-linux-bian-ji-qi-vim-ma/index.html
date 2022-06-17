@@ -1,0 +1,1660 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="你会使用 Linux 编辑器 vim 吗?, Hexo-Xiong">
+    <meta name="description" content="
+首先我们先理清楚一个概念：编辑器和编译器和调试器！
+
+
+⭐️vim：是一款编辑器，只负责写代码；相当于 windows 的记事本；
+
+⭐️gcc：是一款编译器，只负责程序的翻译；
+
+⭐️gdb：是一款调试器，只负责程序的调试
+
+
+
+
+而在">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    
+
+    <title>你会使用 Linux 编辑器 vim 吗? | Hexo-Xiong</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Hexo-Xiong</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/journal" class="waves-effect waves-light">
+      
+      <i class="fa fa-book" style="zoom: 0.6;"></i>
+      
+      <span>日志</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/census" class="waves-effect waves-light">
+      
+      <i class="fa fa-layer-group" style="zoom: 0.6;"></i>
+      
+      <span>统计</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Medias</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/musics">
+          
+          <i class="fa-solid fa-music" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Musics</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/movies">
+          
+          <i class="fas fa-film" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Movies</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/mygallery">
+          
+          <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>myGallery</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Hexo-Xiong</div>
+        <div class="logo-desc">
+            
+            小熊同学是一名Java开发工程师，在编程的道路上孜孜不倦的追求技术成长，愿与诸位共同进步！
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/journal" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fa fa-book"></i>
+			
+			日志
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/census" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fa fa-layer-group"></i>
+			
+			统计
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			Medias
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/musics " style="margin-left:75px">
+				  
+				   <i class="fa fa-solid fa-music" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Musics</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/movies " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-film" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Movies</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/mygallery " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
+			      
+		          <span>myGallery</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/bfd2018/" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/bfd2018/" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    <meta name="referrer" content="no-referrer" />
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">你会使用 Linux 编辑器 vim 吗?</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Linux%E7%BC%96%E8%BE%91%E5%99%A8/">
+                                <span class="chip bg-color">Linux编辑器</span>
+                            </a>
+                        
+                            <a href="/tags/Vim/">
+                                <span class="chip bg-color">Vim</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Vim/" class="post-category">
+                                Vim
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-06-17
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-06-17
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    7 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>首先我们先理清楚一个概念：<strong>编辑器</strong>和<strong>编译器</strong>和<strong>调试器</strong>！</p>
+</blockquote>
+<ul>
+<li><p>⭐️vim：是一款编辑器，只负责写代码；相当于 windows 的记事本；</p>
+</li>
+<li><p>⭐️gcc：是一款编译器，只负责程序的翻译；</p>
+</li>
+<li><p>⭐️gdb：是一款调试器，只负责程序的调试</p>
+</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1d34a32d7e474fd3a1c2e87f27fb7c1f~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<blockquote>
+<p>而在我们在用 VS 写 C 代码的时候，这些是全都在 VS 编译器上实现的；因为 VS 是集成开发环境！</p>
+</blockquote>
+<h3 id="1-vim-的使用学习"><a href="#1-vim-的使用学习" class="headerlink" title="1. vim 的使用学习"></a>1. vim 的使用学习</h3><h2 id="1-1-vim-简介："><a href="#1-1-vim-简介：" class="headerlink" title="1.1 vim 简介："></a><strong>1.1 vim 简介：</strong></h2><blockquote>
+<p>vim 是一个功能强大的多模式编辑器， 是 Linux/UNIX 上最常用的文本编辑器， 它的作用是建立、编辑、显示文本文件。Vim 没有菜单，只有命令。</p>
+</blockquote>
+<ul>
+<li><p>⭐️命令模式（默认）：输入的任何内容，都被当做命令；</p>
+</li>
+<li><p>⭐️插入模式；</p>
+</li>
+<li><p>⭐️低行模式；</p>
+</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/90a39c6aaf064243b6a79577cae1c959~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<blockquote>
+<p><strong>总结</strong>：任何模式互相切换，都可以先 Esc 切换到命令模式！</p>
+</blockquote>
+<h2 id="1-2-命令模式下的常用命令"><a href="#1-2-命令模式下的常用命令" class="headerlink" title="1.2&nbsp;命令模式下的常用命令"></a><strong>1.2&nbsp;命令模式下的常用命令</strong></h2><p><strong>🥅插入命令</strong></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e8d4369fa02648cfb055a620ebf0f005~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<blockquote>
+<p>对于小写的 aio：a 代表在当前光标后插入；i 代表在当前光标前插入；o 在光标下一行插入 对于大写的 AIO：A 代表在当前光标所在行的行尾插入；I 代表在当前光标所在行的行首插入；O 代表在当前光标所在行的上一行进行插入；</p>
+</blockquote>
+<h3 id="🥅-定位命令"><a href="#🥅-定位命令" class="headerlink" title="🥅&nbsp;定位命令"></a>🥅&nbsp;定位命令</h3><p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5343bb45134d43fab4045929cf3f9593~tplv-k3u1fbpfcp-watermark.image" alt="image.png"></p>
+<ul>
+<li><p>首先 shift+: 进入低行模式，然后输入 set nu 就可以在前面加上行号，set nonu 就可以取消行号；</p>
+</li>
+<li><p>GG 跳到最后一行的开头，gg 回到第一行的开头；</p>
+</li>
+<li><p>跳到指定的行：nG 或者: n</p>
+</li>
+<li><p>$ 移至到当前光标所在的行尾，0 移至到当前光标所在的行首</p>
+</li>
+</ul>
+<blockquote>
+<p>补充：b 往前找，w 往后找，并且每次跳过一个单词；</p>
+</blockquote>
+<blockquote>
+<p>补充：hjkl 对应着左移、下移、上移、右移；也可以用上下左右键来移动；</p>
+</blockquote>
+<blockquote>
+<p>补充：L 是移动到本界面的最后一行；</p>
+</blockquote>
+<h3 id="🥅-删除命令"><a href="#🥅-删除命令" class="headerlink" title="🥅 删除命令"></a>🥅 删除命令</h3><ul>
+<li><p>x删除光标所在处字符，每次删除一个字符；</p>
+</li>
+<li><p>nx 删除光标所在处后 n 个字符，nX 删除光标所在处前 n 个字符，n 是几就删除光标后几个字符；</p>
+</li>
+<li><p>dd 删除光标所在的这一行；</p>
+</li>
+<li><p>D 删除光标所在处到这一行的行尾位置；</p>
+</li>
+<li><p>ndd 从光标所在行算起，n 是几就删除后面的几行；</p>
+</li>
+<li><p>dG 删除光标所在的这一行到整个文件的末尾处；</p>
+</li>
+<li><p><code>:n1,n2d</code> 删除指定范围的行；</p>
+</li>
+<li><p>u 如果误删除，可以利用 u 进行回退恢复，相当于 windows 里的 ctrl+z 的作用；</p>
+</li>
+</ul>
+<blockquote>
+<p>补充：shift ~ 可以实现大小写之间的转换；</p>
+</blockquote>
+<h3 id="🥅复制和剪贴"><a href="#🥅复制和剪贴" class="headerlink" title="🥅复制和剪贴"></a><strong>🥅复制和</strong>剪贴</h3><blockquote>
+<p>yy &nbsp;复制当前行，nyy &nbsp;复制当前行以下 n 行；然后 p 就可以复制到当前光标处的下一行，P 复制到当前光标处的上一行；</p>
+</blockquote>
+<blockquote>
+<p>dd &nbsp;剪切当前行，ndd &nbsp;剪切当前行以下 n 行；然后 p 就可以复制到当前光标处的下一行，P 复制到当前光标处的上一行；</p>
+</blockquote>
+<h3 id="🥅搜索和搜索替换命令"><a href="#🥅搜索和搜索替换命令" class="headerlink" title="🥅搜索和搜索替换命令"></a><strong>🥅</strong>搜索和搜索替换命令</h3><ul>
+<li><p><code>:%s/old/new</code> &nbsp;全文替换指定字符串，%s 代表整个全文，把 old 字符串替换成 new 字符串；</p>
+</li>
+<li><p><code>:n1,n2s/old/new/g</code> &nbsp;全文替换指定字符串，n1 是起始行，n2 是终止行；把 old 字符串替换成 new 字符串；g 代表不询问，也可以用 c 代表询问；</p>
+</li>
+<li><p>r &nbsp;取代光标所在处的一个字符；后面在输入相当于在光标处后面直接插入；</p>
+</li>
+<li><p>R &nbsp;从光标所在处开始替换字符，直到整个行被替换完，后面在输入相当于在光标处后面直接插入，按 ESC 结束；</p>
+</li>
+<li><p>u&nbsp; 取消上一步操作</p>
+</li>
+</ul>
+<h3 id="🥅-保存和退出命令"><a href="#🥅-保存和退出命令" class="headerlink" title="🥅&nbsp;保存和退出命令"></a><strong>🥅</strong>&nbsp;<strong>保存和退出命令</strong></h3><ul>
+<li><p><code>:w!</code>&nbsp; 保存修改</p>
+</li>
+<li><p><code>:q!</code>&nbsp;&nbsp;不保存修改退出</p>
+</li>
+<li><p><code>:wq!</code> &nbsp;&nbsp;保存修改并退出；或者用 x!，在或者用 ESC+shift+ZZ；</p>
+</li>
+<li><p><code>:w</code> 文件名；表示把当前文件的内容另存到指定文件里；相当于备份；</p>
+</li>
+</ul>
+<h3 id="2-vim-使用技巧"><a href="#2-vim-使用技巧" class="headerlink" title="2. vim 使用技巧"></a>2. vim 使用技巧</h3><h2 id="2-1-简单技巧"><a href="#2-1-简单技巧" class="headerlink" title="2.1 简单技巧"></a>2.1 简单技巧</h2><h3 id="🥅导入命令执行结果到文件里-r-命令"><a href="#🥅导入命令执行结果到文件里-r-命令" class="headerlink" title="🥅导入命令执行结果到文件里&nbsp; :r&nbsp;! 命令"></a>🥅导入命令执行结果到文件里&nbsp; :r&nbsp;! 命令</h3><ul>
+<li><code>r:</code> 代表写入；! 命令：表示命令执行的结果，就相当于我们在终端里直接输入命令一样</li>
+</ul>
+<blockquote>
+<p>⭐️比如：我们正在编写一个 111 文件 (vim 111)，我们想要把当前的时间写入进来；我们需要退出当前编辑的文件，然后在终端输入 date 命令，把结果复制，然后在 vim 111 进入文件，进行粘贴，想一想都麻烦！</p>
+</blockquote>
+<blockquote>
+<p>⭐️但是如果我们在当前编辑的 111 文件内，直接执行:r!date；就能把时间直接打印到当前光标处！</p>
+</blockquote>
+<h3 id="🥅连续行注释"><a href="#🥅连续行注释" class="headerlink" title="🥅连续行注释"></a>🥅连续行注释</h3><ul>
+<li><code>:n1,n2s/^/#/g</code></li>
+</ul>
+<blockquote>
+<p>⭐️对于 Linux 来说，注释符是 #；这里和搜索替换的用法很相似，我们就先解读一下：把 n1 起始行和 n2 终止行里面的内容进行注释 (#)；^(尖角号) 代表移到首行字符并进入插入模式；# 是把注释符 #插入进去；g 代表不询问；</p>
+</blockquote>
+<ul>
+<li><code>:n1,n2s/^#//g</code></li>
+</ul>
+<blockquote>
+<p>⭐️表示把首行的注释符 #取消掉；相当于把首行的 #替换成空；</p>
+</blockquote>
+<h2 id="2-2-快捷键的定义"><a href="#2-2-快捷键的定义" class="headerlink" title="2.2&nbsp;快捷键的定义"></a>2.2&nbsp;快捷键的定义</h2><h3 id="🥅定义快捷键-map-快捷键-触发命令"><a href="#🥅定义快捷键-map-快捷键-触发命令" class="headerlink" title="🥅定义快捷键&nbsp; :map&nbsp; 快捷键 触发命令"></a><strong>🥅</strong>定义快捷键&nbsp; :map&nbsp; 快捷键 触发命令</h3><blockquote>
+<p>例：我们想进行注释 (#)：1. 按 0 移至首行&nbsp; 2.i 插入&nbsp; &nbsp;3.# 注释&nbsp; &nbsp;4.退回到命令模式；我们需要四步；但是如果我们自己定义快捷键呢？只需要一步！</p>
+</blockquote>
+<ul>
+<li><code>:map ^P I#</code></li>
+</ul>
+<blockquote>
+<p>⭐️我们利用 map 进行快捷键的定义，^ 并不是 ctr+6，而是 ctrl+v+p；I 代表行首并进入插入模式；# 代表插入的是 #；成功插入后退回到命令模式；</p>
+</blockquote>
+<blockquote>
+<p>⭐️这样以后再注释，直接 ctrl+p，就可以了，感兴趣的小伙伴快快操作起来吧！</p>
+</blockquote>
+<ul>
+<li><code>:map ^B 0x</code></li>
+</ul>
+<blockquote>
+<p>⭐️有了首行插入注释符 #的快捷键，不妨在定义一个，删除首字符的快捷键；0 代表移动到首行，x 表示删除一个字符；</p>
+</blockquote>
+<blockquote>
+<p>⭐️以后想要直接删除首行的第一个字符，直接 ctrl+b 就可以了；</p>
+</blockquote>
+<h3 id="🥅替换快捷键-ab"><a href="#🥅替换快捷键-ab" class="headerlink" title="🥅替换快捷键:ab"></a><strong>🥅</strong>替换快捷键:ab</h3><blockquote>
+<p>例：我们经常要输入自己的邮箱，但是每次那么长太麻烦了；所以我们不妨定义一个快捷键来代替我们的邮箱；这就需要 ab 命令；</p>
+</blockquote>
+<ul>
+<li><code>:ab mymail 1870298470@qq.com</code></li>
+</ul>
+<blockquote>
+<p>⭐️这样我们在输入邮箱直接输 mymail 回车，就可以替换成 <a href="mailto:1870298470@qq.com">1870298470@qq.com</a>，是不是很方便；</p>
+</blockquote>
+<blockquote>
+<p><strong>注意：对于我们当前定义的快捷键都是临时生效的，要想永久生效需保存在：文件.vimrc中</strong></p>
+</blockquote>
+<blockquote>
+<p>⭐️对于root 用户：&nbsp;写入 / root/.vimrc 当中</p>
+</blockquote>
+<blockquote>
+<p>⭐️对于普通用户：写入/home/username/.vimrc</p>
+</blockquote>
+<h3 id="3-简单-vim-配置（重点）"><a href="#3-简单-vim-配置（重点）" class="headerlink" title="3. 简单 vim 配置（重点）"></a>3. 简单 vim 配置（重点）</h3><ul>
+<li><strong>首先让大家看一下我的 vim 配置后的结果</strong></li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/23653e090ba049e89c937e393e03aee9~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<blockquote>
+<p>配置过后是不是有点像 VS 的环境？不妨打开自己的 vim 看看是不是这样的效果！</p>
+</blockquote>
+<p>基本配置</p>
+<blockquote>
+<p>⭐️所有的基本配置，本质是将我们的配置项写入. vimrc 当中；对于普通用户，我们直接 vim .vimrc 把配置文件写进去就行；例如一些简单的配置：</p>
+</blockquote>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/894be71139ef4b84ab140d980acb26cd~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<blockquote>
+<p>也可以用别人的配置，我目前就用的别人的，更加全面！</p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">&gt;&nbsp;curl&nbsp;-sLf&nbsp;https://gitee.com/HGtz2222/VimForCpp/raw/master/install.sh&nbsp;-o&nbsp;./install.sh&nbsp;&amp;&amp;&nbsp;bash&nbsp;./install.sh&nbsp;
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<blockquote>
+<p>直接在终端输入，然后回车就可以啦！</p>
+</blockquote>
+<blockquote>
+<p>⭐️下载完成后还要 source ~/.bashrc 让配置生效</p>
+</blockquote>
+<blockquote>
+<p>⭐️卸载配置直接执行：bash ~/.VimForCpp/uninstall.sh</p>
+</blockquote>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">CoderXiong</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://bfd2018.github.io/2022/06/17/ni-hui-shi-yong-linux-bian-ji-qi-vim-ma/">http://bfd2018.github.io/2022/06/17/ni-hui-shi-yong-linux-bian-ji-qi-vim-ma/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">CoderXiong</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Linux%E7%BC%96%E8%BE%91%E5%99%A8/">
+                                    <span class="chip bg-color">Linux编辑器</span>
+                                </a>
+                            
+                                <a href="/tags/Vim/">
+                                    <span class="chip bg-color">Vim</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/zhifubao.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wx.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/06/17/da-qian-duan/10-ge-bu-cuo-de-css-xiao-ji-qiao/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/31.jpg" class="responsive-img" alt="10 个不错的 CSS 小技巧">
+                        
+                        <span class="card-title">10 个不错的 CSS 小技巧</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-17
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/CSS/" class="post-category">
+                                    CSS
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CSS/">
+                        <span class="chip bg-color">CSS</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%89%8D%E7%AB%AF/">
+                        <span class="chip bg-color">前端</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/06/17/shu-ju-jie-gou-yu-suan-fa/shu-ju-jie-gou-yu-suan-fa-03-di-gui/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="【数据结构与算法03】递归">
+                        
+                        <span class="card-title">【数据结构与算法03】递归</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="post-category">
+                                    数据结构与算法
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E9%80%92%E5%BD%92/">
+                        <span class="chip bg-color">递归</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="chip bg-color">数据结构</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE' || selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Hexo-Xiong<br />'
+            + '文章作者: CoderXiong<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <a href="/about" target="_blank">CoderXiong</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">330.8k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/BFD2018" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1351655382@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1351655382" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1351655382" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+
+        
+            <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7c405b5ffa810bbaa048f6a986ca94a5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+        
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <style>
+    #backTop{
+        margin-bottom: 110px;
+    }
+</style>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+    
+
+    <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7c405b5ffa810bbaa048f6a986ca94a5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: "6f359642"
+        });
+        daovoice('update');
+    </script>
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+    <script type="text/javascript" color="0,0,255"
+        pointColor="0,0,255" opacity='0.7'
+        zIndex="-1" count="99"
+        src="/libs/background/canvas-nest.js"></script>
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon-refresh.min.js" async="async"></script>
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+    <!-- 天气接口 -->
+    
+        <!-- 天气接口-->
+<script type="text/javascript">
+    WIDGET = { FID: '1tFpFZ5Mtj' }
+</script>
+<script type="text/javascript">
+    //只在桌面版网页启用特效
+    var windowWidth = $(window).width();
+    if (windowWidth > 768) {
+        document.write('<script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"><\/script>');
+    }
+</script>
+    
+
+</body>
+
+</html>
