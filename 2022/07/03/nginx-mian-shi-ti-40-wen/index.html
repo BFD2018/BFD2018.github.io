@@ -1,0 +1,2060 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Nginx 面试题 40 问, Hexo-Xiong">
+    <meta name="description" content="
+什么是Nginx？
+
+Nginx 有哪些优点？
+
+Nginx应用场景？
+
+Nginx怎么处理请求的？
+
+Nginx 是如何实现高并发的？
+
+什么是正向代理？
+
+什么是反向代理？
+
+反向代理服务器的优点是什么?
+
+Nginx目录结构有哪些？">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    
+
+    <title>Nginx 面试题 40 问 | Hexo-Xiong</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Hexo-Xiong</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/journal" class="waves-effect waves-light">
+      
+      <i class="fa fa-book" style="zoom: 0.6;"></i>
+      
+      <span>日志</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/census" class="waves-effect waves-light">
+      
+      <i class="fa fa-layer-group" style="zoom: 0.6;"></i>
+      
+      <span>统计</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Medias</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/musics">
+          
+          <i class="fa-solid fa-music" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Musics</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/movies">
+          
+          <i class="fas fa-film" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Movies</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/mygallery">
+          
+          <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>myGallery</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Hexo-Xiong</div>
+        <div class="logo-desc">
+            
+            小熊同学是一名Java开发工程师，在编程的道路上孜孜不倦的追求技术成长，愿与诸位共同进步！
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/journal" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fa fa-book"></i>
+			
+			日志
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/census" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fa fa-layer-group"></i>
+			
+			统计
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			Medias
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/musics " style="margin-left:75px">
+				  
+				   <i class="fa fa-solid fa-music" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Musics</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/movies " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-film" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Movies</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/mygallery " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
+			      
+		          <span>myGallery</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/bfd2018/" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/bfd2018/" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    <meta name="referrer" content="no-referrer" />
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Nginx 面试题 40 问</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Nginx/">
+                                <span class="chip bg-color">Nginx</span>
+                            </a>
+                        
+                            <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                                <span class="chip bg-color">面试题</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="post-category">
+                                面试题
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-07-03
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-07-03
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    8.6k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    34 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <ul>
+<li><p>什么是Nginx？</p>
+</li>
+<li><p>Nginx 有哪些优点？</p>
+</li>
+<li><p>Nginx应用场景？</p>
+</li>
+<li><p>Nginx怎么处理请求的？</p>
+</li>
+<li><p>Nginx 是如何实现高并发的？</p>
+</li>
+<li><p>什么是正向代理？</p>
+</li>
+<li><p>什么是反向代理？</p>
+</li>
+<li><p>反向代理服务器的优点是什么?</p>
+</li>
+<li><p>Nginx目录结构有哪些？</p>
+</li>
+<li><p>Nginx配置文件nginx.conf有哪些属性模块?</p>
+</li>
+<li><p>cookie和session区别？</p>
+</li>
+<li><p>为什么 Nginx 不使用多线程？</p>
+</li>
+<li><p>nginx和apache的区别</p>
+</li>
+<li><p>什么是动态资源、静态资源分离？</p>
+</li>
+<li><p>为什么要做动、静分离？</p>
+</li>
+<li><p>什么叫 CDN 服务？</p>
+</li>
+<li><p>Nginx怎么做的动静分离？</p>
+</li>
+<li><p>Nginx负载均衡的算法怎么实现的?策略有哪些?</p>
+</li>
+<li><p>如何用Nginx解决前端跨域问题？</p>
+</li>
+<li><p>Nginx虚拟主机怎么配置?</p>
+</li>
+<li><p>location的作用是什么？</p>
+</li>
+<li><p>限流怎么做的？</p>
+</li>
+<li><p>漏桶流算法和令牌桶算法知道？</p>
+</li>
+<li><p>Nginx配置高可用性怎么配置？</p>
+</li>
+<li><p>Nginx怎么判断别IP不可访问？</p>
+</li>
+<li><p>在nginx中，如何使用未定义的服务器名称来阻止处理请求？</p>
+</li>
+<li><p>怎么限制浏览器访问？</p>
+</li>
+<li><p>Rewrite全局变量是什么？</p>
+</li>
+<li><p>Nginx 如何实现后端服务的健康检查？</p>
+</li>
+<li><p>Nginx 如何开启压缩？</p>
+</li>
+<li><p>ngx_http_upstream_module的作用是什么?</p>
+</li>
+<li><p>什么是C10K问题?</p>
+</li>
+<li><p>Nginx是否支持将请求压缩到上游?</p>
+</li>
+<li><p>如何在Nginx中获得当前的时间?</p>
+</li>
+<li><p>用Nginx服务器解释-s的目的是什么?</p>
+</li>
+<li><p>如何在Nginx服务器上添加模块?</p>
+</li>
+<li><p>生产中如何设置worker进程的数量呢？</p>
+</li>
+<li><p>nginx状态码</p>
+</li>
+<li><p>省内存空间</p>
+</li>
+</ul>
+<h2 id="什么是Nginx？"><a href="#什么是Nginx？" class="headerlink" title="什么是Nginx？"></a><strong>什么是Nginx？</strong></h2><p>Nginx是一个 轻量级/高性能的反向代理Web服务器，用于 HTTP、HTTPS、SMTP、POP3 和 IMAP 协议。他实现非常高效的反向代理、负载平衡，他可以处理2-3万并发连接数，官方监测能支持5万并发，现在中国使用nginx网站用户有很多，例如：新浪、网易、 腾讯等。</p>
+<p><strong>Nginx 有哪些优点？</strong></p>
+<ul>
+<li><p>跨平台、配置简单。</p>
+</li>
+<li><p>非阻塞、高并发连接：处理 2-3 万并发连接数，官方监测能支持 5 万并发。</p>
+</li>
+<li><p>内存消耗小：开启 10 个 Nginx 才占 150M 内存。</p>
+</li>
+<li><p>成本低廉，且开源。</p>
+</li>
+<li><p>稳定性高，宕机的概率非常小。</p>
+</li>
+<li><p>内置的健康检查功能：如果有一个服务器宕机，会做一个健康检查，再发送的请求就不会发送到宕机的服务器了。重新将请求提交到其他的节点上</p>
+</li>
+</ul>
+<h2 id="Nginx-应用场景？"><a href="#Nginx-应用场景？" class="headerlink" title="Nginx 应用场景？"></a><strong>Nginx 应用场景？</strong></h2><ul>
+<li><p>http服务器。Nginx是一个http服务可以独立提供http服务。可以做网页静态服务器。</p>
+</li>
+<li><p>虚拟主机。可以实现在一台服务器虚拟出多个网站，例如个人网站使用的虚拟机。</p>
+</li>
+<li><p>反向代理，负载均衡。当网站的访问量达到一定程度后，单台服务器不能满足用户的请求时，需要用多台服务器集群可以使用nginx做反向代理。并且多台服务器可以平均分担负载，不会应为某台服务器负载高宕机而某台服务器闲置的情况。</p>
+</li>
+<li><p>nginz 中也可以配置安全管理、比如可以使用Nginx搭建API接口网关,对每个接口服务进行拦截。</p>
+</li>
+</ul>
+<h2 id="Nginx-怎么处理请求的？"><a href="#Nginx-怎么处理请求的？" class="headerlink" title="Nginx 怎么处理请求的？"></a><strong>Nginx 怎么处理请求的？</strong></h2><pre class="line-numbers language-none"><code class="language-none">server&nbsp;{&nbsp;# 第一个Server区块开始，表示一个独立的虚拟主机站点
+&nbsp;&nbsp;&nbsp;listen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;80；# 提供服务的端口，默认80
+&nbsp;&nbsp;&nbsp;server_name localhost;&nbsp;# 提供服务的域名主机名
+&nbsp;&nbsp;&nbsp;location&nbsp;/ {&nbsp;# 第一个location区块开始
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;root&nbsp;&nbsp;&nbsp;html;&nbsp;# 站点的根目录，相当于Nginx的安装目录
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;&nbsp;index.html index.html;&nbsp;# 默认的首页文件，多个用空格分开
+}&nbsp;# 第一个location区块结果<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li><p>首先，Nginx 在启动时，会解析配置文件，得到需要监听的端口与 IP 地址，然后在 Nginx 的 Master 进程里面先初始化好这个监控的Socket(创建 S ocket，设置 addr、reuse 等选项，绑定到指定的 ip 地址端口，再 listen 监听)。</p>
+</li>
+<li><p>然后，再 fork(一个现有进程可以调用 fork 函数创建一个新进程。由 fork 创建的新进程被称为子进程 )出多个子进程出来。</p>
+</li>
+<li><p>之后，子进程会竞争 accept 新的连接。此时，客户端就可以向 nginx 发起连接了。当客户端与nginx进行三次握手，与 nginx 建立好一个连接后。此时，某一个子进程会 accept 成功，得到这个建立好的连接的 Socket ，然后创建 nginx 对连接的封装，即 ngx_connection_t 结构体。</p>
+</li>
+<li><p>接着，设置读写事件处理函数，并添加读写事件来与客户端进行数据的交换。</p>
+</li>
+<li><p>最后，Nginx 或客户端来主动关掉连接，到此，一个连接就寿终正寝了。</p>
+</li>
+</ul>
+<h2 id="Nginx-是如何实现高并发的？"><a href="#Nginx-是如何实现高并发的？" class="headerlink" title="Nginx 是如何实现高并发的？"></a>Nginx 是如何实现高并发的？</h2><p>如果一个 server 采用一个进程(或者线程)负责一个request的方式，那么进程数就是并发数。那么显而易见的，就是会有很多进程在等待中。等什么？最多的应该是等待网络传输。</p>
+<p>而 Nginx 的异步非阻塞工作方式正是利用了这点等待的时间。在需要等待的时候，这些进程就空闲出来待命了。因此表现为少数几个进程就解决了大量的并发问题。</p>
+<p>Nginx是如何利用的呢，简单来说：同样的 4 个进程，如果采用一个进程负责一个 request 的方式，那么，同时进来 4 个 request 之后，每个进程就负责其中一个，直至会话关闭。期间，如果有第 5 个request进来了。就无法及时反应了，因为 4 个进程都没干完活呢，因此，一般有个调度进程，每当新进来了一个 request ，就新开个进程来处理。</p>
+<p>回想下，BIO 是不是存在酱紫的问题？</p>
+<p>Nginx 不这样，每进来一个 request ，会有一个 worker 进程去处理。但不是全程的处理，处理到什么程度呢？处理到可能发生阻塞的地方，比如向上游（后端）服务器转发 request ，并等待请求返回。那么，这个处理的 worker 不会这么傻等着，他会在发送完请求后，注册一个事件：“如果 upstream 返回了，告诉我一声，我再接着干”。于是他就休息去了。此时，如果再有 request 进来，他就可以很快再按这种方式处理。而一旦上游服务器返回了，就会触发这个事件，worker 才会来接手，这个 request 才会接着往下走。</p>
+<p>这就是为什么说，Nginx 基于事件模型。</p>
+<p>由于 web server 的工作性质决定了每个 request 的大部份生命都是在网络传输中，实际上花费在 server 机器上的时间片不多。这是几个进程就解决高并发的秘密所在。即：</p>
+<p>webserver 刚好属于网络 IO 密集型应用，不算是计算密集型。</p>
+<p>异步，非阻塞，使用 epoll ，和大量细节处的优化。也正是 Nginx 之所以然的技术基石。</p>
+<h2 id="什么是正向代理？"><a href="#什么是正向代理？" class="headerlink" title="什么是正向代理？"></a><strong>什么是正向代理？</strong></h2><p>一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。</p>
+<p>客户端才能使用正向代理。正向代理总结就一句话：代理端代理的是客户端。例如说：我们使用的OpenVPN 等等。</p>
+<h2 id="什么是反向代理？"><a href="#什么是反向代理？" class="headerlink" title="什么是反向代理？"></a><strong>什么是反向代理？</strong></h2><p>反向代理（Reverse Proxy）方式，是指以代理服务器来接受 Internet上的连接请求，然后将请求，发给内部网络上的服务器并将从服务器上得到的结果返回给 Internet 上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。</p>
+<blockquote>
+<p>反向代理总结就一句话：代理端代理的是服务端。</p>
+</blockquote>
+<h2 id="反向代理服务器的优点是什么"><a href="#反向代理服务器的优点是什么" class="headerlink" title="反向代理服务器的优点是什么?"></a><strong>反向代理服务器的优点是什么?</strong></h2><p>反向代理服务器可以隐藏源服务器的存在和特征。它充当互联网云和web服务器之间的中间层。这对于安全方面来说是很好的，特别是当您使用web托管服务时。</p>
+<h2 id="Nginx-目录结构有哪些？"><a href="#Nginx-目录结构有哪些？" class="headerlink" title="Nginx 目录结构有哪些？"></a><strong>Nginx 目录结构有哪些？</strong></h2><pre class="line-numbers language-none"><code class="language-none">tree /usr/local/nginx
+/usr/local/nginx
+├── client_body_temp
+├── conf&nbsp;# Nginx所有配置文件的目录
+│ ├── fastcgi.conf&nbsp;# fastcgi相关参数的配置文件
+│ ├── fastcgi.conf.default&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# fastcgi.conf的原始备份文件
+│ ├── fastcgi_params&nbsp;# fastcgi的参数文件
+│ ├── fastcgi_params.default&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+│ ├── koi-utf
+│ ├── koi-win
+│ ├── mime.types&nbsp;# 媒体类型
+│ ├── mime.types.default
+│ ├── nginx.conf&nbsp;# Nginx主配置文件
+│ ├── nginx.conf.default
+│ ├── scgi_params&nbsp;# scgi相关参数文件
+│ ├── scgi_params.default&nbsp;&nbsp;
+│ ├── uwsgi_params&nbsp;# uwsgi相关参数文件
+│ ├── uwsgi_params.default
+│ └── win-utf
+├── fastcgi_temp&nbsp;# fastcgi临时数据目录
+├── html&nbsp;# Nginx默认站点目录
+│ ├──&nbsp;50x.html&nbsp;# 错误页面优雅替代显示文件，例如当出现502错误时会调用此页面
+│ └── index.html&nbsp;# 默认的首页文件
+├── logs&nbsp;# Nginx日志目录
+│ ├── access.log&nbsp;# 访问日志文件
+│ ├── error.log&nbsp;# 错误日志文件
+│ └── nginx.pid&nbsp;# pid文件，Nginx进程启动后，会把所有进程的ID号写到此文件
+├── proxy_temp&nbsp;# 临时目录
+├── sbin&nbsp;# Nginx命令目录
+│ └── nginx&nbsp;# Nginx的启动命令
+├── scgi_temp&nbsp;# 临时目录
+└── uwsgi_temp&nbsp;# 临时目录<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="Nginx-配置文件-nginx-conf-有哪些属性模块"><a href="#Nginx-配置文件-nginx-conf-有哪些属性模块" class="headerlink" title="Nginx 配置文件 nginx.conf 有哪些属性模块?"></a><strong>Nginx 配置文件 nginx.conf 有哪些属性模块?</strong></h2><pre class="line-numbers language-none"><code class="language-none">worker_processes&nbsp;&nbsp;1；# worker进程的数量
+events {&nbsp;# 事件区块开始
+&nbsp;&nbsp;&nbsp;&nbsp;worker_connections&nbsp;&nbsp;1024；# 每个worker进程支持的最大连接数
+}&nbsp;# 事件区块结束
+http {&nbsp;# HTTP区块开始
+&nbsp;&nbsp;&nbsp;&nbsp;include&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mime.types；# Nginx支持的媒体类型库文件
+&nbsp;&nbsp;&nbsp; default_type application/octet-stream；# 默认的媒体类型
+&nbsp;&nbsp;&nbsp;&nbsp;sendfile&nbsp;on；# 开启高效传输模式
+&nbsp;&nbsp;&nbsp;&nbsp;keepalive_timeout&nbsp;65；# 连接超时
+&nbsp;&nbsp;&nbsp;&nbsp;server {&nbsp;# 第一个Server区块开始，表示一个独立的虚拟主机站点
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;listen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;80；# 提供服务的端口，默认80
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; server_name localhost；# 提供服务的域名主机名
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;location / {&nbsp;# 第一个location区块开始
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;root&nbsp;&nbsp; html；# 站点的根目录，相当于Nginx的安装目录
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; index index.html index.htm；# 默认的首页文件，多个用空格分开
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;# 第一个location区块结果
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;error_page&nbsp;500502503504&nbsp;&nbsp;/50x.html；# 出现对应的http状态码时，使用50x.html回应客户
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;location = /50x.html {&nbsp;# location区块开始，访问50x.html
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;root&nbsp;&nbsp; html；# 指定对应的站点目录为html
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;......<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="cookie-和-session-区别？"><a href="#cookie-和-session-区别？" class="headerlink" title="cookie 和 session 区别？"></a><strong>cookie 和 session 区别？</strong></h2><h4 id="共同："><a href="#共同：" class="headerlink" title="共同："></a>共同：</h4><p>存放用户信息。存放的形式：key-value格式 变量和变量内容键值对。</p>
+<h4 id="区别："><a href="#区别：" class="headerlink" title="区别："></a>区别：</h4><p>cookie</p>
+<ul>
+<li><p>存放在客户端浏览器</p>
+</li>
+<li><p>每个域名对应一个cookie，不能跨跃域名访问其他cookie</p>
+</li>
+<li><p>用户可以查看或修改cookie</p>
+</li>
+<li><p>http响应报文里面给你浏览器设置</p>
+</li>
+<li><p>钥匙（用于打开浏览器上锁头）</p>
+</li>
+</ul>
+<p>session:</p>
+<ul>
+<li><p>存放在服务器（文件，数据库，redis）</p>
+</li>
+<li><p>存放敏感信息</p>
+</li>
+<li><p>锁头</p>
+</li>
+</ul>
+<h2 id="为什么-Nginx-不使用多线程？"><a href="#为什么-Nginx-不使用多线程？" class="headerlink" title="为什么 Nginx 不使用多线程？"></a><strong>为什么 Nginx 不使用多线程？</strong></h2><p>Apache:&nbsp;创建多个进程或线程，而每个进程或线程都会为其分配 cpu 和内存（线程要比进程小的多，所以 worker 支持比 perfork 高的并发），并发过大会榨干服务器资源。</p>
+<p>Nginx:&nbsp;采用单线程来异步非阻塞处理请求（管理员可以配置 Nginx 主进程的工作进程的数量）(epoll)，不会为每个请求分配 cpu 和内存资源，节省了大量资源，同时也减少了大量的 CPU 的上下文切换。所以才使得 Nginx 支持更高的并发。</p>
+<h2 id="nginx和apache的区别"><a href="#nginx和apache的区别" class="headerlink" title="nginx和apache的区别"></a>nginx和apache的区别</h2><p>轻量级，同样起web服务，比apache占用更少的内存和资源。</p>
+<p>抗并发，nginx处理请求是异步非阻塞的，而apache则是阻塞性的，在高并发下nginx能保持低资源，低消耗高性能。</p>
+<p>高度模块化的设计，编写模块相对简单。</p>
+<p>最核心的区别在于apache是同步多进程模型，一个连接对应一个进程，nginx是异步的，多个连接可以对应一个进程。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d328ad93934e4790ae8f25cfb3ae113e~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<p><strong>什么是动态资源、静态资源分离？</strong>  </p>
+<p>动态资源、静态资源分离，是让动态网站里的动态网页根据一定规则把不变的资源和经常变的资源区分开来，动静资源做好了拆分以后我们就可以根据静态资源的特点将其做缓存操作，这就是网站静态化处理的核心思路。</p>
+<p>动态资源、静态资源分离简单的概括是：动态文件与静态文件的分离。</p>
+<h2 id="为什么要做动、静分离？"><a href="#为什么要做动、静分离？" class="headerlink" title="为什么要做动、静分离？"></a><strong>为什么要做动、静分离？</strong></h2><p>在我们的软件开发中，有些请求是需要后台处理的（如：.jsp,.do 等等），有些请求是不需要经过后台处理的（如：css、html、jpg、js 等等文件），这些不需要经过后台处理的文件称为静态文件，否则动态文件。</p>
+<p>因此我们后台处理忽略静态文件。这会有人又说那我后台忽略静态文件不就完了吗？当然这是可以的，但是这样后台的请求次数就明显增多了。在我们对资源的响应速度有要求的时候，我们应该使用这种动静分离的策略去解决动、静分离将网站静态资源（HTML，JavaScript，CSS，img等文件）与后台应用分开部署，提高用户访问静态代码的速度，降低对后台应用访问</p>
+<p>这里我们将静态资源放到 Nginx 中，动态资源转发到 Tomcat 服务器中去。</p>
+<p>当然，因为现在七牛、阿里云等 CDN 服务已经很成熟，主流的做法，是把静态资源缓存到 CDN 服务中，从而提升访问速度。</p>
+<p>相比本地的 Nginx 来说，CDN 服务器由于在国内有更多的节点，可以实现用户的就近访问。并且，CDN 服务可以提供更大的带宽，不像我们自己的应用服务，提供的带宽是有限的。</p>
+<h2 id="什么叫-CDN-服务？"><a href="#什么叫-CDN-服务？" class="headerlink" title="什么叫 CDN 服务？"></a><strong>什么叫 CDN 服务？</strong></h2><p>CDN ，即内容分发网络。</p>
+<p>其目的是，通过在现有的 Internet中 增加一层新的网络架构，将网站的内容发布到最接近用户的网络边缘，使用户可就近取得所需的内容，提高用户访问网站的速度。</p>
+<p>一般来说，因为现在 CDN 服务比较大众，所以基本所有公司都会使用 CDN 服务。</p>
+<h2 id="Nginx-怎么做的动静分离？"><a href="#Nginx-怎么做的动静分离？" class="headerlink" title="Nginx 怎么做的动静分离？"></a><strong>Nginx 怎么做的动静分离？</strong></h2><p>只需要指定路径对应的目录。location/可以使用正则表达式匹配。并指定对应的硬盘中的目录。如下：（操作都是在Linux上）</p>
+<pre class="line-numbers language-none"><code class="language-none">location /image/ {
+&nbsp;&nbsp;&nbsp;&nbsp;root /usr/local/static/;
+&nbsp;&nbsp;&nbsp;&nbsp;autoindex on;
+}
+步骤：
+# 创建目录
+mkdir /usr/local/static/image
+&nbsp;
+# 进入目录
+cd&nbsp;&nbsp;/usr/local/static/image
+&nbsp;
+# 上传照片
+photo.jpg
+&nbsp;
+# 重启nginx
+sudo nginx -s reload<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>打开浏览器 输入&nbsp;server_name/image/1.jpg&nbsp;就可以访问该静态图片了</p>
+<h2 id="Nginx-负载均衡的算法怎么实现的-策略有哪些"><a href="#Nginx-负载均衡的算法怎么实现的-策略有哪些" class="headerlink" title="Nginx 负载均衡的算法怎么实现的?策略有哪些?"></a><strong>Nginx 负载均衡的算法怎么实现的?策略有哪些?</strong></h2><p>为了避免服务器崩溃，大家会通过负载均衡的方式来分担服务器压力。将对台服务器组成一个集群，当用户访问时，先访问到一个转发服务器，再由转发服务器将访问分发到压力更小的服务器。</p>
+<p>Nginx负载均衡实现的策略有以下五种：</p>
+<h4 id="1-轮询-默认"><a href="#1-轮询-默认" class="headerlink" title="1 .轮询(默认)"></a>1 .轮询(默认)</h4><p>每个请求按时间顺序逐一分配到不同的后端服务器，如果后端某个服务器宕机，能自动剔除故障系统。</p>
+<pre class="line-numbers language-none"><code class="language-none">upstream&nbsp;backserver {
+&nbsp;server&nbsp;192.168.0.12;
+&nbsp;server&nbsp;192.168.0.13;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-权重-weight"><a href="#2-权重-weight" class="headerlink" title="2. 权重 weight"></a>2. 权重 weight</h4><p>weight的值越大，分配到的访问概率越高，主要用于后端每台服务器性能不均衡的情况下。其次是为在主从的情况下设置不同的权值，达到合理有效的地利用主机资源。</p>
+<pre class="line-numbers language-none"><code class="language-none"># 权重越高，在被访问的概率越大，如上例，分别是20%，80%。
+upstream&nbsp;backserver {
+&nbsp;server&nbsp;192.168.0.12&nbsp;weight=2;
+&nbsp;server&nbsp;192.168.0.13&nbsp;weight=8;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="3-ip-hash-IP绑定"><a href="#3-ip-hash-IP绑定" class="headerlink" title="3. ip_hash( IP绑定)"></a>3. ip_hash( IP绑定)</h4><p>每个请求按访问IP的哈希结果分配，使来自同一个IP的访客固定访问一台后端服务器，并且可以有效解决动态网页存在的session共享问题</p>
+<pre class="line-numbers language-none"><code class="language-none">upstream backserver {
+&nbsp;ip_hash;
+&nbsp;server 192.168.0.12:88;
+&nbsp;server 192.168.0.13:80;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="4-fair-第三方插件"><a href="#4-fair-第三方插件" class="headerlink" title="4. fair(第三方插件)"></a>4. fair(第三方插件)</h4><p>必须安装upstream_fair模块。</p>
+<p>对比 weight、ip_hash更加智能的负载均衡算法，fair算法可以根据页面大小和加载时间长短智能地进行负载均衡，响应时间短的优先分配。</p>
+<pre class="line-numbers language-none"><code class="language-none">#&nbsp;哪个服务器的响应速度快，就将请求分配到那个服务器上。
+upstream backserver {
+&nbsp;server server1;
+&nbsp;server server2;
+&nbsp;fair;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>5.url_hash(第三方插件)</p>
+<p>必须安装Nginx的hash软件包</p>
+<p>按访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，可以进一步提高后端缓存服务器的效率。</p>
+<pre class="line-numbers language-none"><code class="language-none">upstream&nbsp;backserver {
+&nbsp;server&nbsp;squid1:3128;
+&nbsp;server&nbsp;squid2:3128;
+&nbsp;hash&nbsp;$request_uri;
+&nbsp;hash_method&nbsp;crc32;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="如何用-Nginx-解决前端跨域问题？"><a href="#如何用-Nginx-解决前端跨域问题？" class="headerlink" title="如何用 Nginx 解决前端跨域问题？"></a><strong>如何用 Nginx 解决前端跨域问题？</strong></h2><p>使用Nginx转发请求。把跨域的接口写成调本域的接口，然后将这些接口转发到真正的请求地址。</p>
+<h2 id="Nginx-虚拟主机怎么配置"><a href="#Nginx-虚拟主机怎么配置" class="headerlink" title="Nginx 虚拟主机怎么配置?"></a><strong>Nginx 虚拟主机怎么配置?</strong></h2><p>1、基于域名的虚拟主机，通过域名来区分虚拟主机——应用：外部网站</p>
+<p>2、基于端口的虚拟主机，通过端口来区分虚拟主机——应用：公司内部网站，外部网站的管理后台</p>
+<p>3、基于ip的虚拟主机。</p>
+<h4 id="基于虚拟主机配置域名"><a href="#基于虚拟主机配置域名" class="headerlink" title="基于虚拟主机配置域名"></a>基于虚拟主机配置域名</h4><p>需要建立/data/www /data/bbs目录，windows本地hosts添加虚拟机ip地址对应的域名解析；对应域名网站目录下新增index.html文件；</p>
+<pre class="line-numbers language-none"><code class="language-none"># 当客户端访问www.lijie.com,监听端口号为80,直接跳转到data/www目录下文件
+server&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;listen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;80;
+&nbsp;&nbsp;&nbsp;&nbsp;server_name&nbsp;&nbsp;www.lijie.com;
+&nbsp;&nbsp;&nbsp;&nbsp;location&nbsp;/ {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;root&nbsp;&nbsp;&nbsp;data/www;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;&nbsp;index.html index.htm;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}
+
+# 当客户端访问www.lijie.com,监听端口号为80,直接跳转到data/bbs目录下文件
+&nbsp;server&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;listen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;80;
+&nbsp;&nbsp;&nbsp;&nbsp;server_name&nbsp;&nbsp;bbs.lijie.com;
+&nbsp;&nbsp;&nbsp;&nbsp;location&nbsp;/ {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;root&nbsp;&nbsp;&nbsp;data/bbs;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;&nbsp;index.html index.htm;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="基于端口的虚拟主机"><a href="#基于端口的虚拟主机" class="headerlink" title="基于端口的虚拟主机"></a>基于端口的虚拟主机</h4><p>使用端口来区分，浏览器使用域名或ip地址:端口号 访问</p>
+<pre class="line-numbers language-none"><code class="language-none"># 当客户端访问www.lijie.com,监听端口号为8080,直接跳转到data/www目录下文件
+&nbsp;server&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;listen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8080;
+&nbsp;&nbsp;&nbsp;&nbsp;server_name&nbsp;&nbsp;8080.lijie.com;
+&nbsp;&nbsp;&nbsp;&nbsp;location&nbsp;/ {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;root&nbsp;&nbsp;&nbsp;data/www;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;&nbsp;index.html index.htm;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}
+
+# 当客户端访问www.lijie.com,监听端口号为80直接跳转到真实ip服务器地址 127.0.0.1:8080
+server&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;listen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;80;
+&nbsp;&nbsp;&nbsp;&nbsp;server_name&nbsp;&nbsp;www.lijie.com;
+&nbsp;&nbsp;&nbsp;&nbsp;location&nbsp;/ {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy_pass&nbsp;http://127.0.0.1:8080;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;&nbsp;index.html index.htm;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="location的作用是什么？"><a href="#location的作用是什么？" class="headerlink" title="location的作用是什么？"></a><strong>location的作用是什么？</strong></h2><p>location指令的作用是根据用户请求的URI来执行不同的应用，也就是根据用户请求的网站URL进行匹配，匹配成功即进行相关的操作。</p>
+<p>location的语法能说出来吗？</p>
+<blockquote>
+<p>注意：~ 代表自己输入的英文字母</p>
+</blockquote>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b16b7930058046aa9838691518132cb9~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<p>Location正则案例</p>
+<pre class="line-numbers language-none"><code class="language-none"># 优先级1,精确匹配，根路径
+location&nbsp;=/ {
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;400;
+}
+
+# 优先级2,以某个字符串开头,以av开头的，优先匹配这里，区分大小写
+location&nbsp;^~&nbsp;/av {
+&nbsp;&nbsp;&nbsp;root&nbsp;/data/av/;
+}
+
+# 优先级3，区分大小写的正则匹配，匹配/media*****路径
+location&nbsp;~ /media&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alias&nbsp;/data/static/;
+}
+
+# 优先级4 ，不区分大小写的正则匹配，所有的****.jpg|gif|png 都走这里
+location&nbsp;~* .*\.(jpg|gif|png|js|css)$&nbsp;{
+&nbsp;&nbsp;&nbsp;root&nbsp;&nbsp;/data/av/;
+}
+
+# 优先7，通用匹配
+location&nbsp;/ {
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;403;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="限流怎么做的？"><a href="#限流怎么做的？" class="headerlink" title="限流怎么做的？"></a><strong>限流怎么做的？</strong></h2><p>Nginx限流就是限制用户请求速度，防止服务器受不了</p>
+<p>限流有3种</p>
+<ul>
+<li><p>正常限制访问频率（正常流量）</p>
+</li>
+<li><p>突发限制访问频率（突发流量）</p>
+</li>
+<li><p>限制并发连接数</p>
+</li>
+</ul>
+<p>Nginx的限流都是基于漏桶流算法</p>
+<blockquote>
+<p>实现三种限流算法</p>
+</blockquote>
+<h4 id="1、正常限制访问频率（正常流量）："><a href="#1、正常限制访问频率（正常流量）：" class="headerlink" title="1、正常限制访问频率（正常流量）："></a>1、正常限制访问频率（正常流量）：</h4><p>限制一个用户发送的请求，我Nginx多久接收一个请求。</p>
+<p>Nginx中使用ngx_http_limit_req_module模块来限制的访问频率，限制的原理实质是基于漏桶算法原理来实现的。在nginx.conf配置文件中可以使用limit_req_zone命令及limit_req命令限制单个IP的请求处理频率。</p>
+<pre class="line-numbers language-none"><code class="language-none">#&nbsp;定义限流维度，一个用户一分钟一个请求进来，多余的全部漏掉
+limit_req_zone $binary_remote_addr zone=one:10m rate=1r/m;
+
+# 绑定限流维度
+server{
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;location/seckill.html{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;limit_req zone=zone;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy_pass http://lj_seckill;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>1r/s代表1秒一个请求，1r/m一分钟接收一个请求， 如果Nginx这时还有别人的请求没有处理完，Nginx就会拒绝处理该用户请求。</p>
+<h4 id="2、突发限制访问频率（突发流量）："><a href="#2、突发限制访问频率（突发流量）：" class="headerlink" title="2、突发限制访问频率（突发流量）："></a>2、突发限制访问频率（突发流量）：</h4><p>限制一个用户发送的请求，我Nginx多久接收一个。</p>
+<p>上面的配置一定程度可以限制访问频率，但是也存在着一个问题：如果突发流量超出请求被拒绝处理，无法处理活动时候的突发流量，这时候应该如何进一步处理呢？</p>
+<p>Nginx提供burst参数结合nodelay参数可以解决流量突发的问题，可以设置能处理的超过设置的请求数外能额外处理的请求数。我们可以将之前的例子添加burst参数以及nodelay参数：</p>
+<pre class="line-numbers language-none"><code class="language-none"># 定义限流维度，一个用户一分钟一个请求进来，多余的全部漏掉
+limit_req_zone $binary_remote_addr zone=one:10m rate=1r/m;
+
+# 绑定限流维度
+server{
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;location/seckill.html{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;limit_req zone=zone burst=5&nbsp;nodelay;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy_pass http://lj_seckill;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>为什么就多了一个 burst=5 nodelay; 呢，多了这个可以代表Nginx对于一个用户的请求会立即处理前五个，多余的就慢慢来落，没有其他用户的请求我就处理你的，有其他的请求的话我Nginx就漏掉不接受你的请求</p>
+<h4 id="3、-限制并发连接数"><a href="#3、-限制并发连接数" class="headerlink" title="3、 限制并发连接数"></a>3、 限制并发连接数</h4><p>Nginx中的ngx_http_limit_conn_module模块提供了限制并发连接数的功能，可以使用limit_conn_zone指令以及limit_conn执行进行配置。接下来我们可以通过一个简单的例子来看下：</p>
+<pre class="line-numbers language-none"><code class="language-none">http&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;limit_conn_zone&nbsp;$binary_remote_addr&nbsp;zone=myip:10m;
+&nbsp;&nbsp;&nbsp;&nbsp;limit_conn_zone&nbsp;$server_name&nbsp;zone=myServerName:10m;
+}
+
+server&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;location&nbsp;/ {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;limit_conn&nbsp;myip&nbsp;10;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;limit_conn&nbsp;myServerName&nbsp;100;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rewrite&nbsp;/ http://www.lijie.net&nbsp;permanent;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上面配置了单个IP同时并发连接数最多只能10个连接，并且设置了整个虚拟服务器同时最大并发数最多只能100个链接。当然，只有当请求的header被服务器处理后，虚拟服务器的连接数才会计数。刚才有提到过Nginx是基于漏桶算法原理实现的，实际上限流一般都是基于漏桶算法和令牌桶算法实现的。</p>
+<h2 id="漏桶流算法和令牌桶算法知道？"><a href="#漏桶流算法和令牌桶算法知道？" class="headerlink" title="漏桶流算法和令牌桶算法知道？"></a>漏桶流算法和令牌桶算法知道？</h2><h4 id="漏桶算法"><a href="#漏桶算法" class="headerlink" title="漏桶算法"></a>漏桶算法</h4><p>漏桶算法思路很简单，我们把水比作是请求，漏桶比作是系统处理能力极限，水先进入到漏桶里，漏桶里的水按一定速率流出，当流出的速率小于流入的速率时，由于漏桶容量有限，后续进入的水直接溢出（拒绝请求），以此实现限流。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/188b0ee074f04bd0a9fde6bfc6c2d714~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<h4 id="令牌桶算法"><a href="#令牌桶算法" class="headerlink" title="令牌桶算法"></a>令牌桶算法</h4><p>令牌桶算法的原理也比较简单，我们可以理解成医院的挂号看病，只有拿到号以后才可以进行诊病。</p>
+<p>系统会维护一个令牌（token）桶，以一个恒定的速度往桶里放入令牌（token），这时如果有请求进来想要被处理，则需要先从桶里获取一个令牌（token），当桶里没有令牌（token）可取时，则该请求将被拒绝服务。令牌桶算法通过控制桶的容量、发放令牌的速率，来达到对请求的限制。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/501f96d6049c4841ac089c3fe2c700d8~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<h2 id="Nginx配置高可用性怎么配置？"><a href="#Nginx配置高可用性怎么配置？" class="headerlink" title="Nginx配置高可用性怎么配置？"></a><strong>Nginx配置高可用性怎么配置？</strong></h2><p>当上游服务器(真实访问服务器)，一旦出现故障或者是没有及时相应的话，应该直接轮训到下一台服务器，保证服务器的高可用</p>
+<p>Nginx配置代码：</p>
+<pre class="line-numbers language-none"><code class="language-none">server&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;listen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;80;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;server_name&nbsp;&nbsp;www.lijie.com;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;location&nbsp;/ {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;### 指定上游服务器负载均衡服务器
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy_pass&nbsp;http://backServer;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;###nginx与上游服务器(真实访问的服务器)超时时间 后端服务器连接的超时时间_发起握手等候响应超时时间
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy_connect_timeout&nbsp;1s;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;###nginx发送给上游服务器(真实访问的服务器)超时时间
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy_send_timeout&nbsp;1s;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;### nginx接受上游服务器(真实访问的服务器)超时时间
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy_read_timeout&nbsp;1s;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;&nbsp;index.html index.htm;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="Nginx怎么判断别IP不可访问？"><a href="#Nginx怎么判断别IP不可访问？" class="headerlink" title="Nginx怎么判断别IP不可访问？"></a><strong>Nginx怎么判断别IP不可访问？</strong></h2><pre class="line-numbers language-none"><code class="language-none"># 如果访问的ip地址为192.168.9.115,则返回403
+&nbsp;if&nbsp;&nbsp;($remote_addr&nbsp;=&nbsp;192.168.9.115) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;403;
+&nbsp;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="在nginx中，如何使用未定义的服务器名称来阻止处理请求？"><a href="#在nginx中，如何使用未定义的服务器名称来阻止处理请求？" class="headerlink" title="在nginx中，如何使用未定义的服务器名称来阻止处理请求？"></a>在nginx中，如何使用未定义的服务器名称来阻止处理请求？</h2><p>只需将请求删除的服务器就可以定义为：</p>
+<p>服务器名被保留一个空字符串，他在没有主机头字段的情况下匹配请求，而一个特殊的nginx的非标准代码被返回，从而终止连接。</p>
+<h2 id="怎么限制浏览器访问？"><a href="#怎么限制浏览器访问？" class="headerlink" title="怎么限制浏览器访问？"></a>怎么限制浏览器访问？</h2><pre class="line-numbers language-none"><code class="language-none">## 不允许谷歌浏览器访问 如果是谷歌浏览器返回500
+if ($http_user_agent ~ Chrome) {
+&nbsp;&nbsp;return 500;
+}
+Rewrite全局变量是什么？
+$remote_addr //获取客户端ip
+$binary_remote_addr //客户端ip（二进制)
+$remote_port //客户端port，如：50472
+$remote_user //已经经过Auth Basic Module验证的用户名
+$host //请求主机头字段，否则为服务器名称，如:blog.sakmon.com
+$request //用户请求信息，如：GET ?a=1&amp;b=2 HTTP/1.1
+$request_filename //当前请求的文件的路径名，由root或alias和URI request组合而成，如：/2013/81.html
+$status //请求的响应状态码,如:200
+$body_bytes_sent // 响应时送出的body字节数数量。即使连接中断，这个数据也是精确的,如：40
+$content_length // 等于请求行的“Content_Length”的值
+$content_type // 等于请求行的“Content_Type”的值
+$http_referer // 引用地址
+$http_user_agent // 客户端agent信息,如：Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36
+$args //与$query_string相同 等于当中URL的参数(GET)，如a=1&amp;b=2
+$document_uri //与$uri相同 这个变量指当前的请求URI，不包括任何参数(见$args) 如:/2013/81.html
+$document_root //针对当前请求的根路径设置值
+$hostname //如：centos53.localdomain
+$http_cookie //客户端cookie信息
+$cookie_COOKIE //cookie COOKIE变量的值
+$is_args //如果有$args参数，这个变量等于”?”，否则等于”"，空值，如?
+$limit_rate //这个变量可以限制连接速率，0表示不限速
+$query_string // 与$args相同 等于当中URL的参数(GET)，如a=1&amp;b=2
+$request_body // 记录POST过来的数据信息
+$request_body_file //客户端请求主体信息的临时文件名
+$request_method //客户端请求的动作，通常为GET或POST,如：GET
+$request_uri //包含请求参数的原始URI，不包含主机名，如：/2013/81.html?a=1&amp;b=2
+$scheme //HTTP方法（如http，https）,如：http
+$uri //这个变量指当前的请求URI，不包括任何参数(见$args) 如:/2013/81.html
+$request_completion //如果请求结束，设置为OK. 当请求未结束或如果该请求不是请求链串的最后一个时，为空(Empty)，如：OK
+$server_protocol //请求使用的协议，通常是HTTP/1.0或HTTP/1.1，如：HTTP/1.1
+$server_addr //服务器IP地址，在完成一次系统调用后可以确定这个值
+$server_name //服务器名称，如：blog.sakmon.com
+$server_port //请求到达服务器的端口号,如：80<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>Nginx 如何实现后端服务的健康检查？  </p>
+<hr>
+<p>方式一，利用 nginx 自带模块 ngx_http_proxy_module 和 ngx_http_upstream_module 对后端节点做健康检查。</p>
+<p>方式二(推荐)，利用 nginx_upstream_check_module 模块对后端节点做健康检查。</p>
+<h2 id="Nginx-如何开启压缩？"><a href="#Nginx-如何开启压缩？" class="headerlink" title="Nginx 如何开启压缩？"></a>Nginx 如何开启压缩？</h2><p>开启nginx gzip压缩后，网页、css、js等静态资源的大小会大大的减少，从而可以节约大量的带宽，提高传输效率，给用户快的体验。虽然会消耗cpu资源，但是为了给用户更好的体验是值得的。</p>
+<p>开启的配置如下：</p>
+<p>将以上配置放到nginx.conf的http{ … }节点中。</p>
+<pre class="line-numbers language-none"><code class="language-none">http&nbsp;{
+&nbsp;&nbsp;# 开启gzip
+&nbsp;&nbsp;gzip&nbsp;on;
+&nbsp;
+&nbsp;&nbsp;# 启用gzip压缩的最小文件；小于设置值的文件将不会被压缩
+&nbsp;&nbsp;gzip_min_length&nbsp;1k;
+&nbsp;
+&nbsp;&nbsp;# gzip 压缩级别 1-10
+&nbsp;&nbsp;gzip_comp_level&nbsp;2;
+&nbsp;
+&nbsp;&nbsp;# 进行压缩的文件类型。
+&nbsp;
+&nbsp;&nbsp;gzip_types&nbsp;text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;
+&nbsp;
+&nbsp;&nbsp;# 是否在http header中添加Vary: Accept-Encoding，建议开启
+&nbsp;&nbsp;gzip_vary&nbsp;on;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>保存并重启nginx，刷新页面（为了避免缓存，请强制刷新）就能看到效果了。以谷歌浏览器为例，通过F12看请求的响应头部：</p>
+<p>我们可以先来对比下，如果我们没有开启zip压缩之前，我们的对应的文件大小，如下所示：</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cc712660a6e24296919e22f8b04b9bc3~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<p>现在我们开启了gzip进行压缩后的文件的大小，可以看到如下所示：</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a353598f6ad24adbb453d10e33c4bec8~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<p>并且我们查看响应头会看到gzip这样的压缩，如下所示</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4c3851f758874afb883802a674940b49~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<p>gzip压缩前后效果对比：jquery原大小90kb，压缩后只有30kb。  </p>
+<p>gzip虽然好用，但是以下类型的资源不建议启用。</p>
+<h4 id="1、图片类型"><a href="#1、图片类型" class="headerlink" title="1、图片类型"></a>1、图片类型</h4><p>原因：图片如jpg、png本身就会有压缩，所以就算开启gzip后，压缩前和压缩后大小没有多大区别，所以开启了反而会白白的浪费资源。（Tips：可以试试将一张jpg图片压缩为zip，观察大小并没有多大的变化。虽然zip和gzip算法不一样，但是可以看出压缩图片的价值并不大）</p>
+<h4 id="2、大文件"><a href="#2、大文件" class="headerlink" title="2、大文件"></a>2、大文件</h4><p>原因：会消耗大量的cpu资源，且不一定有明显的效果。</p>
+<h2 id="ngx-http-upstream-module的作用是什么"><a href="#ngx-http-upstream-module的作用是什么" class="headerlink" title="ngx_http_upstream_module的作用是什么?"></a>ngx_http_upstream_module的作用是什么?</h2><p>ngx_http_upstream_module用于定义可通过fastcgi传递、proxy传递、uwsgi传递、memcached传递和scgi传递指令来引用的服务器组。</p>
+<h2 id="什么是C10K问题"><a href="#什么是C10K问题" class="headerlink" title="什么是C10K问题?"></a>什么是C10K问题?</h2><p>C10K问题是指无法同时处理大量客户端(10,000)的网络套接字。</p>
+<h2 id="Nginx是否支持将请求压缩到上游"><a href="#Nginx是否支持将请求压缩到上游" class="headerlink" title="Nginx是否支持将请求压缩到上游?"></a>Nginx是否支持将请求压缩到上游?</h2><p>您可以使用Nginx模块gunzip将请求压缩到上游。gunzip模块是一个过滤器，它可以对不支持“gzip”编码方法的客户机或服务器使用“内容编码:gzip”来解压缩响应。</p>
+<h2 id="如何在Nginx中获得当前的时间"><a href="#如何在Nginx中获得当前的时间" class="headerlink" title="如何在Nginx中获得当前的时间?"></a>如何在Nginx中获得当前的时间?</h2><p>要获得Nginx的当前时间，必须使用SSI模块、和date_local的变量。</p>
+<pre class="line-numbers language-none"><code class="language-none">Proxy_set_header&nbsp;THE-TIME&nbsp;$date_gmt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="用Nginx服务器解释-s的目的是什么"><a href="#用Nginx服务器解释-s的目的是什么" class="headerlink" title="用Nginx服务器解释-s的目的是什么?"></a>用Nginx服务器解释-s的目的是什么?</h2><p>用于运行Nginx -s参数的可执行文件。</p>
+<h2 id="如何在Nginx服务器上添加模块"><a href="#如何在Nginx服务器上添加模块" class="headerlink" title="如何在Nginx服务器上添加模块?"></a>如何在Nginx服务器上添加模块?</h2><p>在编译过程中，必须选择Nginx模块，因为Nginx不支持模块的运行时间选择。</p>
+<h2 id="生产中如何设置worker进程的数量呢？"><a href="#生产中如何设置worker进程的数量呢？" class="headerlink" title="生产中如何设置worker进程的数量呢？"></a>生产中如何设置worker进程的数量呢？</h2><p>在有多个cpu的情况下，可以设置多个worker，worker进程的数量可以设置到和cpu的核心数一样多，如果在单个cpu上起多个worker进程，那么操作系统会在多个worker之间进行调度，这种情况会降低系统性能，如果只有一个cpu，那么只启动一个worker进程就可以了。</p>
+<h2 id="nginx状态码"><a href="#nginx状态码" class="headerlink" title="nginx状态码"></a>nginx状态码</h2><p>499：</p>
+<p>服务端处理时间过长，客户端主动关闭了连接。</p>
+<p>502：</p>
+<p>(1).FastCGI进程是否已经启动</p>
+<p>(2).FastCGI worker进程数是否不够</p>
+<p>(3).FastCGI执行时间过长</p>
+<ul>
+<li><p>fastcgi_connect_timeout 300;</p>
+</li>
+<li><p>fastcgi_send_timeout 300;</p>
+</li>
+<li><p>fastcgi_read_timeout 300;</p>
+</li>
+</ul>
+<p>(4).FastCGI Buffer不够，nginx和apache一样，有前端缓冲限制，可以调整缓冲参数</p>
+<ul>
+<li><p>fastcgi_buffer_size 32k;</p>
+</li>
+<li><p>fastcgi_buffers 8 32k;</p>
+</li>
+</ul>
+<p>(5). Proxy Buffer不够，如果你用了Proxying，调整</p>
+<ul>
+<li><p>proxy_buffer_size 16k;</p>
+</li>
+<li><p>proxy_buffers 4 16k;</p>
+</li>
+</ul>
+<p>(6).php脚本执行时间过长</p>
+<ul>
+<li>将php-fpm.conf的0s的0s改成一个时间</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">CoderXiong</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://bfd2018.github.io/2022/07/03/nginx-mian-shi-ti-40-wen/">http://bfd2018.github.io/2022/07/03/nginx-mian-shi-ti-40-wen/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">CoderXiong</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Nginx/">
+                                    <span class="chip bg-color">Nginx</span>
+                                </a>
+                            
+                                <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                                    <span class="chip bg-color">面试题</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/zhifubao.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wx.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2022/07/03/nginx-mian-shi-ti-40-wen/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Nginx 面试题 40 问">
+                        
+                        <span class="card-title">Nginx 面试题 40 问</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="post-category">
+                                    面试题
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Nginx/">
+                        <span class="chip bg-color">Nginx</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                        <span class="chip bg-color">面试题</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/07/03/liao-liao-spring-jia-zu-zhong-de-na-ji-bai-ge-zhu-jie/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="聊聊Spring家族中的那几百个注解">
+                        
+                        <span class="card-title">聊聊Spring家族中的那几百个注解</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Spring/" class="post-category">
+                                    Spring
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/SpringBoot/">
+                        <span class="chip bg-color">SpringBoot</span>
+                    </a>
+                    
+                    <a href="/tags/annotation/">
+                        <span class="chip bg-color">annotation</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE' || selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Hexo-Xiong<br />'
+            + '文章作者: CoderXiong<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <a href="/about" target="_blank">CoderXiong</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">425.9k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/BFD2018" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1351655382@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1351655382" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1351655382" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+
+        
+            <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7c405b5ffa810bbaa048f6a986ca94a5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+        
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <style>
+    #backTop{
+        margin-bottom: 110px;
+    }
+</style>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+    
+
+    <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7c405b5ffa810bbaa048f6a986ca94a5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: "6f359642"
+        });
+        daovoice('update');
+    </script>
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+    <script type="text/javascript" color="0,0,255"
+        pointColor="0,0,255" opacity='0.7'
+        zIndex="-1" count="99"
+        src="/libs/background/canvas-nest.js"></script>
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon-refresh.min.js" async="async"></script>
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+    <!-- 天气接口 -->
+    
+        <!-- 天气接口-->
+<script type="text/javascript">
+    WIDGET = { FID: '1tFpFZ5Mtj' }
+</script>
+<script type="text/javascript">
+    //只在桌面版网页启用特效
+    var windowWidth = $(window).width();
+    if (windowWidth > 768) {
+        document.write('<script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"><\/script>');
+    }
+</script>
+    
+
+</body>
+
+</html>
