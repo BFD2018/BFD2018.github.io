@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="【数据结构与算法06】哈希表, Hexo-Xiong">
-    <meta name="description" content="哈希表哈希表的基本介绍散列表（Hash table，也叫哈希表），是根据关键码值(Key value)而直接进行访问的数据结构。也就是说，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做散列函数，存放记录的数">
+    <meta name="keywords" content="「图解」ThreadLocal 在并发问题中的应用, Hexo-Xiong">
+    <meta name="description" content="前言到底什么是线程的不安全？为什么会存在线程的不安全？线程的不安全其实就是多个线程并发的去操作同一共享变量没用做同步所产生意料之外的结果。那是如何体现出来的呢？我们看下面的一个非常经典的例子:两个操作员同时操作同一个银行账户，A操作员存钱，">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@
 
     
 
-    <title>【数据结构与算法06】哈希表 | Hexo-Xiong</title>
+    <title>「图解」ThreadLocal 在并发问题中的应用 | Hexo-Xiong</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -444,12 +444,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://xiong-test-srt.oss-cn-shenzhen.aliyuncs.com/typoraimages/20220620222530.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">【数据结构与算法06】哈希表</h1>
+                    <h1 class="description center-align post-title">「图解」ThreadLocal 在并发问题中的应用</h1>
                 </div>
             </div>
         </div>
@@ -565,12 +565,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                <span class="chip bg-color">算法</span>
+                            <a href="/tags/JUC/">
+                                <span class="chip bg-color">JUC</span>
                             </a>
                         
-                            <a href="/tags/%E5%93%88%E5%B8%8C/">
-                                <span class="chip bg-color">哈希</span>
+                            <a href="/tags/ThreadLocal/">
+                                <span class="chip bg-color">ThreadLocal</span>
                             </a>
                         
                     </div>
@@ -581,8 +581,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="post-category">
-                                数据结构与算法
+                            <a href="/categories/JavaSE/" class="post-category">
+                                JavaSE
                             </a>
                         
                     </div>
@@ -594,28 +594,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-06-20
+                    2022-07-08
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-06-20
+                    2022-07-08
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    1.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    6 分
                 </div>
                 
 
@@ -638,194 +638,65 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h2><h3 id="哈希表的基本介绍"><a href="#哈希表的基本介绍" class="headerlink" title="哈希表的基本介绍"></a>哈希表的基本介绍</h3><p>散列表（Hash table，也叫哈希表），是根据关键码值(Key value)而直接进行访问的数据结构。也就是说，它通<br>过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做散列函数，存放记录的数组叫做散列表。</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/33996eec6b5648568be98130f04c083c~tplv-k3u1fbpfcp-zoom-1.image" alt="image.png"></p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1797eaf1c9a74b46b1e62e383c2d0ba9~tplv-k3u1fbpfcp-zoom-1.image" alt="image.png"></p>
-<p>来看一个题目</p>
-<h3 id="哈希表-散列-Google上机题"><a href="#哈希表-散列-Google上机题" class="headerlink" title="哈希表(散列)-Google上机题"></a>哈希表(散列)-Google上机题</h3><p>1）有一个公司,当有新的员工来报道时,要求将该员工的信息加入(id,性别,年龄,住址..)，当输入该员工的 id 时,要求查<br>找到该员工的 所有信息.</p>
-<p><strong>要求:</strong><br>（1）不使用数据库,,速度越快越好=&gt;哈希表(散列)<br>（2）添加时，保证按照 id 从低到高插入[课后思考：如果如果 id 不是从低到高插入，但要求各条链表仍是从低到高，怎么解决?]<br>（3）使用链表来实现哈希表, 该链表不带表头[即: 链表的第一个结点就存放雇员信息]<br>（4）思路分析并画出示意图</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/83c0e03236ff45769a44efde45e22b75~tplv-k3u1fbpfcp-zoom-1.image" alt="image.png"></p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Scanner</span></span><span class="token punctuation">;</span>
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HashTabDemo</span> <span class="token punctuation">{</span>
-
-	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		
-		<span class="token comment">//创建哈希表</span>
-		<span class="token class-name">HashTab</span> hashTab <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashTab</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		
-		<span class="token comment">//写一个简单的菜单</span>
-		<span class="token class-name">String</span> key <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
-		<span class="token class-name">Scanner</span> scanner <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scanner</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span>in<span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token keyword">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"add:  添加雇员"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"list: 显示雇员"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"find: 查找雇员"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"exit: 退出系统"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-			
-			key <span class="token operator">=</span> scanner<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-			<span class="token keyword">switch</span> <span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-			<span class="token keyword">case</span> <span class="token string">"add"</span><span class="token operator">:</span>
-				<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"输入id"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-				<span class="token keyword">int</span> id <span class="token operator">=</span> scanner<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-				<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"输入名字"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-				<span class="token class-name">String</span> name <span class="token operator">=</span> scanner<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-				<span class="token comment">//创建 雇员</span>
-				<span class="token class-name">Emp</span> emp <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Emp</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
-				hashTab<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>emp<span class="token punctuation">)</span><span class="token punctuation">;</span>
-				<span class="token keyword">break</span><span class="token punctuation">;</span>
-			<span class="token keyword">case</span> <span class="token string">"list"</span><span class="token operator">:</span>
-				hashTab<span class="token punctuation">.</span><span class="token function">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-				<span class="token keyword">break</span><span class="token punctuation">;</span>
-			<span class="token keyword">case</span> <span class="token string">"find"</span><span class="token operator">:</span>
-				<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"请输入要查找的id"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-				id <span class="token operator">=</span> scanner<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-				hashTab<span class="token punctuation">.</span><span class="token function">findEmpById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-				<span class="token keyword">break</span><span class="token punctuation">;</span>
-			<span class="token keyword">case</span> <span class="token string">"exit"</span><span class="token operator">:</span>
-				scanner<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-				<span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-			<span class="token keyword">default</span><span class="token operator">:</span>
-				<span class="token keyword">break</span><span class="token punctuation">;</span>
-			<span class="token punctuation">}</span>
-		<span class="token punctuation">}</span>
-	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token comment">//创建HashTab 管理多条链表</span>
-<span class="token keyword">class</span> <span class="token class-name">HashTab</span> <span class="token punctuation">{</span>
-	<span class="token keyword">private</span> <span class="token class-name">EmpLinkedList</span><span class="token punctuation">[</span><span class="token punctuation">]</span> empLinkedListArray<span class="token punctuation">;</span>
-	<span class="token keyword">private</span> <span class="token keyword">int</span> size<span class="token punctuation">;</span> <span class="token comment">//表示有多少条链表</span>
-	
-	<span class="token comment">//构造器</span>
-	<span class="token keyword">public</span> <span class="token class-name">HashTab</span><span class="token punctuation">(</span><span class="token keyword">int</span> size<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">this</span><span class="token punctuation">.</span>size <span class="token operator">=</span> size<span class="token punctuation">;</span>
-		<span class="token comment">//初始化empLinkedListArray</span>
-		empLinkedListArray <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EmpLinkedList</span><span class="token punctuation">[</span>size<span class="token punctuation">]</span><span class="token punctuation">;</span>
-		<span class="token comment">//？留一个坑, 这时不要分别初始化每个链表</span>
-		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-			empLinkedListArray<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EmpLinkedList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token punctuation">}</span>
-	<span class="token punctuation">}</span>
-	
-	<span class="token comment">//添加雇员</span>
-	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token class-name">Emp</span> emp<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token comment">//根据员工的id ,得到该员工应当添加到哪条链表</span>
-		<span class="token keyword">int</span> empLinkedListNO <span class="token operator">=</span> <span class="token function">hashFun</span><span class="token punctuation">(</span>emp<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token comment">//将emp 添加到对应的链表中</span>
-		empLinkedListArray<span class="token punctuation">[</span>empLinkedListNO<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>emp<span class="token punctuation">)</span><span class="token punctuation">;</span>
-		
-	<span class="token punctuation">}</span>
-	<span class="token comment">//遍历所有的链表,遍历hashtab</span>
-	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-			empLinkedListArray<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">list</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token punctuation">}</span>
-	<span class="token punctuation">}</span>
-	
-	<span class="token comment">//根据输入的id,查找雇员</span>
-	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">findEmpById</span><span class="token punctuation">(</span><span class="token keyword">int</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token comment">//使用散列函数确定到哪条链表查找</span>
-		<span class="token keyword">int</span> empLinkedListNO <span class="token operator">=</span> <span class="token function">hashFun</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token class-name">Emp</span> emp <span class="token operator">=</span> empLinkedListArray<span class="token punctuation">[</span>empLinkedListNO<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">findEmpById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token keyword">if</span><span class="token punctuation">(</span>emp <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment">//找到</span>
-			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"在第%d条链表中找到 雇员 id = %d\n"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>empLinkedListNO <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
-			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"在哈希表中，没有找到该雇员~"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token punctuation">}</span>
-	<span class="token punctuation">}</span>
-	
-	<span class="token comment">//编写散列函数, 使用一个简单取模法</span>
-	<span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">hashFun</span><span class="token punctuation">(</span><span class="token keyword">int</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">return</span> id <span class="token operator">%</span> size<span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
-	
-	
-<span class="token punctuation">}</span>
-
-<span class="token comment">//表示一个雇员</span>
-<span class="token keyword">class</span> <span class="token class-name">Emp</span> <span class="token punctuation">{</span>
-	<span class="token keyword">public</span> <span class="token keyword">int</span> id<span class="token punctuation">;</span>
-	<span class="token keyword">public</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
-	<span class="token keyword">public</span> <span class="token class-name">Emp</span> next<span class="token punctuation">;</span> <span class="token comment">//next 默认为 null</span>
-	<span class="token keyword">public</span> <span class="token class-name">Emp</span><span class="token punctuation">(</span><span class="token keyword">int</span> id<span class="token punctuation">,</span> <span class="token class-name">String</span> name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token keyword">this</span><span class="token punctuation">.</span>id <span class="token operator">=</span> id<span class="token punctuation">;</span>
-		<span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token comment">//创建EmpLinkedList ,表示链表</span>
-<span class="token keyword">class</span> <span class="token class-name">EmpLinkedList</span> <span class="token punctuation">{</span>
-	<span class="token comment">//头指针，执行第一个Emp,因此我们这个链表的head 是直接指向第一个Emp</span>
-	<span class="token keyword">private</span> <span class="token class-name">Emp</span> head<span class="token punctuation">;</span> <span class="token comment">//默认null</span>
-	
-	<span class="token comment">//添加雇员到链表</span>
-	<span class="token comment">//说明</span>
-	<span class="token comment">//1. 假定，当添加雇员时，id 是自增长，即id的分配总是从小到大</span>
-	<span class="token comment">//   因此我们将该雇员直接加入到本链表的最后即可</span>
-	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token class-name">Emp</span> emp<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token comment">//如果是添加第一个雇员</span>
-		<span class="token keyword">if</span><span class="token punctuation">(</span>head <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-			head <span class="token operator">=</span> emp<span class="token punctuation">;</span>
-			<span class="token keyword">return</span><span class="token punctuation">;</span>
-		<span class="token punctuation">}</span>
-		<span class="token comment">//如果不是第一个雇员，则使用一个辅助的指针，帮助定位到最后</span>
-		<span class="token class-name">Emp</span> curEmp <span class="token operator">=</span> head<span class="token punctuation">;</span>
-		<span class="token keyword">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-			<span class="token keyword">if</span><span class="token punctuation">(</span>curEmp<span class="token punctuation">.</span>next <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment">//说明到链表最后</span>
-				<span class="token keyword">break</span><span class="token punctuation">;</span>
-			<span class="token punctuation">}</span>
-			curEmp <span class="token operator">=</span> curEmp<span class="token punctuation">.</span>next<span class="token punctuation">;</span> <span class="token comment">//后移</span>
-		<span class="token punctuation">}</span>
-		<span class="token comment">//退出时直接将emp 加入链表</span>
-		curEmp<span class="token punctuation">.</span>next <span class="token operator">=</span> emp<span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
-	
-	<span class="token comment">//遍历链表的雇员信息</span>
-	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">list</span><span class="token punctuation">(</span><span class="token keyword">int</span> no<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">if</span><span class="token punctuation">(</span>head <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">//说明链表为空</span>
-			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"第 "</span><span class="token operator">+</span><span class="token punctuation">(</span>no<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">" 链表为空"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-			<span class="token keyword">return</span><span class="token punctuation">;</span>
-		<span class="token punctuation">}</span>
-		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"第 "</span><span class="token operator">+</span><span class="token punctuation">(</span>no<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">" 链表的信息为"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token class-name">Emp</span> curEmp <span class="token operator">=</span> head<span class="token punctuation">;</span> <span class="token comment">//辅助指针</span>
-		<span class="token keyword">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">" =&gt; id=%d name=%s\t"</span><span class="token punctuation">,</span> curEmp<span class="token punctuation">.</span>id<span class="token punctuation">,</span> curEmp<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
-			<span class="token keyword">if</span><span class="token punctuation">(</span>curEmp<span class="token punctuation">.</span>next <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment">//说明curEmp已经是最后结点</span>
-				<span class="token keyword">break</span><span class="token punctuation">;</span>
-			<span class="token punctuation">}</span>
-			curEmp <span class="token operator">=</span> curEmp<span class="token punctuation">.</span>next<span class="token punctuation">;</span> <span class="token comment">//后移，遍历</span>
-		<span class="token punctuation">}</span>
-		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
-	
-	<span class="token comment">//根据id查找雇员</span>
-	<span class="token comment">//如果查找到，就返回Emp, 如果没有找到，就返回null</span>
-	<span class="token keyword">public</span> <span class="token class-name">Emp</span> <span class="token function">findEmpById</span><span class="token punctuation">(</span><span class="token keyword">int</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token comment">//判断链表是否为空</span>
-		<span class="token keyword">if</span><span class="token punctuation">(</span>head <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"链表为空"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-			<span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
-		<span class="token punctuation">}</span>
-		<span class="token comment">//辅助指针</span>
-		<span class="token class-name">Emp</span> curEmp <span class="token operator">=</span> head<span class="token punctuation">;</span>
-		<span class="token keyword">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-			<span class="token keyword">if</span><span class="token punctuation">(</span>curEmp<span class="token punctuation">.</span>id <span class="token operator">==</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment">//找到</span>
-				<span class="token keyword">break</span><span class="token punctuation">;</span><span class="token comment">//这时curEmp就指向要查找的雇员</span>
-			<span class="token punctuation">}</span>
-			<span class="token comment">//退出</span>
-			<span class="token keyword">if</span><span class="token punctuation">(</span>curEmp<span class="token punctuation">.</span>next <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment">//说明遍历当前链表没有找到该雇员</span>
-				curEmp <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
-				<span class="token keyword">break</span><span class="token punctuation">;</span>
-			<span class="token punctuation">}</span>
-			curEmp <span class="token operator">=</span> curEmp<span class="token punctuation">.</span>next<span class="token punctuation">;</span><span class="token comment">//以后</span>
-		<span class="token punctuation">}</span>
-		
-		<span class="token keyword">return</span> curEmp<span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>到底什么是线程的不安全？为什么会存在线程的不安全？线程的不安全其实就是多个线程并发的去操作同一共享变量没用做同步所产生意料之外的结果。那是如何体现出来的呢？我们看下面的一个非常经典的例子:两个操作员同时操作同一个银行账户，A操作员存钱，100B操作员取钱50。我们看一下流程。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d6605611218f444c9898bc9405affdb2~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<p>两个操作员同时处理，没用做同步这个时候我们发现银行账户最终余额剩余950元，在我们想的最终结果银行账户应该剩余1000+100-50=1050元，在执行过程中我们没有加锁，最终导致了运行结果偏离预期。那么如何解决的？一般的解决措施就是加锁，加同步锁所以这就需要使用者一定要知道锁是什么。我们来看一下加锁之后的效果是不是我们所预期的。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/af2b5b3817d44345ad7e40cfad438b60~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<p>在添加同步锁后我们可以看到，A操作员和B操作员同时去操作账户，但是A先抢占到资源，所以B就只能等待A操作员释放锁才能去操作银行账户，那么最终结果是我们所预期的吗？答案是的。</p>
+<p>同步的话一般都是加锁，如果现在我想创建多个线程每个线程都是访问的自己的变量呢？各个线程之间毫无关联？</p>
+<p>答案是有的。</p>
+<h2 id="ThreadLocal问题"><a href="#ThreadLocal问题" class="headerlink" title="ThreadLocal问题"></a>ThreadLocal问题</h2><p><code>ThreadLocal</code>是JDK提供的，它提供了线程本地变量。什么是线程本地变量呢？其实就是你创建了一个<code>Threadlocal</code>变量，每个访问<code>Threadlocal</code>变量的线程都有一个本地副本。我们看下面的图：</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6b6d95cf5d6d4bf5ae19472757ffb86e~tplv-k3u1fbpfcp-zoom-1.image" alt="图片">从上面看出你创建一个<code>ThreadLocal</code>变量,每个访问该的线程都会复制到自己的本地，所以线程操作的都是本地的副本，这也就是说每个线程都是操作的自己本地的变量，那就完美的避免了线程安全的问题。</p>
+<p>在这里还有一个问题。我在写这篇文章的时候看过很多文章，总的来说就是<code>ThreadLocal</code>就是为了解决多线程并发问题而提供的一种方法，还有一种解释就是<code>ThreadLocal</code>的最终目的就是为了解决多线程访问共享资源所产生的。真的对吗？<code>ThreadLocal</code>并没有共享那么从何而来的同步呢？</p>
+<h2 id="自己的想法"><a href="#自己的想法" class="headerlink" title="自己的想法"></a>自己的想法</h2><p>在看了<code>Java并发编程之美</code>后我所理解的<code>Threadlocal</code>提供了线程本地变量的副本，每个线程实际操作的是自己本地的变量副本，也就是说该变量副本只能当前线程访问，就不存在多个线程共享的问题，从<code>Threadlocal</code>名字我们也能看出<code>本地线程</code>。那那那它也就不存在去解决并发问题了。</p>
+<h2 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h2><p>我们来看下面的例子。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a1a7ec75b7d44496ab4c6e3930a0a316~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<blockquote>
+<p>输出结果:</p>
+<p>Thread[Thread-1,5,main]====57<br>Thread[Thread-0,5,main]====75</p>
+</blockquote>
+<p>创建了两个线程,它们都在<code>threadlocal</code>上面都set了一个随机数,我们看最后的输出结果每个都是不同的值,那么我们如果把<code>threadlocal</code>替换成一个集合会发生什么,由于两个线程时上个线程生成的随机数57会被第二个线程覆盖掉,而在<code>Threadlocal</code>中两个线程都是操作的自己的本地副本,那么两个线程互不影响都无法操控到对方的数据,因此它们存取的都是不同的值。</p>
+<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><p>那么<code>Threadlocal</code>是如何实现的呢？在研究<code>Threadlocal</code>的实现原理我们先看一下<code>Thread</code>的内部属性。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/773ec013c0c242099794adcc938e98a0~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<ul>
+<li>threadLocals 此线程保存的<code>Threadlocal</code>的值</li>
+</ul>
+<p>inheritableThreadLocals等到后面再说。</p>
+<p>在<code>Thread</code>的内部属性中我们看到了这两个默认为null的属性，threadLocals用来保存<code>Threadlocal</code>的本地副本，默认是为null只有调用<code>Threadlocal</code>的set时才会创建。也就是说<code>Threadlocal</code>就类似一个工具，它的作用就是把value的值通过set存在线程每个线程的threadLocals 中，只要线程一直存在threadLocals 也就一直存在。所以当不需要使用本地变量的时候可以调用<code>Threadlocal</code>的remove来清空本地变量。而threadLocals 为什么继承于ThreadLocalMap呢?ThreadLocalMap是一个定制的HashMap，而使用Map的原因就是可以每个线程关联多个<code>Threadlocal</code>变量。</p>
+<h2 id="set方法"><a href="#set方法" class="headerlink" title="set方法"></a>set方法</h2><p>我们来看一下set方法是如何实现的。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/32fd674d26f848e582f4323ab17fade8~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<p>可以看出流程非常简单，首先获取当前线程然后在进行下一步操作，我们在看一下getMap做了什么</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ee51de41be324d33a1c9a79a8622cfe2~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<p>getMap主要就是返回了当前threadLocals的属性。那如果map为空呢？</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/85ff0902806549b888cf482c416d8230~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<p>如果map为空的话就直接创建一个新的ThreadLocalMap。</p>
+<p>我们来看一下流程图。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b5c6f5590a1e47d38fba2f9aa81e7c3e~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<h2 id="get方法"><a href="#get方法" class="headerlink" title="get方法"></a>get方法</h2><p>看一下Get方法</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2741285929e942eeaa526dcdf42b4d30~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<p>首先根据当前线程获取实例如果存在就返回，如果不存在就先初始化一个空值，然后判断如果当前threadLoacals不为空就直接set一个空，否则就创建一个变量。</p>
+<h2 id="remove方法"><a href="#remove方法" class="headerlink" title="remove方法"></a>remove方法</h2><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f001edc265db43778fb0c8bb33c45959~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<p>remove方法相对来说比较简单。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><code>Threadlocal</code>的实现原理其实就是通过set把value set到线程的threadlocals属性中，<code>threadlocals</code>类型是Map其中的Key就是<code>Threadlocal</code>的this引用，value就是我们所set的值，如果当前线程不销毁的话<code>threadlocals</code>会一直存在。一直存在的话可能会造成内存溢出，所以使用完之后尽量remove一下。不过在这里又有一个问题那就是如果我的线程想要读取主线程的变量要怎么做？我们上面的例子都是设置的新创建的线程，那么现在我在主线程中set一个值，这个时候我在新创建的线程中可以读取到吗？答案是不可以，因为<code>Threadlocal</code>不支持继承性。</p>
+<p>我们看下面的例子：</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/884512be61334eb6bafdef67411b46a7~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<blockquote>
+<p>输出结果：</p>
+<p>Thread[Thread-0,5,main]====null</p>
+</blockquote>
+<p>也就是说<code>Threadlocal</code>不支持继承性，主线程设置了值，在子线程中是获取不到的。那我现在想要获取主线程里面的值要怎么做？</p>
+<p><code>Threadlocal</code>是实现不了的，不过<code>Threadlocal</code>有一个子类可以实现。<code>InheritableThreadLocal</code>，<code>InheritableThreadLocal</code>是<code>Threadlocal</code>的实现，我们来看一个简单的例子。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b9d5c9cc4c674718b73d59ada03bdad7~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<blockquote>
+<p>输出结果：</p>
+<p>Thread[Thread-0,5,main]====1000</p>
+</blockquote>
+<p>运行结果发现子线程是可以获取到主线程设置的值的，那它是如何实现的？</p>
+<p>我们看一下代码实现：</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b6d3b68d4c1943ec97befbff99d6b429~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<p><code>InheritableThreadLocal</code>是继承<code>Threadlocal</code>的，并且把<code>threadlocals</code>给替换成<code>inheritableThreadLocals</code>了所以上面的<code>inheritableThreadLocals</code>我要留在最后说，那么替换成<code>inheritableThreadLocals</code>后子线程就可以获取到主线程设置的属性了吗？我们在看一下Thread的实现。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/842d7ec7b54a4d72a93b0f36c68c7ec9~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
+<p>看<code>Thread</code>的初始化方法可以看出，先获取了当前线程(主线程)判断主线程的<code>inheritableThreadLocals</code>不为空的话就调用createInheritedMap方法赋值给子线程中的<code>inheritableThreadLocals</code>。具体不在这里解释太多。有机会在写一篇文章来解释。</p>
 
                 
             </div>
@@ -852,7 +723,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://bfd2018.github.io/2022/06/20/shu-ju-jie-gou-yu-suan-fa/shu-ju-jie-gou-yu-suan-fa-06-ha-xi-biao/">http://bfd2018.github.io/2022/06/20/shu-ju-jie-gou-yu-suan-fa/shu-ju-jie-gou-yu-suan-fa-06-ha-xi-biao/</a>
+                    <a href="http://bfd2018.github.io/2022/07/08/juc/tu-jie-threadlocal-zai-bing-fa-wen-ti-zhong-de-ying-yong/">http://bfd2018.github.io/2022/07/08/juc/tu-jie-threadlocal-zai-bing-fa-wen-ti-zhong-de-ying-yong/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -890,12 +761,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                    <span class="chip bg-color">算法</span>
+                                <a href="/tags/JUC/">
+                                    <span class="chip bg-color">JUC</span>
                                 </a>
                             
-                                <a href="/tags/%E5%93%88%E5%B8%8C/">
-                                    <span class="chip bg-color">哈希</span>
+                                <a href="/tags/ThreadLocal/">
+                                    <span class="chip bg-color">ThreadLocal</span>
                                 </a>
                             
                         </div>
@@ -1069,17 +940,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/06/21/mysql/mysql-16-bian-liang-liu-cheng-kong-zhi-yu-you-biao/">
+                <a href="/2022/07/08/juc/tu-jie-threadlocal-zai-bing-fa-wen-ti-zhong-de-ying-yong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/40.jpg" class="responsive-img" alt="【MySQL_16】变量、流程控制与游标">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="「图解」ThreadLocal 在并发问题中的应用">
                         
-                        <span class="card-title">【MySQL_16】变量、流程控制与游标</span>
+                        <span class="card-title">「图解」ThreadLocal 在并发问题中的应用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1089,26 +961,31 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-08
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/MySQL/" class="post-category">
-                                    MySQL
+                            <a href="/categories/JavaSE/" class="post-category">
+                                    JavaSE
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/MySQL%E5%9F%BA%E7%A1%80%E7%AF%87/">
-                        <span class="chip bg-color">MySQL基础篇</span>
+                    <a href="/tags/JUC/">
+                        <span class="chip bg-color">JUC</span>
+                    </a>
+                    
+                    <a href="/tags/ThreadLocal/">
+                        <span class="chip bg-color">ThreadLocal</span>
                     </a>
                     
                 </div>
@@ -1122,12 +999,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/20/da-qian-duan/1-5-wan-zi-gai-gua-es6-quan-bu-te-xing/">
+                <a href="/2022/07/08/juc/yi-wen-gao-dong-threadlocal-yuan-li/">
                     <div class="card-image">
                         
-                        <img src="https://xiong-test-srt.oss-cn-shenzhen.aliyuncs.com/typoraimages/20220620222452.png" class="responsive-img" alt="1.5万字概括ES6全部特性">
                         
-                        <span class="card-title">1.5万字概括ES6全部特性</span>
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="一文搞懂 ThreadLocal 原理">
+                        
+                        <span class="card-title">一文搞懂 ThreadLocal 原理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1138,14 +1016,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-08
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/JavaScript/" class="post-category">
-                                    JavaScript
+                            <a href="/categories/JavaSE/" class="post-category">
+                                    JavaSE
                                 </a>
                             
                             
@@ -1155,12 +1033,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/ES6/">
-                        <span class="chip bg-color">ES6</span>
+                    <a href="/tags/JUC/">
+                        <span class="chip bg-color">JUC</span>
                     </a>
                     
-                    <a href="/tags/JavaScript/">
-                        <span class="chip bg-color">JavaScript</span>
+                    <a href="/tags/ThreadLocal/">
+                        <span class="chip bg-color">ThreadLocal</span>
                     </a>
                     
                 </div>
