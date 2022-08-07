@@ -4,36 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Java数据类型和MySql数据类型对照表, Hexo-Xiong">
-    <meta name="description" content="
+    <meta name="keywords" content="【数据结构与算法】最小生成树, Hexo-Xiong">
+    <meta name="description" content="1 引言  
 
-
-类型名称
-显示长度
-数据库类型
-JAVA 类型
-JDBC 类型索引(int)
-
-
-
-
-
-
-
-
-
-
-VARCHAR
-L+N
-VARCHAR
-java.lang.String
-12
-
-
-CHAR
-N
-CHAR
-java.lang.Stri">
+在之前的文章中已经详细介绍了图的一些基础操作。而在实际生活中的许多问题都是通过转化为图的这类数据结构来求解的，这就涉及到了许多图的算法研究。
+例如：在&amp;nbsp;n&amp;nbsp;个城市之间铺设光缆，以保证这&amp;nbsp;n&amp;nb">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -47,7 +22,7 @@ java.lang.Stri">
 
     
 
-    <title>Java数据类型和MySql数据类型对照表 | Hexo-Xiong</title>
+    <title>【数据结构与算法】最小生成树 | Hexo-Xiong</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -472,12 +447,12 @@ java.lang.Stri">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/40.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Java数据类型和MySql数据类型对照表</h1>
+                    <h1 class="description center-align post-title">【数据结构与算法】最小生成树</h1>
                 </div>
             </div>
         </div>
@@ -591,12 +566,29 @@ java.lang.Stri">
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                <span class="chip bg-color">算法</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/">
+                                <span class="chip bg-color">最小生成树</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="post-category">
+                                数据结构与算法
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -605,28 +597,28 @@ java.lang.Stri">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-28
+                    2022-07-17
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-28
+                    2022-07-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    275
+                    3.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    13 分
                 </div>
                 
 
@@ -649,188 +641,85 @@ java.lang.Stri">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <table>
-<thead>
-<tr>
-<th><strong>类型名称</strong></th>
-<th><strong>显示长度</strong></th>
-<th><strong>数据库类型</strong></th>
-<th><strong>JAVA 类型</strong></th>
-<th><strong>JDBC 类型索引(int)</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>VARCHAR</strong></td>
-<td><strong>L+N</strong></td>
-<td><strong>VARCHAR</strong></td>
-<td><strong>java.lang.String</strong></td>
-<td><strong>12</strong></td>
-</tr>
-<tr>
-<td><strong>CHAR</strong></td>
-<td><strong>N</strong></td>
-<td><strong>CHAR</strong></td>
-<td><strong>java.lang.String</strong></td>
-<td><strong>1</strong></td>
-</tr>
-<tr>
-<td><strong>BLOB</strong></td>
-<td><strong>L+N</strong></td>
-<td><strong>BLOB</strong></td>
-<td><strong>java.lang.byte[]</strong></td>
-<td><strong>-4</strong></td>
-</tr>
-<tr>
-<td><strong>TEXT</strong></td>
-<td><strong>65535</strong></td>
-<td><strong>VARCHAR</strong></td>
-<td><strong>java.lang.String</strong></td>
-<td><strong>-1</strong></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>INTEGER</strong></td>
-<td><strong>4</strong></td>
-<td><strong>INTEGER UNSIGNED</strong></td>
-<td><strong>java.lang.Long</strong></td>
-<td><strong>4</strong></td>
-</tr>
-<tr>
-<td><strong>TINYINT</strong></td>
-<td><strong>3</strong></td>
-<td><strong>TINYINT UNSIGNED</strong></td>
-<td><strong>java.lang.Integer</strong></td>
-<td><strong>-6</strong></td>
-</tr>
-<tr>
-<td><strong>SMALLINT</strong></td>
-<td><strong>5</strong></td>
-<td><strong>SMALLINT UNSIGNED</strong></td>
-<td><strong>java.lang.Integer</strong></td>
-<td><strong>5</strong></td>
-</tr>
-<tr>
-<td><strong>MEDIUMINT</strong></td>
-<td><strong>8</strong></td>
-<td><strong>MEDIUMINT UNSIGNED</strong></td>
-<td><strong>java.lang.Integer</strong></td>
-<td><strong>4</strong></td>
-</tr>
-<tr>
-<td><strong>BIT</strong></td>
-<td><strong>1</strong></td>
-<td><strong>BIT</strong></td>
-<td><strong>java.lang.Boolean</strong></td>
-<td><strong>-7</strong></td>
-</tr>
-<tr>
-<td><strong>BIGINT</strong></td>
-<td><strong>20</strong></td>
-<td><strong>BIGINT UNSIGNED</strong></td>
-<td><strong>java.math.BigInteger</strong></td>
-<td><strong>-5</strong></td>
-</tr>
-<tr>
-<td><strong>FLOAT</strong></td>
-<td><strong>4+8</strong></td>
-<td><strong>FLOAT</strong></td>
-<td><strong>java.lang.Float</strong></td>
-<td><strong>7</strong></td>
-</tr>
-<tr>
-<td><strong>DOUBLE</strong></td>
-<td><strong>22</strong></td>
-<td><strong>DOUBLE</strong></td>
-<td><strong>java.lang.Double</strong></td>
-<td><strong>8</strong></td>
-</tr>
-<tr>
-<td><strong>DECIMAL</strong></td>
-<td><strong>11</strong></td>
-<td><strong>DECIMAL</strong></td>
-<td><strong>java.math.BigDecimal</strong></td>
-<td><strong>3</strong></td>
-</tr>
-<tr>
-<td><strong>BOOLEAN</strong></td>
-<td><strong>1</strong></td>
-<td><strong>同 TINYINT</strong></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>ID</strong></td>
-<td><strong>11</strong></td>
-<td><strong>PK (INTEGER UNSIGNED)</strong></td>
-<td><strong>java.lang.Long</strong></td>
-<td><strong>4</strong></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>DATE</strong></td>
-<td><strong>10</strong></td>
-<td><strong>DATE</strong></td>
-<td><strong>java.sql.Date</strong></td>
-<td><strong>91</strong></td>
-</tr>
-<tr>
-<td><strong>TIME</strong></td>
-<td><strong>8</strong></td>
-<td><strong>TIME</strong></td>
-<td><strong>java.sql.Time</strong></td>
-<td><strong>92</strong></td>
-</tr>
-<tr>
-<td><strong>DATETIME</strong></td>
-<td><strong>19</strong></td>
-<td><strong>DATETIME</strong></td>
-<td><strong>java.sql.Timestamp</strong></td>
-<td><strong>93</strong></td>
-</tr>
-<tr>
-<td><strong>TIMESTAMP</strong></td>
-<td><strong>19</strong></td>
-<td><strong>TIMESTAMP</strong></td>
-<td><strong>java.sql.Timestamp</strong></td>
-<td><strong>93</strong></td>
-</tr>
-<tr>
-<td><strong>YEAR</strong></td>
-<td><strong>4</strong></td>
-<td><strong>YEAR</strong></td>
-<td><strong>java.sql.Date</strong></td>
-<td><strong>91</strong></td>
-</tr>
-</tbody></table>
-<p>|</p>
-<p>对于 bolb，一般用于对图片的数据库存储，原理是把图片打成二进制，然后进行的一种存储方式，在 java 中对应 byte［］数组。</p>
-<p>对于 boolen 类型，在 mysql 数据库中个人认为用 int 类型代替较好，对 bit 操作不是很方便，尤其是在具有 web 页面开发的项目中，表示 0/1 对应 java 类型的 Integer 较好。</p>
+                <p>1 引言  </p>
+<hr>
+<p>在之前的文章中已经详细介绍了图的一些基础操作。而在实际生活中的许多问题都是通过转化为图的这类数据结构来求解的，这就涉及到了许多图的算法研究。</p>
+<p>例如：在&nbsp;n&nbsp;个城市之间铺设光缆，以保证这&nbsp;n&nbsp;个城市中的任意两个城市之间都可以通信。由于铺设光缆的价格很高，且各个城市之间的距离不同，这就使得在各个城市之间铺设光缆的价格不同。那么如何选择铺设线路的方案，才能使费用最低呢？</p>
+<p><strong>这就涉及到我们今天要研究的图的最小生成树问题</strong>。</p>
+<h2 id="2-重要概念"><a href="#2-重要概念" class="headerlink" title="2 重要概念"></a>2 重要概念</h2><p>在学习最小生成树之前需要先明确几个重要概念。<br>  <strong>连通图：</strong>在无向图中，若任意两个顶点与都有路径相通，则称该无向图为连通图。<br>  <strong>强连通图：</strong>在有向图中，若任意两个顶点与都有路径相通，则称该有向图为强连通图。<br>  <strong>连通网：</strong>在连通图中，若图的边具有一定的意义，每一条边都对应着一个数，称为权；权代表着连接连个顶点的代价，称这种连通图叫做连通网。<br>  <strong>生成树：</strong>一个连通图的生成树是指一个连通子图，它含有图中全部n个顶点，但只有足以构成一棵树的n-1条边。一颗有n个顶点的生成树有且仅有n-1条边，如果生成树中再添加一条边，则必定成环。<br>  <strong>最小生成树：</strong>在连通网的所有生成树中，所有边的代价和最小的生成树，称为最小生成树。</p>
+<h2 id="3-普里姆算法—Prim算法"><a href="#3-普里姆算法—Prim算法" class="headerlink" title="3 普里姆算法—Prim算法"></a>3 普里姆算法—Prim算法</h2><p>  <strong>普里姆算法（Prim算法）</strong>是加权连通图里生成最小生成树的一种算法。该算法于1930年由捷克数学家沃伊捷赫·亚尔尼克发现；并在1957年由美国计算机科学家罗伯特·普里姆独立发现；1959年，艾兹格·迪科斯彻再次发现了该算法。因此，在某些场合，普里姆算法又被称为DJP算法、亚尔尼克算法或普里姆-亚尔尼克算法。</p>
+<h3 id="3-1-算法流程"><a href="#3-1-算法流程" class="headerlink" title="3.1 算法流程"></a>3.1 算法流程</h3><p>  （1）对于一个加权连通图，其顶点集合为V，边集合为E。从集合V中任选一个顶点作为初始顶点，将该顶点标为已处理；<br>  （2）已处理的所有顶点可以看成是一个集合U，计算所有与集合U中相邻接的顶点的距离，选择距离最短的顶点，将其标记为已处理，并记录最短距离的边；<br>  （3）不断计算已处理的顶点集合U和未处理的顶点的距离，每次选出距离最短的顶点标为已处理，同时记录最短距离的边，直至所有顶点都处理完。<br>  （4）最终，所有记录的最短距离的边构成的树，即是最小生成树。</p>
+<h3 id="3-2-算法图解"><a href="#3-2-算法图解" class="headerlink" title="3.2 算法图解"></a>3.2 算法图解</h3><p>例如：图3.2.1所示的带权无向图，采用Prim算法构建最小生成树过程如下。  </p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1e0bd9fe32b74a6da44a4840de7ad79c~tplv-k3u1fbpfcp-zoom-1.image" alt="图片" title="图3.2.1"></p>
+<p>图3.2.1</p>
+<p>（1）首先，选取顶点A作为起始点，标记A，并将顶点A添加至集合U中。</p>
+<p>（2）集合U中只有一个顶点A，与A邻接的顶点有B和C，B、C距A的距离分别为6、3。选择距离最短的边（A，C），将C标记，并将C添加至集合U中。</p>
+<p>（3）集合U中顶点为A和C。与顶点A邻接的有B、C，对应距离为6、3。与C邻接的顶点有B、F、E，对应的距离为4、7、8。由于顶点A、C均被标记，故不能选择距离为3的路径。此时应选择距离最短边（C，B）。标记B、并将B添加至集合U中。</p>
+<p>（4）集合U新加入顶点B。与顶点B邻接顶点有A、C、D、F。A、C已经在集合内，不能再被选取。顶点B到顶点D、F的距离分别为2、3。顶点C到顶点E、F距离分别为7、8。因此选择距离最短边（B，D），将D标记，并将D添加至集合U中。</p>
+<p>（5）集合U中顶点有A、B、C、D。顶点A无可选顶点。顶点B可选顶点有F，距离为3。顶点C可选顶点有E、F，对应距离分别为8、7。顶点D可选顶点为F，对应距离为6。因此选取距离最短的边（B，F），标记F，并将F添加至集合U中。</p>
+<p>（6）集合U中顶点有A、B、C、D、F。顶点A、B、D均无可选顶点。顶点C可选顶点为E，对应距离为8。顶点F可选顶点为E，对应距离为7。选取距离最短的边（F，E），标记E，将E添加至集合U中。</p>
+<p>（7）集合U中顶点有A、B、C、D、E、F，但是均没有可选顶点，树的生成过程结束。</p>
+<h3 id="3-3-性能分析"><a href="#3-3-性能分析" class="headerlink" title="3.3 性能分析"></a>3.3 性能分析</h3><p>  Prim算法使用邻接矩阵来保存图的话，时间复杂度是O(N2)，使用二叉堆优化Prim算法的时间复杂度为O((V&nbsp;+&nbsp;E)&nbsp;log(V))&nbsp;=&nbsp;O(E&nbsp;log(V))。</p>
+<h2 id="4-克鲁斯卡算法——Kruskal算法"><a href="#4-克鲁斯卡算法——Kruskal算法" class="headerlink" title="4 克鲁斯卡算法——Kruskal算法"></a>4 克鲁斯卡算法——Kruskal算法</h2><h3 id="4-1-算法流程"><a href="#4-1-算法流程" class="headerlink" title="4.1 算法流程"></a>4.1 算法流程</h3><p>  （1）把图中的所有边按代价从小到大排序。<br>  （2）把图中的n个顶点看成独立的n棵树组成的森林。<br>  （3）按权值从小到大选择边，所选的边连接的两个顶点ui,vi。ui,vi应属于两颗不同的树，则成为最小生成树的一条边，并将这两颗树合并作为一颗树。&nbsp;<br>  （4）重复步骤(3),直到所有顶点都在一颗树内或者有n-1条边为止。</p>
+<h3 id="4-2-算法图解"><a href="#4-2-算法图解" class="headerlink" title="4.2 算法图解"></a>4.2 算法图解</h3><p>例如：图4.2所示的无向图，采用Kruskal算法构建最小生成树过程如下。  </p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7d5eccf57c9847b386a62ef6665255b5~tplv-k3u1fbpfcp-zoom-1.image" alt="图片" title="img"></p>
+<p>img</p>
+<p>（1）首先将所有的边按照代价大小进行排序，排序结果为（B，D），（B，F）（A，C），（B，C），（A，B），（D，F），（E，F），（C，E）。</p>
+<p>（2）代价最小边为（B，D），顶点B、D不在同一棵树上，将顶点B、D合并到一棵子树。  </p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fde6d5ad07004b409eab42980f8f8344~tplv-k3u1fbpfcp-zoom-1.image" alt="图片" title="img"></p>
+<p>img</p>
+<p>（3）代价最小边为（B，F），顶点B、F不在同一棵树上，将顶点B、F合并到一棵子树。  </p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f6a2cb07307547b3bcf8972b8400f7de~tplv-k3u1fbpfcp-zoom-1.image" alt="图片" title="img"></p>
+<p>img</p>
+<p>（4）代价最小边为（A、C），顶点A、C不在同一棵树上，将顶点A、C合并到一棵子树。  </p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/de993865ef7c4b37b795da4a834e5049~tplv-k3u1fbpfcp-zoom-1.image" alt="图片" title="img"></p>
+<p>img</p>
+<p>（5）代价最小边为（B，C），顶点B、C不在同一棵树上，将顶点B、C合并到一棵子树。  </p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/439897c9174043d8a407ea7c40e5f061~tplv-k3u1fbpfcp-zoom-1.image" alt="图片" title="img"></p>
+<p>img</p>
+<p>（6）代价最小边为（A，B），顶点A、B在同一棵树上，因此不能选择此边。  </p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/76d40e12b12445ebae07b1e2bea90591~tplv-k3u1fbpfcp-zoom-1.image" alt="图片" title="img"></p>
+<p>img</p>
+<p>（7）代价最小边为（D，F），顶点D、F在同一棵树上，因此不能选择此边。  </p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4a90920e0b394ac78cb5f99b33d7c31b~tplv-k3u1fbpfcp-zoom-1.image" alt="图片" title="img"></p>
+<p>img</p>
+<p>（8）代价最小边为（E，F），顶点E、F不在同一棵树上，将顶点E、F合并到一棵子树。  </p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b07b0e46aafc4dd28a26defb34e32477~tplv-k3u1fbpfcp-zoom-1.image" alt="图片" title="img"></p>
+<p>img</p>
+<p>（9）代价最小边为（C，E），顶点C、E在同一棵树上，因此不能选择此边。  </p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/36a3a864eedc47c794b4485a3fbe757f~tplv-k3u1fbpfcp-zoom-1.image" alt="图片" title="img"></p>
+<p>img</p>
+<p>（10）所有顶点均在同一棵树内，生成过程完毕。最小生成树为：  </p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1e8de47b732947e1835d698c465cc64f~tplv-k3u1fbpfcp-zoom-1.image" alt="图片" title="img"></p>
+<p>img</p>
+<h3 id="4-3-性能分析"><a href="#4-3-性能分析" class="headerlink" title="4.3 性能分析"></a>4.3 性能分析</h3><p>  Kruskal算法为了提高每次贪心选择时查找最短边的效率，可以先将图G中的边按代价从小到达排序，则这个操作的时间复杂度为O(elge)，其中e为无向连通网中边的个数。对于两个顶点是否属于同一个连通分量，可以用并查集的操作将其时间性能提高到O(n)，所以Kruskal算法的时间性能是O(elge)。</p>
+<h2 id="5-Boruvka算法"><a href="#5-Boruvka算法" class="headerlink" title="5 Boruvka算法"></a>5 Boruvka算法</h2><p>  Boruvka算法是最小生成树算法中最为古老的算法。类似于Kruskal算法，Bruvka算法也是逐步添加子树的方式构建。但是Bruvka算法是分步完成，每一步都增加多条边。在每一步中，会连接每一棵子树与另一棵子树的最短边，再将所有这样的边都增加到最小生成树中。</p>
+<h3 id="5-1-算法流程"><a href="#5-1-算法流程" class="headerlink" title="5.1 算法流程"></a>5.1 算法流程</h3><p>  （1）用定点数组记录每个子树（一开始是单个定点）的最近邻接顶点。<br>  （2）对于每一条边进行处理（类似Kruskal算法）。如果这条边连成的两个顶点同属于一个集合，则不处理，否则检测这条边连接的两个子树，如果是连接这两个子树的最小边则合并。</p>
+<h3 id="5-2-算法图解"><a href="#5-2-算法图解" class="headerlink" title="5.2 算法图解"></a>5.2 算法图解</h3><p>例如：图5.2所示的无向图，使用Boruvka算法构建最小生成树过程如下。  </p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d68f114132b14d8384d491aee292bc66~tplv-k3u1fbpfcp-zoom-1.image" alt="图片" title="img"></p>
+<p>img</p>
+<p>（1）找到各个顶点的最近邻接点。A最近为C，B最近为D，C最近为A，D最近为B，E最近为B，F最近为E，标记各个最近邻接顶点之间的边，得到2个子树。因此还需要一条边将两个子树连接起来。  </p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/58c24808210b49fcb6797bd8c8df7956~tplv-k3u1fbpfcp-zoom-1.image" alt="图片" title="img"></p>
+<p>img</p>
+<p>（2）对每一条边进行处理。（A，C）、（B，D）、（B，F）、（D，F）、（E，F）边分别属于同一子树，因此不处理。在剩余的边（A，B）、（B，C）、（C，F）、（C，E）中选取一条边来连接子树。选取权值最小的边（B，C）进行子树合并。  </p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fd8a2870cfb340a89e0fb335a78171f4~tplv-k3u1fbpfcp-zoom-1.image" alt="图片" title="img"></p>
+<p>img</p>
+<p>（3）得到最终的最小生成树如下：  </p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/28986afdc93847f1a148db6c16a428b2~tplv-k3u1fbpfcp-zoom-1.image" alt="图片" title="img"></p>
+<p>img</p>
+<h3 id="5-4-性能分析"><a href="#5-4-性能分析" class="headerlink" title="5.4 性能分析"></a>5.4 性能分析</h3><p>  每次循环迭代时，每棵树都会合并成一棵较大的子树，因此每次循环迭代都会使子树的数量至少减少一半.所以，循环迭代的总次数为O(logn)。每次循环迭代所需要的计算时间：每次检查所有边的时间复杂度为O(m)。所以总的复杂度为O(e*logv)。</p>
+<h2 id="6-基于权矩阵的最小生成树算法"><a href="#6-基于权矩阵的最小生成树算法" class="headerlink" title="6 基于权矩阵的最小生成树算法"></a>6 基于权矩阵的最小生成树算法</h2><p>  徐建军、沙力妮等发表了一篇一种新的最小生成树算法文章。此算法是从最小生成树的性质出发，通过构造权矩阵的方式来得到图的最小生成树。<br>  设图G1是图G的最小生成树，则G1具有如下性质：<br>  （1）G1中的各条边权值之和最小。<br>  （2）G1中有n个顶点n-1条边。<br>  （3）G1必须是连通的且无回路。</p>
+<h3 id="6-1-算法流程"><a href="#6-1-算法流程" class="headerlink" title="6.1 算法流程"></a>6.1 算法流程</h3><p>  （1）根据图的顶点数n以及各边对应的权值建立权矩阵A。矩阵A的主对角线上元素A[i][i]为0。若顶点i与顶点j不直接相连，A[i][j]=0&nbsp;。<br>  （2）在权矩阵A中，按行搜索非零最小元。若某行中有几个非零最小元，则任取其一。记录各行的非零最小元及其脚标，并将权矩阵中对应的该元素赋值为0，其关于对角线对称的元素也应为0，得到新的权矩阵B（这样后面寻找行的次非零最小元就转换成寻找该行的非零最小元了）。比较找到的所有非零最小元，如果同时存在&nbsp;A[i][j]、&nbsp;A[j][i]，则去掉其中一个。统计此时非零最小元的个数k。<br>  （3）比较k与n-1的大小。若k=n-1则由这k个元素对应的k条边构成的图即为所求最小生成树，生成过程结束。若k﹤n-1，说明这k条边构成的图没有连通，转步骤（4）。<br>  （4）在剩下的边中寻找权值最小的（n-1-k）条边使k个非零最小元对应的k条边构成的图连通。</p>
+<h3 id="6-2-实例说明"><a href="#6-2-实例说明" class="headerlink" title="6.2 实例说明"></a>6.2 实例说明</h3><p>例如：图6.2.1所示的带权无向图，使用权矩阵方法建立最小生成树过程。  </p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3e203b760bbf4ac5a86bdbb51e5d48eb~tplv-k3u1fbpfcp-zoom-1.image" alt="图片" title="图6.2.1"></p>
+<p>图6.2.1</p>
+<p>  （1）根据图中的顶点、边以及权值建立权矩阵A。  </p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f3fb60b137b84c60b8078bbe41c68310~tplv-k3u1fbpfcp-zoom-1.image" alt="图片" title="img"></p>
+<p>img</p>
+<p>  （2）在权矩阵A中，按行搜索最小非零元。记录各行的最小非零元及其脚标。按行找到的非零最小元依次是：&nbsp;A[1][2]，&nbsp;A[2][1]，&nbsp;A[3][2]，&nbsp;A[4][5]，&nbsp;A[5][4]，&nbsp;A[6][1]，&nbsp;A[7][8]，A[8][7]。将&nbsp;A中这些元素所对应的值全部变为0。在找出的所有非零最小元中同时出现了A[1][2]和A[2][1]；A[7][8]和A[8][7]；&nbsp;A[4][5]和A[5][4]，故可去掉A[2][1]，A[5][4]和A[8][7]。剩下的最小非零元为&nbsp;A[1][2]，A[3][2]，A[4][5]，A[6][1]，A[7][8]。统计非零最小元素个数k=5。<br>  （3）比较k与n-1的大小，k=5，n-1=7，k&lt;n-1。转步骤（4）。<br>  （4）寻找权值最小的（n-1-k）条边使k个最小非零元对应的边构成的图连通。n-1-k=8-1-5=2，说明还需要两条边才能使已有边构成的图连通。第一个最小非零元A[1][2]的脚标12分别与A[3][2]，A[6][1]的脚标32、61有交集，说明这三个元素对应的边是连通的。将脚标12，32，61&nbsp;取并集，再判断此并集与剩余元素A[4][5]、&nbsp;A[7][8]的脚标是否有交集。很明显，并集（1236）与45、78&nbsp;都没有交集，且45与78之间也没有交集。&nbsp;因此我们知道A[4][5]与A[7][8]所对应的边互不相连，并且和其他三条边也没有连通。<br>  在步骤（2）中已经将A[4][5]和A[5][4]的值变为0了，所以只需在现有权矩阵A的第4行和第5行中分别找出一个非零最小元，二者取较小值，从而得到A[5][6]。在现有权矩阵A的第7行和第8行中分别找出一个非零最小元，二者取较小值。第7行和第8行的非零最小元&nbsp;A[7][1]=&nbsp;A[8][6]，可任取其一。这里取A[8][6]。A[5][6]和A[8][6]分别对应的边就是我们要寻找的两条边。这样，由A[1][2]，A[3][2]，A[4][5]，A[5][6]，A[6][1]，A[7][8]，A[8][6]分别对应的边构成的图即为所求的最小生成树。最终结果如图6.2.2所示。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/eba56569490844c99191d6d52529b2af~tplv-k3u1fbpfcp-zoom-1.image" alt="图片" title="图6.2.2"></p>
+<p>图6.2.2</p>
+<h2 id="7-结语"><a href="#7-结语" class="headerlink" title="7 结语"></a>7 结语</h2><p>  图的最小生成树算法种类有很多，但是以&nbsp;Prim&nbsp;算法和&nbsp;Kruskal&nbsp;算法最为经典。希望读者在读完本篇文章后，不仅能理解最小生成树的构造过程，同时也能理解各类算法的解题思想。</p>
 
                 
             </div>
@@ -857,7 +746,7 @@ java.lang.Stri">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://bfd2018.github.io/2022/05/28/java-shu-ju-lei-xing-he-mysql-shu-ju-lei-xing-dui-zhao-biao/">http://bfd2018.github.io/2022/05/28/java-shu-ju-lei-xing-he-mysql-shu-ju-lei-xing-dui-zhao-biao/</a>
+                    <a href="http://bfd2018.github.io/2022/07/17/shu-ju-jie-gou-yu-suan-fa/shu-ju-jie-gou-yu-suan-fa-zui-xiao-sheng-cheng-shu/">http://bfd2018.github.io/2022/07/17/shu-ju-jie-gou-yu-suan-fa/shu-ju-jie-gou-yu-suan-fa-zui-xiao-sheng-cheng-shu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -894,7 +783,15 @@ java.lang.Stri">
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                    <span class="chip bg-color">算法</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/">
+                                    <span class="chip bg-color">最小生成树</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -1070,13 +967,13 @@ java.lang.Stri">
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/05/28/springboot/01-springboot-ji-chu/">
+                <a href="/2022/07/20/cheng-xu-yuan-gong-ju/zui-shou-it-gong-si-huan-ying-de-30-kuan-kai-yuan-ruan-jian/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="01-SpringBoot基础">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="最受IT公司欢迎的 30 款开源软件">
                         
-                        <span class="card-title">01-SpringBoot基础</span>
+                        <span class="card-title">最受IT公司欢迎的 30 款开源软件</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1087,14 +984,14 @@ java.lang.Stri">
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-28
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-20
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/SpringBoot/" class="post-category">
-                                    SpringBoot
+                            <a href="/categories/%E5%B7%A5%E5%85%B7/" class="post-category">
+                                    工具
                                 </a>
                             
                             
@@ -1104,12 +1001,12 @@ java.lang.Stri">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/SpringBoot/">
-                        <span class="chip bg-color">SpringBoot</span>
+                    <a href="/tags/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/">
+                        <span class="chip bg-color">开源软件</span>
                     </a>
                     
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
+                    <a href="/tags/%E5%B7%A5%E5%85%B7/">
+                        <span class="chip bg-color">工具</span>
                     </a>
                     
                 </div>
@@ -1123,12 +1020,13 @@ java.lang.Stri">
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/28/spring/spring-kuang-jia-yuan-ma-fen-xi/">
+                <a href="/2022/07/08/juc/tu-jie-threadlocal-zai-bing-fa-wen-ti-zhong-de-ying-yong/">
                     <div class="card-image">
                         
-                        <img src="https://xiong-test-srt.oss-cn-shenzhen.aliyuncs.com/typoraimages/99973818d0b36436684a4df8b026ddbe.jpg" class="responsive-img" alt="Spring框架源码分析">
                         
-                        <span class="card-title">Spring框架源码分析</span>
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="「图解」ThreadLocal 在并发问题中的应用">
+                        
+                        <span class="card-title">「图解」ThreadLocal 在并发问题中的应用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1139,14 +1037,14 @@ java.lang.Stri">
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-08
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Spring/" class="post-category">
-                                    Spring
+                            <a href="/categories/JavaSE/" class="post-category">
+                                    JavaSE
                                 </a>
                             
                             
@@ -1156,12 +1054,12 @@ java.lang.Stri">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
-                        <span class="chip bg-color">源码分析</span>
+                    <a href="/tags/JUC/">
+                        <span class="chip bg-color">JUC</span>
                     </a>
                     
-                    <a href="/tags/Spring/">
-                        <span class="chip bg-color">Spring</span>
+                    <a href="/tags/ThreadLocal/">
+                        <span class="chip bg-color">ThreadLocal</span>
                     </a>
                     
                 </div>
@@ -1335,7 +1233,7 @@ java.lang.Stri">
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">458.8k</span>
+                        class="white-color">460k</span>
             
             
             

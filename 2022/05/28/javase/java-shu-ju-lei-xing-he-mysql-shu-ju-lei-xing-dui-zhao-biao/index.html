@@ -4,8 +4,36 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="【设计模式】10分钟学懂UML类图, Hexo-Xiong">
-    <meta name="description" content="UML介绍自己刚刚参加工作时，刚进部门第一周leader让我熟悉一个模块的调用过程，那个模块包含几十个类、有上百个方法，类和类之间关系错综复杂，各种方法调来调去，我就画了一整张纸，密密麻麻，睡醒觉第二天就已经看不懂了，简直裂开，这种感觉记忆">
+    <meta name="keywords" content="Java数据类型和MySql数据类型对照表, Hexo-Xiong">
+    <meta name="description" content="
+
+
+类型名称
+显示长度
+数据库类型
+JAVA 类型
+JDBC 类型索引(int)
+
+
+
+
+
+
+
+
+
+
+VARCHAR
+L+N
+VARCHAR
+java.lang.String
+12
+
+
+CHAR
+N
+CHAR
+java.lang.Stri">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +47,7 @@
 
     
 
-    <title>【设计模式】10分钟学懂UML类图 | Hexo-Xiong</title>
+    <title>Java数据类型和MySql数据类型对照表 | Hexo-Xiong</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -444,12 +472,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">【设计模式】10分钟学懂UML类图</h1>
+                    <h1 class="description center-align post-title">Java数据类型和MySql数据类型对照表</h1>
                 </div>
             </div>
         </div>
@@ -563,33 +591,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/UML/">
-                                <span class="chip bg-color">UML</span>
-                            </a>
-                        
-                            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-                                <span class="chip bg-color">设计模式</span>
-                            </a>
-                        
-                            <a href="/tags/%E7%B1%BB%E5%9B%BE/">
-                                <span class="chip bg-color">类图</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/UML%E7%B1%BB%E5%9B%BE/" class="post-category">
-                                UML类图
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -598,28 +605,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-08-01
+                    2022-05-28
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-08-01
+                    2022-05-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.1k
+                    275
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    1 分
                 </div>
                 
 
@@ -642,121 +649,188 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="UML介绍"><a href="#UML介绍" class="headerlink" title="UML介绍"></a>UML介绍</h2><p>自己刚刚参加工作时，刚进部门第一周leader让我熟悉一个模块的调用过程，那个模块包含几十个类、有上百个方法，类和类之间关系错综复杂，各种方法调来调去，我就画了一整张纸，密密麻麻，睡醒觉第二天就已经看不懂了，简直裂开，这种感觉记忆尤新，当时leader说”工具不对“，然后从那个时候才开始接触UML。</p>
-<p>UML（Unified Modeling Language）是一种统一建模语言，是用来对软件密集系统进行可视化建模的一种语言。</p>
-<p>UML图有很多种，主要包含以下几类：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e9e4556953094ff187f6988892f81ce8~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<p>但是对于初学者来说，我们不需要掌握所有的UML图，才能进行系统分析和设计工作，否则学习的成本太高了。根据二八原则，一般说来，在UML图中，只要掌握类图、用例图、时序图的使用，就能完成80%的工作了。而对于程序员来说，使用最频繁的又是类图。因此，本文我们只介绍UML类图。</p>
-<h2 id="抽象类、抽象类、接口和包的UML类图表示"><a href="#抽象类、抽象类、接口和包的UML类图表示" class="headerlink" title="抽象类、抽象类、接口和包的UML类图表示"></a>抽象类、抽象类、接口和包的UML类图表示</h2><h3 id="类的UML类图表示"><a href="#类的UML类图表示" class="headerlink" title="类的UML类图表示"></a>类的UML类图表示</h3><p>UML类图中用矩形框表示一个具体类，矩形框分为三层：</p>
-<ul>
-<li><p>•&nbsp;第一层：类名</p>
-</li>
-<li><p>•&nbsp;第二层：成员变量</p>
-</li>
-<li><p>•&nbsp;第三层：成员方法</p>
-</li>
-</ul>
-<p>成员变量以及成员方法名前的访问修饰符用对应符号来表示，成员变量以及成员方法名后紧跟着”:”后面再跟着成员变量的类型或者方法的返回类型,举个例子。</p>
-<p>下面是一个具体类的定义：</p>
-<pre class="line-numbers language-none"><code class="language-none">class&nbsp;Student{
-&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;String&nbsp;pubVar;
-&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;String&nbsp;proVar;
-&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;String&nbsp;priVar;
-&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;defaultVar;
-
-&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;String&nbsp;pubFun(){
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;"pubFun";
-&nbsp;&nbsp;&nbsp;&nbsp;}
-&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;String&nbsp;proFun(){
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;"proFun";
-&nbsp;&nbsp;&nbsp;&nbsp;}
-&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;String&nbsp;priFun()
-&nbsp;&nbsp;&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;"priFun";
-&nbsp;&nbsp;&nbsp;&nbsp;}
-&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;defaultFun(){
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;"defaultFun";
-&nbsp;&nbsp;&nbsp;&nbsp;}
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>下面是该类对应的UML类图：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d3fe2d461bbc4b57a41f68f47f21f4b7~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<h3 id="抽象类的UML类图表示"><a href="#抽象类的UML类图表示" class="headerlink" title="抽象类的UML类图表示"></a>抽象类的UML类图表示</h3><p>抽象类在UML类图中同样用矩形框表示，不同的是抽象类的类名以及抽象方法的名字都用斜体字表示，其它和具体类没有任何差别。</p>
-<p>下面是一个抽象类的定义：</p>
-<pre class="line-numbers language-none"><code class="language-none">abstract
-&nbsp;class&nbsp;Person{&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;String&nbsp;pubVar;&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;String&nbsp;proVar;&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;String&nbsp;priVar;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;defaultVar;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;String&nbsp;pubFun(){&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;"pubFun";&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;String&nbsp;proFun(){&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;"proFun";&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;String&nbsp;priFun()&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;"priFun";&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;defaultFun(){&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;"defaultFun";&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp; &nbsp; //抽象方法&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;
-abstract
-&nbsp;void&nbsp;abstractFun();}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>其对应的UML类图如下：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/55c2f4c768584a118c477a2aea7b9499~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<h3 id="接口的UML类图表示"><a href="#接口的UML类图表示" class="headerlink" title="接口的UML类图表示"></a>接口的UML类图表示</h3><p>接口在类图中也是用矩形框表示，但是与类的表示法不同的是，接口在类图中的第一层顶端会用 &lt;&lt;interface&gt;&gt;标注这是一个接口，下面是接口的名字，第二层是方法。另外需要注意的是接口的方法前面没有访问修饰符默认就是public访问权限。</p>
-<p>下面是一个接口的定义：</p>
-<pre class="line-numbers language-none"><code class="language-none">interface
-&nbsp;Shoes{&nbsp;&nbsp;&nbsp;&nbsp;void&nbsp;abstractFun();}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>其对应的UML类图如下：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/50a24229483547818d58e6446004779b~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<h3 id="包的UML类图表示"><a href="#包的UML类图表示" class="headerlink" title="包的UML类图表示"></a>包的UML类图表示</h3><p>类和接口一般都出现在包中，UML类图中包的表示形式如图：</p>
-<pre class="line-numbers language-none"><code class="language-none">package&nbsp;graph;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/03490515310a4b4dbac09600e93bf4e6~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<h2 id="UML类图表示类之间关系"><a href="#UML类图表示类之间关系" class="headerlink" title="UML类图表示类之间关系"></a>UML类图表示类之间关系</h2><h3 id="继承关系"><a href="#继承关系" class="headerlink" title="继承关系"></a>继承关系</h3><p>继承关系也称为泛化关系，是指对象与对象之间的继承关系。如，</p>
-<p>在UML类图中，继承关系是用空心三角和实线组成的箭头表示，从子类指向父类。</p>
-<p>下面的例子中，Son类继承了Parent类。</p>
-<pre class="line-numbers language-none"><code class="language-none">class&nbsp;Parent{}class&nbsp;Son&nbsp;
-extends
-&nbsp;Parent{}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>用UML类图表示如下：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/453398dbcd084ee58c81a9efc5e20e4f~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<h3 id="实现关系"><a href="#实现关系" class="headerlink" title="实现关系"></a>实现关系</h3><p>实现关系是指接口及其实现类之间的关系。在UML类图中，实现关系用空心三角和虚线组成的箭头来表示，从实现类指向接口，</p>
-<p>下面的例子中，Dog类实现了了Animal类。</p>
-<pre class="line-numbers language-none"><code class="language-none">interface
-&nbsp;Animal{}class&nbsp;Dog&nbsp;
-implements
-&nbsp;Animal{}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>用UML类图表示如下：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c3933ba10b0248eebd1a5190c1d360dd~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<h3 id="聚合关系"><a href="#聚合关系" class="headerlink" title="聚合关系"></a>聚合关系</h3><p>聚合关系是一种特殊的关联关系，表示的是整体和部分的关系，整体与部分具有各自的生命周期,即使整体没有了，部分还能存在，典型的例子就是，公司部门与员工的关系，一个部门撤消了，员工还能存在。</p>
-<p>在UML图中，聚合关系用空心菱形加实线箭头表示，空心菱形在整体一方，箭头指向部分一方。</p>
-<p>如下所示</p>
-<pre class="line-numbers language-none"><code class="language-none">class&nbsp;Department{&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;
-Employee&nbsp;employee
-;}class&nbsp;Employee{}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>其对应的UML类图如下：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a7744d4fe88b4950ab16199844b4a7c2~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<h3 id="组合关系"><a href="#组合关系" class="headerlink" title="组合关系"></a>组合关系</h3><p>和聚合关系类似，组合关系表示的也是整体与部分的关系，但不同于聚合关系的是:组合关系中，整体与部分不可以分开，一旦整体对象不存在，部分对象也将不存在，部分对象与整体对象之间具有同生共死的关系。</p>
-<p>组合关系和聚合关系不关概念很像，它们的UML类图表示也很像，在UML图中，组合关系用实心菱形加实线箭头表示，实心菱形在整体一方，箭头指向部分一方。</p>
-<p>举个例子，比如人的头（Head）和嘴巴（Mouth），嘴巴是头的组成部分之一，一旦头没了，嘴巴也没了，因此头和嘴巴是组合关系，对应的java代码如下：</p>
-<pre class="line-numbers language-none"><code class="language-none">class&nbsp;Mouth
-{
-
-}
-
-class&nbsp;Head&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;Mouth&nbsp;mouth;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>其UML类图表示如下：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3ff93a1fdfc0467ab5fbc6fcfb037a70~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<p>在Java代码形式上，聚合和组合关系中的部分对象是整体对象的一个成员变量，仅从类代码本身是区分不了聚合和组合的。如果一定要区分，那么需要结合业务角度上来看，如果作为整体的对象必须要部分对象的参与，才能完成自己的职责，那么二者之间就是组合关系，否则就是聚合关系。</p>
-<h3 id="依赖关系"><a href="#依赖关系" class="headerlink" title="依赖关系"></a>依赖关系</h3><p>依赖（Dependency）关系是一种弱关联关系。如果对象A用到对象B，但是和B的关系不是太明显的时候，就可以把这种关系看作是依赖关系。如：工人(Worker)要去拧螺丝，要依赖螺丝刀(Screwdriver)来帮助你完成拧螺丝的工作</p>
-<p>依赖关系在Java中的具体代码表现形式为B为A的构造器或方法中的局部变量、方法或构造器的参数、方法的返回值，或者A调用B的静态方法。</p>
-<p>在UML类图中，依赖关系用一个带虚线的箭头表示，由使用方指向被使用方，可以看下面的例子。</p>
-<p>java代码：</p>
-<pre class="line-numbers language-none"><code class="language-none">class&nbsp;Screwdriver{}class&nbsp;Worker{&nbsp;&nbsp;&nbsp;&nbsp;//Screwdriver对象作为Worker类方法的参数，构成依赖关系&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;screw(
-Screwdriver&nbsp;screwdriver
-){&nbsp;&nbsp;&nbsp;&nbsp;}}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>对应的UML类图表示如下：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/274aa8175e044c5ca3bcc5bcfc437fbd~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<p>经过上面的介绍，相信大家对UML类图已经有比较好的理解了，最后给大家介绍一个可以免费画UML类图的在线工具：<a target="_blank" rel="noopener" href="https://www.processon.com/%EF%BC%8C%E6%9C%AC%E6%96%87%E7%9A%84%E6%89%80%E6%9C%89%E4%BE%8B%E5%AD%90%E9%83%BD%E6%98%AF%E5%9C%A8%E8%BF%99%E4%B8%8A%E9%9D%A2%E7%94%BB%E7%9A%84%E3%80%82">https://www.processon.com/，本文的所有例子都是在这上面画的。</a>  </p>
-<p>最后，在网上找到一张对于类图比较综合的例子（如有侵权，请联系我删除），它将我们前面介绍的内容都联系起来，如下图所示，大家可以对照着理解图中各个类之间的关系：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/76bb0d2730684012b85c25ddfce54b16~tplv-k3u1fbpfcp-zoom-1.image" alt="图片"></p>
-<p>本文源码地址：<br><a target="_blank" rel="noopener" href="https://github.com/qinlizhong1/javaStudy/tree/master/DesignPattern/src/graph">https://github.com/qinlizhong1/javaStudy/tree/master/DesignPattern/src/graph</a></p>
+                <table>
+<thead>
+<tr>
+<th><strong>类型名称</strong></th>
+<th><strong>显示长度</strong></th>
+<th><strong>数据库类型</strong></th>
+<th><strong>JAVA 类型</strong></th>
+<th><strong>JDBC 类型索引(int)</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>VARCHAR</strong></td>
+<td><strong>L+N</strong></td>
+<td><strong>VARCHAR</strong></td>
+<td><strong>java.lang.String</strong></td>
+<td><strong>12</strong></td>
+</tr>
+<tr>
+<td><strong>CHAR</strong></td>
+<td><strong>N</strong></td>
+<td><strong>CHAR</strong></td>
+<td><strong>java.lang.String</strong></td>
+<td><strong>1</strong></td>
+</tr>
+<tr>
+<td><strong>BLOB</strong></td>
+<td><strong>L+N</strong></td>
+<td><strong>BLOB</strong></td>
+<td><strong>java.lang.byte[]</strong></td>
+<td><strong>-4</strong></td>
+</tr>
+<tr>
+<td><strong>TEXT</strong></td>
+<td><strong>65535</strong></td>
+<td><strong>VARCHAR</strong></td>
+<td><strong>java.lang.String</strong></td>
+<td><strong>-1</strong></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>INTEGER</strong></td>
+<td><strong>4</strong></td>
+<td><strong>INTEGER UNSIGNED</strong></td>
+<td><strong>java.lang.Long</strong></td>
+<td><strong>4</strong></td>
+</tr>
+<tr>
+<td><strong>TINYINT</strong></td>
+<td><strong>3</strong></td>
+<td><strong>TINYINT UNSIGNED</strong></td>
+<td><strong>java.lang.Integer</strong></td>
+<td><strong>-6</strong></td>
+</tr>
+<tr>
+<td><strong>SMALLINT</strong></td>
+<td><strong>5</strong></td>
+<td><strong>SMALLINT UNSIGNED</strong></td>
+<td><strong>java.lang.Integer</strong></td>
+<td><strong>5</strong></td>
+</tr>
+<tr>
+<td><strong>MEDIUMINT</strong></td>
+<td><strong>8</strong></td>
+<td><strong>MEDIUMINT UNSIGNED</strong></td>
+<td><strong>java.lang.Integer</strong></td>
+<td><strong>4</strong></td>
+</tr>
+<tr>
+<td><strong>BIT</strong></td>
+<td><strong>1</strong></td>
+<td><strong>BIT</strong></td>
+<td><strong>java.lang.Boolean</strong></td>
+<td><strong>-7</strong></td>
+</tr>
+<tr>
+<td><strong>BIGINT</strong></td>
+<td><strong>20</strong></td>
+<td><strong>BIGINT UNSIGNED</strong></td>
+<td><strong>java.math.BigInteger</strong></td>
+<td><strong>-5</strong></td>
+</tr>
+<tr>
+<td><strong>FLOAT</strong></td>
+<td><strong>4+8</strong></td>
+<td><strong>FLOAT</strong></td>
+<td><strong>java.lang.Float</strong></td>
+<td><strong>7</strong></td>
+</tr>
+<tr>
+<td><strong>DOUBLE</strong></td>
+<td><strong>22</strong></td>
+<td><strong>DOUBLE</strong></td>
+<td><strong>java.lang.Double</strong></td>
+<td><strong>8</strong></td>
+</tr>
+<tr>
+<td><strong>DECIMAL</strong></td>
+<td><strong>11</strong></td>
+<td><strong>DECIMAL</strong></td>
+<td><strong>java.math.BigDecimal</strong></td>
+<td><strong>3</strong></td>
+</tr>
+<tr>
+<td><strong>BOOLEAN</strong></td>
+<td><strong>1</strong></td>
+<td><strong>同 TINYINT</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>ID</strong></td>
+<td><strong>11</strong></td>
+<td><strong>PK (INTEGER UNSIGNED)</strong></td>
+<td><strong>java.lang.Long</strong></td>
+<td><strong>4</strong></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>DATE</strong></td>
+<td><strong>10</strong></td>
+<td><strong>DATE</strong></td>
+<td><strong>java.sql.Date</strong></td>
+<td><strong>91</strong></td>
+</tr>
+<tr>
+<td><strong>TIME</strong></td>
+<td><strong>8</strong></td>
+<td><strong>TIME</strong></td>
+<td><strong>java.sql.Time</strong></td>
+<td><strong>92</strong></td>
+</tr>
+<tr>
+<td><strong>DATETIME</strong></td>
+<td><strong>19</strong></td>
+<td><strong>DATETIME</strong></td>
+<td><strong>java.sql.Timestamp</strong></td>
+<td><strong>93</strong></td>
+</tr>
+<tr>
+<td><strong>TIMESTAMP</strong></td>
+<td><strong>19</strong></td>
+<td><strong>TIMESTAMP</strong></td>
+<td><strong>java.sql.Timestamp</strong></td>
+<td><strong>93</strong></td>
+</tr>
+<tr>
+<td><strong>YEAR</strong></td>
+<td><strong>4</strong></td>
+<td><strong>YEAR</strong></td>
+<td><strong>java.sql.Date</strong></td>
+<td><strong>91</strong></td>
+</tr>
+</tbody></table>
+<p>|</p>
+<p>对于 bolb，一般用于对图片的数据库存储，原理是把图片打成二进制，然后进行的一种存储方式，在 java 中对应 byte［］数组。</p>
+<p>对于 boolen 类型，在 mysql 数据库中个人认为用 int 类型代替较好，对 bit 操作不是很方便，尤其是在具有 web 页面开发的项目中，表示 0/1 对应 java 类型的 Integer 较好。</p>
 
                 
             </div>
@@ -783,7 +857,7 @@ Screwdriver&nbsp;screwdriver
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://bfd2018.github.io/2022/08/01/she-ji-mo-shi-10-fen-zhong-xue-dong-uml-lei-tu/">http://bfd2018.github.io/2022/08/01/she-ji-mo-shi-10-fen-zhong-xue-dong-uml-lei-tu/</a>
+                    <a href="http://bfd2018.github.io/2022/05/28/javase/java-shu-ju-lei-xing-he-mysql-shu-ju-lei-xing-dui-zhao-biao/">http://bfd2018.github.io/2022/05/28/javase/java-shu-ju-lei-xing-he-mysql-shu-ju-lei-xing-dui-zhao-biao/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -820,19 +894,7 @@ Screwdriver&nbsp;screwdriver
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/UML/">
-                                    <span class="chip bg-color">UML</span>
-                                </a>
-                            
-                                <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-                                    <span class="chip bg-color">设计模式</span>
-                                </a>
-                            
-                                <a href="/tags/%E7%B1%BB%E5%9B%BE/">
-                                    <span class="chip bg-color">类图</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -1004,18 +1066,17 @@ Screwdriver&nbsp;screwdriver
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/08/01/she-ji-mo-shi-10-fen-zhong-xue-dong-uml-lei-tu/">
+                <a href="/2022/05/28/springboot/01-springboot-ji-chu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="【设计模式】10分钟学懂UML类图">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="01-SpringBoot基础">
                         
-                        <span class="card-title">【设计模式】10分钟学懂UML类图</span>
+                        <span class="card-title">01-SpringBoot基础</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1025,35 +1086,30 @@ Screwdriver&nbsp;screwdriver
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-01
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-28
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/UML%E7%B1%BB%E5%9B%BE/" class="post-category">
-                                    UML类图
+                            <a href="/categories/SpringBoot/" class="post-category">
+                                    SpringBoot
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/UML/">
-                        <span class="chip bg-color">UML</span>
+                    <a href="/tags/SpringBoot/">
+                        <span class="chip bg-color">SpringBoot</span>
                     </a>
                     
-                    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-                        <span class="chip bg-color">设计模式</span>
-                    </a>
-                    
-                    <a href="/tags/%E7%B1%BB%E5%9B%BE/">
-                        <span class="chip bg-color">类图</span>
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
                 </div>
@@ -1067,13 +1123,12 @@ Screwdriver&nbsp;screwdriver
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/07/24/vue-cli-jiao-shou-jia-de-mu-lu-jie-gou-xiang-jie/">
+                <a href="/2022/05/28/spring/spring-kuang-jia-yuan-ma-fen-xi/">
                     <div class="card-image">
                         
+                        <img src="https://xiong-test-srt.oss-cn-shenzhen.aliyuncs.com/typoraimages/99973818d0b36436684a4df8b026ddbe.jpg" class="responsive-img" alt="Spring框架源码分析">
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Vue-cli(脚手架)的目录结构详解">
-                        
-                        <span class="card-title">Vue-cli(脚手架)的目录结构详解</span>
+                        <span class="card-title">Spring框架源码分析</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1084,14 +1139,14 @@ Screwdriver&nbsp;screwdriver
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-28
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Vue/" class="post-category">
-                                    Vue
+                            <a href="/categories/Spring/" class="post-category">
+                                    Spring
                                 </a>
                             
                             
@@ -1101,12 +1156,12 @@ Screwdriver&nbsp;screwdriver
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Vue/">
-                        <span class="chip bg-color">Vue</span>
+                    <a href="/tags/Spring/">
+                        <span class="chip bg-color">Spring</span>
                     </a>
                     
-                    <a href="/tags/Vue-cli/">
-                        <span class="chip bg-color">Vue-cli</span>
+                    <a href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+                        <span class="chip bg-color">源码分析</span>
                     </a>
                     
                 </div>
@@ -1280,7 +1335,7 @@ Screwdriver&nbsp;screwdriver
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">458.8k</span>
+                        class="white-color">460k</span>
             
             
             
